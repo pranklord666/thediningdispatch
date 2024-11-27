@@ -4,16 +4,20 @@ document.getElementById('newsletter-form').addEventListener('submit', function(e
     const email = document.getElementById('email').value;
     const messageDiv = document.getElementById('message');
 
-    fetch('save_email.php', {
+    fetch('https://formspree.io/f/xyzyndrd', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
-        body: `email=${encodeURIComponent(email)}`
+        body: JSON.stringify({ email: email }),
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        messageDiv.textContent = data;
+        if (data.ok) {
+            messageDiv.textContent = 'Merci de votre inscription!';
+        } else {
+            messageDiv.textContent = 'Erreur lors de l\'inscription.';
+        }
     })
     .catch(error => {
         messageDiv.textContent = 'Erreur lors de l\'inscription.';
