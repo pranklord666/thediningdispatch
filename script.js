@@ -1,25 +1,25 @@
 document.getElementById('newsletter-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const messageDiv = document.getElementById('message');
+    var email = document.getElementById('email').value;
+    var messageDiv = document.getElementById('message');
 
-    fetch('https://formspree.io/f/xyzyndrd', {
+    fetch('https://polar-plains-00718-3065c0aa9eda.herokuapp.com/submit', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({ email: email }),
+        body: new URLSearchParams({
+            email: email
+        })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.ok) {
-            messageDiv.textContent = 'Merci de votre inscription!';
-        } else {
-            messageDiv.textContent = 'Erreur lors de l\'inscription.';
-        }
+        messageDiv.textContent = data.message;
+        messageDiv.style.color = 'green';
     })
     .catch(error => {
-        messageDiv.textContent = 'Erreur lors de l\'inscription.';
+        messageDiv.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+        messageDiv.style.color = 'red';
     });
 });
