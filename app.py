@@ -1,8 +1,16 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import csv
 import os
 
 app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('.', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/submit', methods=['POST'])
 def submit():
