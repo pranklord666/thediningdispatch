@@ -12,6 +12,14 @@ def index():
 def favicon():
     return send_from_directory('.', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@app.route('/style.css')
+def style():
+    return send_from_directory('.', 'style.css', mimetype='text/css')
+
+@app.route('/script.js')
+def script():
+    return send_from_directory('.', 'script.js', mimetype='application/javascript')
+
 @app.route('/submit', methods=['POST'])
 def submit():
     email = request.form['email']
