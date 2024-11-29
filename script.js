@@ -1,8 +1,8 @@
 document.getElementById('newsletter-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Empêche le comportement par défaut du formulaire
 
-    var email = document.getElementById('email').value;
-    var messageDiv = document.getElementById('message');
+    const email = document.getElementById('email').value;
+    const messageDiv = document.getElementById('message');
 
     fetch('https://polar-plains-00718-3065c0aa9eda.herokuapp.com/submit', {
         method: 'POST',
