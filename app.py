@@ -1,8 +1,16 @@
 from flask import Flask, request, jsonify, send_from_directory, send_file
-import csv
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///emails.db'
+db = SQLAlchemy(app)
+
+class Email(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+db.create_all()
 
 @app.route('/')
 def index():
@@ -26,20 +34,32 @@ def submit():
     if not email:
         return jsonify({'message': 'Email is required'}), 400
 
-    if not os.path.exists('emails.csv'):
-        with open('emails.csv', 'w') as file:
-            file.write('email\n')
-    with open('emails.csv', 'a') as file:
-        writer = csv.writer(file)
-        writer.writerow([email])
+    new_email = Email(email=email)
+    db.session.add(new_email)
+    db.session.commit()
     return jsonify({'message': 'Email received'})
 
 @app.route('/download-emails')
 def download_emails():
-    try:
-        return send_file('emails.csv', as_attachment=True)
-    except FileNotFoundError:
-        return "Le fichier emails.csv n'existe pas.", 404
+    emails = Email.query.all()
+    if not emails:
+        return "No emails found.", 404
+
+    import csv
+    from io import StringIO
+    from flask import make_response
+
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['email'])
+    for email in emails:
+        writer.writerow([email.email])
+
+    output.seek(0)
+    response = make_response(output.getvalue())
+    response.headers["Content-Disposition"] = "attachment; filename=emails.csv"
+    response.headers["Content-type"] = "text/csv"
+    return response
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
