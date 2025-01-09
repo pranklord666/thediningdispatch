@@ -10,6 +10,22 @@
         .btn-spacing {
             margin-bottom: 10px; /* Ajustez cette valeur selon vos besoins */
         }
+
+        .newsletter-frame {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .newsletter-frame iframe {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
+            aspect-ratio: 480 / 320; /* Maintient le ratio d'aspect */
+            border: 1px solid #EEE;
+            background: white;
+        }
     </style>
 </head>
 <body>
@@ -24,16 +40,12 @@
 
         <div id="english-newsletter" class="newsletter-frame" style="display: none;">
             <iframe src="https://thediningdispatchv2.substack.com/embed"
-                    width="480" height="320"
-                    style="border:1px solid #EEE; background:white;"
                     frameborder="0" scrolling="no">
             </iframe>
         </div>
 
         <div id="french-newsletter" class="newsletter-frame" style="display: none;">
             <iframe src="https://thediningdispatch.substack.com/embed"
-                    width="480" height="320"
-                    style="border:1px solid #EEE; background:white;"
                     frameborder="0" scrolling="no">
             </iframe>
         </div>
@@ -49,9 +61,9 @@
             document.getElementById('french-newsletter').style.display = 'none';
 
             if (language === 'english') {
-                document.getElementById('english-newsletter').style.display = 'block';
+                document.getElementById('english-newsletter').style.display = 'flex';
             } else if (language === 'french') {
-                document.getElementById('french-newsletter').style.display = 'block';
+                document.getElementById('french-newsletter').style.display = 'flex';
             }
         }
     </script>
