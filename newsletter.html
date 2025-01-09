@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to The Dining Dispatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+    <h1>Subscribe to The Dining Dispatch</h1>
+    <p>Select your preferred language:</p>
+
+    <div class="language-buttons">
+        <button class="btn" onclick="showNewsletter('english')">English</button>
+        <button class="btn" onclick="showNewsletter('french')">Français</button>
+    </div>
+
+    <div id="english-newsletter" class="newsletter-frame" style="display: none;">
+        <iframe src="https://thediningdispatchv2.substack.com/embed"
+                width="480" height="320"
+                style="border:1px solid #EEE; background:white;"
+                frameborder="0" scrolling="no">
+        </iframe>
+    </div>
+
+    <div id="french-newsletter" class="newsletter-frame" style="display: none;">
+        <iframe src="https://thediningdispatch.substack.com/embed"
+                width="480" height="320"
+                style="border:1px solid #EEE; background:white;"
+                frameborder="0" scrolling="no">
+        </iframe>
+    </div>
+
+    <br>
+    <nav>
+        <a href="home.html" class="btn">Home</a>
+        <a href="articles.html" class="btn">The Curated Ten</a>
+        <a href="about.html" class="btn">About Us</a>
+    </nav>
+
+    <script>
+        function showNewsletter(language) {
+            document.getElementById('english-newsletter').style.display = 'none';
+            document.getElementById('french-newsletter').style.display = 'none';
+
+            if (language === 'english') {
+                document.getElementById('english-newsletter').style.display = 'block';
+            } else if (language === 'french') {
+                document.getElementById('french-newsletter').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
