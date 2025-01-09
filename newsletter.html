@@ -6,6 +6,11 @@
     <title>Subscribe to The Dining Dispatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/main.css">
+    <style>
+        .btn-spacing {
+            margin-bottom: 10px; /* Ajustez cette valeur selon vos besoins */
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -13,8 +18,8 @@
         <p>Select your preferred language:</p>
 
         <div class="language-buttons">
-            <button class="btn" onclick="showNewsletter('english')">English</button>
-            <button class="btn" onclick="showNewsletter('french')">Français</button>
+            <button class="btn btn-spacing" onclick="showNewsletter('english')">English</button>
+            <button class="btn btn-spacing" onclick="showNewsletter('french')">Français</button>
         </div>
 
         <div id="english-newsletter" class="newsletter-frame" style="display: none;">
@@ -34,7 +39,7 @@
         </div>
 
         <div class="cta">
-            <button onclick="window.location.href='index.html'" class="btn">Home</button>
+            <button onclick="window.location.href='index.html'" class="btn btn-spacing">Home</button>
         </div>
     </div>
 
