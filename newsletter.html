@@ -8,36 +8,37 @@
     <link rel="stylesheet" href="static/main.css">
 </head>
 <body>
-    <h1>Subscribe to The Dining Dispatch</h1>
-    <p>Select your preferred language:</p>
+    <div class="container">
+        <h1>Subscribe to The Dining Dispatch</h1>
+        <p>Select your preferred language:</p>
 
-    <div class="language-buttons">
-        <button class="btn" onclick="showNewsletter('english')">English</button>
-        <button class="btn" onclick="showNewsletter('french')">Français</button>
+        <div class="language-buttons">
+            <button class="btn" onclick="showNewsletter('english')">English</button>
+            <button class="btn" onclick="showNewsletter('french')">Français</button>
+        </div>
+
+        <div id="english-newsletter" class="newsletter-frame" style="display: none;">
+            <iframe src="https://thediningdispatchv2.substack.com/embed"
+                    width="480" height="320"
+                    style="border:1px solid #EEE; background:white;"
+                    frameborder="0" scrolling="no">
+            </iframe>
+        </div>
+
+        <div id="french-newsletter" class="newsletter-frame" style="display: none;">
+            <iframe src="https://thediningdispatch.substack.com/embed"
+                    width="480" height="320"
+                    style="border:1px solid #EEE; background:white;"
+                    frameborder="0" scrolling="no">
+            </iframe>
+        </div>
+
+        <nav>
+            <a href="index.html" class="btn">Home</a>
+            <a href="articles.html" class="btn">The Curated Ten</a>
+            <a href="about.html" class="btn">About Us</a>
+        </nav>
     </div>
-
-    <div id="english-newsletter" class="newsletter-frame" style="display: none;">
-        <iframe src="https://thediningdispatchv2.substack.com/embed"
-                width="480" height="320"
-                style="border:1px solid #EEE; background:white;"
-                frameborder="0" scrolling="no">
-        </iframe>
-    </div>
-
-    <div id="french-newsletter" class="newsletter-frame" style="display: none;">
-        <iframe src="https://thediningdispatch.substack.com/embed"
-                width="480" height="320"
-                style="border:1px solid #EEE; background:white;"
-                frameborder="0" scrolling="no">
-        </iframe>
-    </div>
-
-    <br>
-    <nav>
-        <a href="index.html" class="btn">Home</a>
-        <a href="articles.html" class="btn">The Curated Ten</a>
-        <a href="about.html" class="btn">About Us</a>
-    </nav>
 
     <script>
         function showNewsletter(language) {
