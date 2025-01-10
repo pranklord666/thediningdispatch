@@ -8,10 +8,30 @@
     <link rel="stylesheet" href="static/main.css">
     <style>
         .container {
-            font-size: 16px; /* Assurez-vous que toutes les tailles de police sont cohérentes */
+            font-size: 16px; /* Ensure consistent font sizes */
         }
         .cta {
-            margin-top: 20px; /* Ajoutez une marge en haut pour espacer le bouton du texte */
+            margin-top: 20px; /* Add margin to space buttons */
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px; /* Space between buttons */
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -27,8 +47,12 @@
         <p>
             Our recommendations are fresh, reliable, and perfect for exploring on the go. So, grab your fork and let’s dive into the real Paris. Bon appétit!
         </p>
-        <div class="cta">
-            <a href="index.html" class="btn">Home</a>
+        <div class="button-group">
+            <a href="search.html" class="btn">Find a Restaurant</a>
+            <a href="curated-ten.html" class="btn">The Curated Ten</a>
+            <a href="subscribe.html" class="btn">Subscribe to Newsletter</a>
+            <a href="about.html" class="btn">About</a>
+            <a href="https://www.instagram.com" class="btn">Instagram</a>
         </div>
     </div>
 </body>
