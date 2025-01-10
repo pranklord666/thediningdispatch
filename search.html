@@ -9,14 +9,15 @@
     <style>
         .search-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             margin-top: 20px;
         }
-        #search-input {
+        .dropdown {
+            margin: 10px 0;
             padding: 10px;
             font-size: 16px;
             width: 300px;
-            margin-right: 10px;
         }
         #search-button {
             padding: 10px 20px;
@@ -33,37 +34,79 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        .result-item h3 {
-            margin: 0 0 10px;
-        }
-        .result-item p {
-            margin: 5px 0;
-        }
-        .result-item a {
-            color: blue;
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <h1>Find a Restaurant</h1>
     <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search for restaurants...">
+        <!-- Dropdown for Food Type -->
+        <select id="food-type" class="dropdown">
+            <option value="">Select Food Type</option>
+            <!-- Food Type Options -->
+            <option>Bistronomic</option>
+            <option>Brewery</option>
+            <option>French Sous-West</option>
+            <option>French</option>
+            <option>Contemporary French</option>
+            <option>Fusion Cuisine</option>
+            <option>Tapas</option>
+            <option>Mediterranean</option>
+            <!-- Add other options based on your criteria -->
+        </select>
+
+        <!-- Dropdown for Location -->
+        <select id="location" class="dropdown">
+            <option value="">Select Location</option>
+            <!-- Location Options -->
+            <option>12th District, Dausmenil</option>
+            <option>9th District, Blanche</option>
+            <option>18th District, Marcadet</option>
+            <option>11th District, Saint-Maur</option>
+            <option>5th District, Maubert Mutualité</option>
+            <option>20th District, Belleville</option>
+            <!-- Add other options based on your criteria -->
+        </select>
+
+        <!-- Dropdown for Mood -->
+        <select id="mood" class="dropdown">
+            <option value="">Select Mood</option>
+            <!-- Mood Options -->
+            <option>Real product work</option>
+            <option>Welcoming</option>
+            <option>Hidden Gem</option>
+            <option>Natural Wines</option>
+            <option>Talented Chef</option>
+            <option>Romantic Spot</option>
+            <option>3-star Chef</option>
+            <!-- Add other options based on your criteria -->
+        </select>
+
         <button id="search-button">Search</button>
     </div>
+
     <div id="results-container">
         <!-- Search results will be dynamically inserted here -->
     </div>
+
     <script>
         document.getElementById('search-button').addEventListener('click', function () {
-            const query = document.getElementById('search-input').value;
+            const foodType = document.getElementById('food-type').value;
+            const location = document.getElementById('location').value;
+            const mood = document.getElementById('mood').value;
+
+            // Build the query string
+            const queryParams = [];
+            if (foodType) queryParams.push(`food_type=${encodeURIComponent(foodType)}`);
+            if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
+            if (mood) queryParams.push(`mood=${encodeURIComponent(mood)}`);
+            const queryString = queryParams.join('&');
 
             // Clear previous results
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.innerHTML = '';
 
             // Fetch search results from the Flask backend
-            fetch(`http://127.0.0.1:5000/search?query=${query}`)
+            fetch(`http://127.0.0.1:5000/search?${queryString}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.length === 0) {
@@ -72,7 +115,6 @@
                         data.forEach(restaurant => {
                             const resultItem = document.createElement('div');
                             resultItem.classList.add('result-item');
-
                             resultItem.innerHTML = `
                                 <h3>${restaurant.name}</h3>
                                 <p><strong>Location:</strong> ${restaurant.location}</p>
