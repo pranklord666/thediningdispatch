@@ -34,6 +34,11 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +47,6 @@
         <!-- Dropdown for Food Type -->
         <select id="food-type" class="dropdown">
             <option value="">Select Food Type</option>
-            <!-- Food Type Options -->
             <option>Bistronomic</option>
             <option>Brewery</option>
             <option>French Sous-West</option>
@@ -51,26 +55,35 @@
             <option>Fusion Cuisine</option>
             <option>Tapas</option>
             <option>Mediterranean</option>
-            <!-- Add other options based on your criteria -->
         </select>
 
         <!-- Dropdown for Location -->
         <select id="location" class="dropdown">
             <option value="">Select Location</option>
-            <!-- Location Options -->
-            <option>12th District, Dausmenil</option>
-            <option>9th District, Blanche</option>
-            <option>18th District, Marcadet</option>
-            <option>11th District, Saint-Maur</option>
-            <option>5th District, Maubert Mutualité</option>
-            <option>20th District, Belleville</option>
-            <!-- Add other options based on your criteria -->
+            <option>12th District</option>
+            <option>9th District</option>
+            <option>18th District</option>
+            <option>11th District</option>
+            <option>5th District</option>
+            <option>20th District</option>
+        </select>
+
+        <!-- Dropdown for Subway Station -->
+        <select id="subway-station" class="dropdown">
+            <option value="">Select Subway Station</option>
+            <option>Dausmenil</option>
+            <option>Blanche</option>
+            <option>Marcadet</option>
+            <option>Bois de Boulogne</option>
+            <option>Saint-Georges</option>
+            <option>Ecole Militaire</option>
+            <option>Saint-Maur</option>
+            <option>Belleville</option>
         </select>
 
         <!-- Dropdown for Mood -->
         <select id="mood" class="dropdown">
             <option value="">Select Mood</option>
-            <!-- Mood Options -->
             <option>Real product work</option>
             <option>Welcoming</option>
             <option>Hidden Gem</option>
@@ -78,7 +91,6 @@
             <option>Talented Chef</option>
             <option>Romantic Spot</option>
             <option>3-star Chef</option>
-            <!-- Add other options based on your criteria -->
         </select>
 
         <button id="search-button">Search</button>
@@ -92,12 +104,14 @@
         document.getElementById('search-button').addEventListener('click', function () {
             const foodType = document.getElementById('food-type').value;
             const location = document.getElementById('location').value;
+            const subwayStation = document.getElementById('subway-station').value;
             const mood = document.getElementById('mood').value;
 
             // Build the query string
             const queryParams = [];
             if (foodType) queryParams.push(`food_type=${encodeURIComponent(foodType)}`);
             if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
+            if (subwayStation) queryParams.push(`subway_station=${encodeURIComponent(subwayStation)}`);
             if (mood) queryParams.push(`mood=${encodeURIComponent(mood)}`);
             const queryString = queryParams.join('&');
 
@@ -110,22 +124,19 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.length === 0) {
-                        resultsContainer.innerHTML = '<p>No results found.</p>';
+                        // Try relaxing criteria if no exact matches are found
+                        fetch(`http://127.0.0.1:5000/search-relaxed?${queryString}`)
+                            .then(response => response.json())
+                            .then(relaxedData => {
+                                resultsContainer.innerHTML = '<p class="message">Nothing matches your research, but here are some close options:</p>';
+                                displayResults(relaxedData);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching relaxed search results:', error);
+                                resultsContainer.innerHTML = '<p>An error occurred while fetching results.</p>';
+                            });
                     } else {
-                        data.forEach(restaurant => {
-                            const resultItem = document.createElement('div');
-                            resultItem.classList.add('result-item');
-                            resultItem.innerHTML = `
-                                <h3>${restaurant.name}</h3>
-                                <p><strong>Location:</strong> ${restaurant.location}</p>
-                                <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
-                                <p><strong>Mood:</strong> ${restaurant.mood}</p>
-                                <p><strong>Price:</strong> ${restaurant.price}</p>
-                                <p><strong>Comments:</strong> ${restaurant.comments}</p>
-                                <a href="${restaurant.article}" target="_blank">Read more</a>
-                            `;
-                            resultsContainer.appendChild(resultItem);
-                        });
+                        displayResults(data);
                     }
                 })
                 .catch(error => {
@@ -133,6 +144,25 @@
                     resultsContainer.innerHTML = '<p>An error occurred while fetching results.</p>';
                 });
         });
+
+        function displayResults(data) {
+            const resultsContainer = document.getElementById('results-container');
+            data.forEach(restaurant => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                resultItem.innerHTML = `
+                    <h3>${restaurant.name}</h3>
+                    <p><strong>Location:</strong> ${restaurant.location}</p>
+                    <p><strong>Subway Station:</strong> ${restaurant.subway_station}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
+                    <p><strong>Mood:</strong> ${restaurant.mood}</p>
+                    <p><strong>Price:</strong> ${restaurant.price}</p>
+                    <p><strong>Comments:</strong> ${restaurant.comments}</p>
+                    <a href="${restaurant.article}" target="_blank">Read more</a>
+                `;
+                resultsContainer.appendChild(resultItem);
+            });
+        }
     </script>
 </body>
 </html>
