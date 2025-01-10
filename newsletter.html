@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="static/main.css">
     <style>
         .btn-spacing {
-            margin-bottom: 10px; /* Ajustez cette valeur selon vos besoins */
+            margin: 10px; /* Uniform spacing */
+        }
+
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Spacing between buttons */
         }
 
         .newsletter-frame {
@@ -22,9 +28,15 @@
             width: 100%;
             max-width: 480px;
             height: auto;
-            aspect-ratio: 480 / 320; /* Maintient le ratio d'aspect */
+            aspect-ratio: 480 / 320; /* Maintains the aspect ratio */
             border: 1px solid #EEE;
             background: white;
+        }
+
+        .cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
 </head>
