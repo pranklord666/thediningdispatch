@@ -8,19 +8,14 @@
     <style>
         .footer-banner {
             width: 100%; /* L'image couvre toute la largeur */
-            height: 100vh; /* La hauteur couvre toute la hauteur de l'écran */
-            object-fit: cover; /* L'image couvre tout l'écran sans être tronquée */
-            position: absolute; /* Positionne l'image de manière absolue */
-            top: 0; /* Colle l'image en haut */
-            left: 0; /* Colle l'image à gauche */
-            right: 0; /* Colle l'image à droite */
-            z-index: -1; /* Place l'image derrière le contenu */
+            height: auto; /* La hauteur s'adapte à l'image pour qu'elle ne soit pas coupée */
+            object-fit: contain; /* Affiche l'image en entier sans la rogner */
+            margin-top: 30px; /* Distance entre l'image et les boutons */
         }
 
         @media (max-width: 600px) {
             .footer-banner {
-                height: auto; /* Réduction pour les petits écrans */
-                object-fit: contain; /* Affiche l'image en entier sans la rogner */
+                max-height: 20vh; /* Réduction pour les petits écrans */
             }
         }
     </style>
