@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="static/main.css"/>
 
   <style>
+    /* Container for the wave design */
     .wave-container {
       position: relative; 
       width: 80%;
-      margin: 20px auto;  /* Center in the page */
+      margin: 20px auto; /* Center in the page */
     }
 
     .wave-svg {
@@ -26,30 +27,43 @@
       font-size: 24px;
     }
 
-    /* Reduced top margin to make the wave and first button closer */
     .buttons {
-      margin-top: 10px; /* was 30px previously */
+      margin-top: 10px; /* Buttons appear closer to the wave */
       display: flex;
       flex-direction: column;
       gap: 15px;
       align-items: center;
     }
+
+    /* Full-width heading above the wave
+       - text-align: center keeps it centered
+       - letter-spacing spreads letters horizontally
+       - margin-bottom ensures a little gap before the wave */
+    .title-heading {
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.2em;  /* Adjust to spread out letters more or less */
+      margin: 40px 0 20px 0;  /* Top/bottom margins (40px top, 20px bottom) */
+    }
   </style>
 </head>
 <body>
 
+  <!-- Text Above the Wave -->
+  <div class="title-heading">
+    THE DINING DISPATCH
+  </div>
+
   <div class="wave-container">
-    <!-- 
-      Updated wave:
-      - viewBox is now 600 wide x 250 tall (was 350).
-      - The path closes at y=200 (instead of 300).
-    -->
+    <!-- Wave outline with 5 undulations at the top -->
     <svg 
       class="wave-svg"
       viewBox="0 0 600 250"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- Wavy top edge with 5 arcs, then straight edges down to y=200, then close -->
       <path
         d="
           M 50,100
@@ -63,22 +77,12 @@
           Z
         "
         stroke="black"
-        stroke-width="2"  <!-- Matches .btn border thickness -->
+        stroke-width="2"
         fill="none"
       />
-
-      <!-- Text at the top center of the wave -->
-      <text 
-        x="300" 
-        y="75" 
-        text-anchor="middle" 
-        class="wave-text"
-      >
-        THE DINING DISPATCH
-      </text>
     </svg>
 
-    <!-- Buttons below the wave shape (but visually close to it) -->
+    <!-- Buttons (visually within the wave outline) -->
     <div class="buttons">
       <a href="./search.html" class="btn">Find a Restaurant</a>
       <a href="./articles.html" class="btn">The Curated Ten</a>
