@@ -6,32 +6,33 @@
     <title>The Curated Ten</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body style="font-family: 'Roboto', sans-serif; text-align: center; background-color: white; color: black; margin: 0; padding: 0;">
+<body>
 
     <!-- Main Title Section -->
-    <h1 style="color: black; margin-top: 50px; font-size: 40px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
-        The Curated Ten
-    </h1>
-    <p style="color: black; font-size: 16px; margin: 10px;">
+    <h1 class="main-title">The Curated Ten</h1>
+    <p class="subtitle">
         Our curated top ten, from the best cafés to the most mouthwatering kebabs,
         handpicked to delight your taste buds! Explore our monthly highlights below.
     </p>
 
-    <!-- Monthly Section with Inline CSS for the Grey Square -->
-    <section style="display: inline-block; background-color: #f5f5f5; border: 2px solid #e0e0e0; border-radius: 10px; padding: 15px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h2 style="font-size: 1.5em; margin-bottom: 10px; font-weight: 700; color: black;">January</h2>
-        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-            <a href="publications/decemberrestaurants.html" style="text-decoration: none; color: black; background-color: white; padding: 10px 20px; border: 2px solid black; border-radius: 5px; font-size: 18px; font-weight: 400; transition: background-color 0.3s, color 0.3s; text-align: center; width: 200px;">Restaurants Picks</a>
-            <a href="publications/brunchs.html" style="text-decoration: none; color: black; background-color: white; padding: 10px 20px; border: 2px solid black; border-radius: 5px; font-size: 18px; font-weight: 400; transition: background-color 0.3s, color 0.3s; text-align: center; width: 200px;">Brunch Picks</a>
+    <!-- Monthly Section -->
+    <section class="month-section">
+        <h2 class="month-title">January</h2>
+        <div class="buttons">
+            <a href="publications/decemberrestaurants.html" class="btn">Restaurants Picks</a>
+            <a href="publications/brunchs.html" class="btn">Brunch Picks</a>
         </div>
     </section>
 
     <!-- Footer Section -->
-    <footer style="margin-top: 30px;">
-        <div style="display: flex; justify-content: center;">
-            <a href="index.html" style="text-decoration: none; color: black; background-color: white; padding: 10px 20px; border: 2px solid black; border-radius: 5px; font-size: 18px; font-weight: 400; transition: background-color 0.3s, color 0.3s;">Home</a>
+    <footer>
+        <div class="buttons">
+            <a href="index.html" class="btn">Home</a>
         </div>
     </footer>
+
 </body>
 </html>
