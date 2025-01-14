@@ -25,17 +25,16 @@ p {
     font-weight: 400;
 }
 
-/* Catchphrase */
 .catchphrase {
     font-family: 'Roboto', sans-serif;
     font-size: 16px; /* Smaller caps for the phrase */
     font-weight: 400;
-    text-align: center;
     color: black;
-    margin: 10px 0; /* Adjust spacing below the main title */
-    width: 80%; /* Keeps it within the page's width */
+    margin: 10px auto; /* Centers the catchphrase vertically */
+    width: fit-content; /* Shrinks to fit the content */
     line-height: 1.5;
     letter-spacing: 0.05em;
+    text-align: center; /* Ensures text is centered within its box */
 }
 
 /* Buttons */
