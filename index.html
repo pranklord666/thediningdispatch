@@ -6,16 +6,31 @@
     <title>Home - The Dining Dispatch</title>
     <link rel="stylesheet" href="static/main.css">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .buttons {
+            margin-bottom: 30px; /* Espace entre les boutons et l'image */
+        }
+
         .footer-banner {
             width: 100%; /* L'image couvre toute la largeur */
-            height: auto; /* La hauteur s'adapte à l'image pour qu'elle ne soit pas coupée */
-            object-fit: contain; /* Affiche l'image en entier sans la rogner */
-            margin-top: 30px; /* Distance entre l'image et les boutons */
+            height: calc(100vh - 200px); /* La hauteur couvre le reste de l'écran */
+            object-fit: cover; /* L'image couvre tout l'écran sans être tronquée */
+            position: relative; /* Positionne l'image de manière relative */
+            top: 0; /* Colle l'image en haut */
+            left: 0; /* Colle l'image à gauche */
+            right: 0; /* Colle l'image à droite */
         }
 
         @media (max-width: 600px) {
             .footer-banner {
-                max-height: 20vh; /* Réduction pour les petits écrans */
+                height: calc(100vh - 150px); /* Réduction pour les petits écrans */
             }
         }
     </style>
