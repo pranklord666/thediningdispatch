@@ -18,24 +18,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 10px; /* Espace réduit entre les boutons et l'image */
+        }
+
+        .btn {
+            margin-bottom: 10px; /* Space between buttons */
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
         }
 
         .footer-banner {
-            width: 100%; /* L'image couvre toute la largeur */
-            height: calc(100vh - 200px); /* La hauteur couvre le reste de l'écran */
-            object-fit: cover; /* L'image couvre tout l'écran sans être tronquée */
-            position: relative; /* Positionne l'image de manière relative */
-            top: 0; /* Colle l'image en haut */
-            left: 0; /* Colle l'image à gauche */
-            right: 0; /* Colle l'image à droite */
-        }
-
-        @media (max-width: 600px) {
-            .footer-banner {
-                height: calc(100vh - 150px); /* Réduction pour les petits écrans */
-                object-fit: contain; /* Affiche l'image en entier sans la rogner */
-            }
+            display: block;
+            margin: 20px auto 0 auto; /* Space equivalent to the height of a button */
+            width: calc(1.2 * 150px); /* 1.2 times the width of a button */
+            max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+            height: auto; /* Maintain aspect ratio */
         }
     </style>
 </head>
