@@ -5,87 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home - The Dining Dispatch</title>
   <link rel="stylesheet" href="static/main.css"/>
+
   <style>
-    .title-container {
-      position: relative;
-      width: 80%;
-      margin: 20px auto 0;
-      /* You can give this a min-height if needed */
-      min-height: 500px; /* for example, to ensure there's enough room */
+    /* Container to center everything and control overall width */
+    .wave-container {
+      position: relative;   /* So we can easily position elements inside */
+      width: 80%;           /* Adjust as needed */
+      margin: 20px auto;    /* Center in the page */
     }
 
+    /* SVG takes full container width (80% of page). 
+       Height auto => preserves aspect ratio. */
     .wave-svg {
       display: block;
       width: 100%;
       height: auto;
     }
 
-    .buttons-over-image {
-      position: absolute;
-      top: 150px;      /* move the buttons higher or lower as needed */
-      left: 0;
-      width: 100%;
+    /* The outline text style matching your main.css (h1-like). 
+       Make sure you keep your imported font if needed. */
+    .wave-text {
+      fill: black;   
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    /* This .buttons is from main.css, but repeated here if you need to refine 
+       layout inside the wave. Feel free to remove if you want to rely only 
+       on main.css. */
+    .buttons {
+      margin-top: 60px;  /* Add some top spacing so they sit nicely below the wave */
       display: flex;
       flex-direction: column;
       gap: 15px;
       align-items: center;
-      /* Key: ensure the buttons appear above the SVG if overlapping */
-      z-index: 1;
-    }
-
-    .wave-text {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      fill: black;
     }
   </style>
 </head>
 <body>
-  <div class="title-container">
-    <!-- Wave SVG -->
+
+  <div class="wave-container">
+    <!-- SVG wave “box” that encloses the buttons.
+         We create the wavy top with 5 undulations from x=50 to x=550, 
+         then draw straight lines down to y=300 and back to x=50 to form a closed shape. 
+         stroke="black" + fill="none" => Just the outline. 
+         Feel free to change stroke-width or add a fill color. -->
     <svg 
       class="wave-svg"
-      viewBox="0 0 600 300"
+      viewBox="0 0 600 350"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- Left vertical line -->
+      <!-- Wavy top edge with 5 arcs, then a rectangle down to y=300, and close -->
       <path
-        d="M 50,0
-           V 100"
+        d="
+          M 50,100
+          C 83,80   117,120  150,100
+          C 183,80   217,120  250,100
+          C 283,80   317,120  350,100
+          C 383,80   417,120  450,100
+          C 483,80   517,120  550,100
+          L 550,300
+          L 50,300
+          Z
+        "
         stroke="black"
         stroke-width="2"
         fill="none"
       />
 
-      <!-- Wave with 3 arcs -->
-      <path
-        d="M 50,100
-           C 120,20 180,180 250,100
-           C 320,20 380,180 450,100
-           C 520,20 580,180 550,100"
-        stroke="black"
-        stroke-width="2"
-        fill="none"
-      />
-
-      <!-- Right vertical line -->
-      <path
-        d="M 550,0
-           V 100"
-        stroke="black"
-        stroke-width="2"
-        fill="none"
-      />
-
-      <!-- Wave text (centered in each valley) -->
-      <text x="150" y="95" text-anchor="middle" class="wave-text">THE</text>
-      <text x="350" y="95" text-anchor="middle" class="wave-text">DINING</text>
-      <text x="525" y="95" text-anchor="middle" class="wave-text">DISPATCH</text>
+      <!-- Text placed near the top center of the wave. 
+           Adjust x/y to move it horizontally or vertically. -->
+      <text 
+        x="300" 
+        y="70" 
+        text-anchor="middle" 
+        class="wave-text"
+      >
+        THE DINING DISPATCH
+      </text>
     </svg>
 
-    <!-- Buttons on top of the wave -->
-    <div class="buttons-over-image">
+    <!-- Buttons sit within the wavy outline (below the wave).
+         You can still style them in main.css. -->
+    <div class="buttons">
       <a href="./search.html" class="btn">Find a Restaurant</a>
       <a href="./articles.html" class="btn">The Curated Ten</a>
       <a href="./newsletter.html" class="btn">Subscribe to Newsletter</a>
@@ -93,5 +96,6 @@
       <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
     </div>
   </div>
+
 </body>
 </html>
