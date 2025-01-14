@@ -27,14 +27,19 @@
             display: inline-block;
             margin: 5px 0; /* Adds a bit of space between buttons */
         }
+
+        .title-image {
+            display: block;
+            margin: 20px auto 0 auto; /* Space equivalent to the height of a button */
+            width: calc(2 * 150px); /* 2 times the width of a button */
+            max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+            height: auto; /* Maintain aspect ratio */
+        }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>The Curated Ten</h1>
-        <p>Discover our handpicked top 10 spots in Paris, from cozy cafés to the best kebabs. Updated weekly!</p>
-    </header>
+    <!-- Title Image -->
+    <img src="static/title.png" alt="Title Banner" class="title-image">
 
     <!-- Monthly Section -->
     <section class="month-section">
