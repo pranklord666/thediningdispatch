@@ -7,11 +7,10 @@
   <link rel="stylesheet" href="static/main.css"/>
 
   <style>
-    /* Container for the wave design */
     .wave-container {
       position: relative; 
       width: 80%;
-      margin: 20px auto; /* Center in the page */
+      margin: 20px auto;  /* Center in the page */
     }
 
     .wave-svg {
@@ -28,25 +27,21 @@
     }
 
     .buttons {
-      margin-top: 10px; /* Buttons appear closer to the wave */
+      margin-top: 10px; /* Buttons appear close to the wave */
       display: flex;
       flex-direction: column;
       gap: 15px;
       align-items: center;
     }
 
-    /* Full-width heading above the wave
-       - text-align: center keeps it centered
-       - letter-spacing spreads letters horizontally
-       - margin-bottom ensures a little gap before the wave */
     .title-heading {
       width: 100%;
       text-align: center;
       font-size: 32px;
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
-      letter-spacing: 0.2em;  /* Adjust to spread out letters more or less */
-      margin: 40px 0 20px 0;  /* Top/bottom margins (40px top, 20px bottom) */
+      letter-spacing: 0.2em;
+      margin: 40px 0 10px 0; /* Reduced bottom margin from 20px to 10px */
     }
   </style>
 </head>
@@ -82,7 +77,7 @@
       />
     </svg>
 
-    <!-- Buttons (visually within the wave outline) -->
+    <!-- Buttons below the wave shape -->
     <div class="buttons">
       <a href="./search.html" class="btn">Find a Restaurant</a>
       <a href="./articles.html" class="btn">The Curated Ten</a>
