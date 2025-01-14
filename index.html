@@ -5,6 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - The Dining Dispatch</title>
     <link rel="stylesheet" href="static/main.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #000;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .footer-banner {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to The Dining Dispatch</h1>
@@ -15,5 +49,8 @@
         <a href="./about.html" class="btn">About Us</a>
         <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
     </div>
+
+    <!-- Footer Banner -->
+    <img src="static/banner.png" alt="Footer Banner" class="footer-banner">
 </body>
 </html>
