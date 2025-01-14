@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - The Dining Dispatch</title>
     <link rel="stylesheet" href="static/main.css">
+    <style>
+        .footer-banner {
+            width: 100%; /* L'image couvre toute la largeur */
+            height: 20vh; /* La hauteur représente 20% de la hauteur de l'écran */
+            object-fit: cover; /* Ajuste l'image pour qu'elle remplisse son conteneur sans déformation */
+            margin-top: 30px; /* Distance par rapport aux boutons */
+        }
+
+        @media (max-width: 600px) {
+            .footer-banner {
+                height: 15vh; /* Réduction pour les petits écrans comme les iPhones */
+            }
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to The Dining Dispatch</h1>
