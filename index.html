@@ -6,15 +6,14 @@
   <title>Home - The Dining Dispatch</title>
   <link rel="stylesheet" href="static/main.css"/>
   <style>
-    /* We keep the .title-container and .buttons-over-image 
-       to position the buttons similarly to before */
     .title-container {
       position: relative;
       width: 80%;
       margin: 20px auto 0;
+      /* You can give this a min-height if needed */
+      min-height: 500px; /* for example, to ensure there's enough room */
     }
 
-    /* The SVG can fill the container’s width; adjust as needed */
     .wave-svg {
       display: block;
       width: 100%;
@@ -23,28 +22,28 @@
 
     .buttons-over-image {
       position: absolute;
-      top: 150px;    /* Adjust this value to move buttons up/down */
+      top: 150px;      /* move the buttons higher or lower as needed */
       left: 0;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 15px;     /* Same gap as your existing .buttons style */
+      gap: 15px;
       align-items: center;
+      /* Key: ensure the buttons appear above the SVG if overlapping */
+      z-index: 1;
     }
 
-    /* Optional: match the wave text style to your main.css h1 */
     .wave-text {
       font-family: 'Roboto', sans-serif;
       font-weight: 700;
       font-size: 24px;
-      fill: black;   /* SVG fill for text color */
+      fill: black;
     }
   </style>
 </head>
 <body>
   <div class="title-container">
-
-    <!-- Inline SVG reproducing the wave + text -->
+    <!-- Wave SVG -->
     <svg 
       class="wave-svg"
       viewBox="0 0 600 300"
@@ -52,13 +51,14 @@
     >
       <!-- Left vertical line -->
       <path
-        d="M 50,0 V 100"
+        d="M 50,0
+           V 100"
         stroke="black"
         stroke-width="2"
         fill="none"
       />
 
-      <!-- Wave path with 3 arcs -->
+      <!-- Wave with 3 arcs -->
       <path
         d="M 50,100
            C 120,20 180,180 250,100
@@ -71,21 +71,27 @@
 
       <!-- Right vertical line -->
       <path
-        d="M 550,0 V 100"
+        d="M 550,0
+           V 100"
         stroke="black"
         stroke-width="2"
         fill="none"
       />
 
-      <!-- Text in the wave valleys. You can tweak x/y for exact positioning -->
+      <!-- Wave text (centered in each valley) -->
       <text x="150" y="95" text-anchor="middle" class="wave-text">THE</text>
       <text x="350" y="95" text-anchor="middle" class="wave-text">DINING</text>
       <text x="525" y="95" text-anchor="middle" class="wave-text">DISPATCH</text>
     </svg>
 
-    <!-- Buttons placed "over" (i.e., below in z-order) the wave -->
+    <!-- Buttons on top of the wave -->
     <div class="buttons-over-image">
       <a href="./search.html" class="btn">Find a Restaurant</a>
       <a href="./articles.html" class="btn">The Curated Ten</a>
       <a href="./newsletter.html" class="btn">Subscribe to Newsletter</a>
-      <a href="./about.html" cl
+      <a href="./about.html" class="btn">About Us</a>
+      <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
+    </div>
+  </div>
+</body>
+</html>
