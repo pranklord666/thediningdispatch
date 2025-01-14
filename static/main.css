@@ -11,7 +11,7 @@ body {
 h1 {
     color: black;
     margin-top: 50px;
-    font-size: 48px; /* Increased font size */
+    font-size: 40px; /* Reduced font size */
     font-weight: 700;
     text-transform: uppercase; /* All titles in uppercase */
     letter-spacing: 2px; /* Adds spacing between letters */
@@ -48,7 +48,7 @@ p {
 /* Responsive Design */
 @media (max-width: 600px) {
     h1 {
-        font-size: 36px; /* Adjusted font size for smaller screens */
+        font-size: 32px; /* Adjusted font size for smaller screens */
     }
 
     p {
