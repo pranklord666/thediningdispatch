@@ -5,18 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home - The Dining Dispatch</title>
   <link rel="stylesheet" href="static/main.css"/>
+  <style>
+    /* Additional inline styles to position buttons over the title image */
+    .title-container {
+      position: relative;       /* So we can absolutely position the buttons */
+      width: 80%;              /* You can adjust this as desired */
+      margin: 20px auto 0;     /* Centers the container, plus top margin */
+    }
+
+    .title-image {
+      display: block;          
+      width: 100%;
+      height: auto;
+    }
+
+    .buttons-over-image {
+      position: absolute;      /* Position the buttons on top of the image */
+      top: 150px;              /* Adjust this value to move buttons up/down */
+      left: 0;
+      width: 100%;
+      display: flex;           /* Center the buttons horizontally */
+      flex-direction: column;
+      gap: 15px;               /* Same gap as your existing .buttons style */
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
-  <!-- Title Image -->
-  <img src="static/title_v2.png" alt="The Dining Dispatch" style="max-width:80%; height:auto; margin-top:20px;" />
 
-  <!-- Buttons -->
-  <div class="buttons">
-    <a href="./search.html" class="btn">Find a Restaurant</a>
-    <a href="./articles.html" class="btn">The Curated Ten</a>
-    <a href="./newsletter.html" class="btn">Subscribe to Newsletter</a>
-    <a href="./about.html" class="btn">About Us</a>
-    <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
+  <div class="title-container">
+    <!-- Title Image -->
+    <img 
+      src="static/title_v2.png" 
+      alt="The Dining Dispatch" 
+      class="title-image"
+    />
+
+    <!-- Buttons, placed on top of the image -->
+    <div class="buttons-over-image">
+      <a href="./search.html" class="btn">Find a Restaurant</a>
+      <a href="./articles.html" class="btn">The Curated Ten</a>
+      <a href="./newsletter.html" class="btn">Subscribe to Newsletter</a>
+      <a href="./about.html" class="btn">About Us</a>
+      <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
+    </div>
   </div>
+
 </body>
 </html>
