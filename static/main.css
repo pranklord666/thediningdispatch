@@ -88,23 +88,23 @@ p {
 
 /* Grey Box for Sections */
 .month-section {
-    background-color: #f5f5f5; /* Light gray */
-    border: 2px solid #e0e0e0; /* Subtle border */
+    background-color: #f9f9f9; /* Light gray */
     border-radius: 10px;       /* Rounded corners */
-    padding: 5px 15px;         /* Reduced padding for tighter spacing */
-    margin: 20px auto;         /* Center and add spacing around */
-    max-width: 300px;          /* Width of the square */
+    padding: 10px 20px;        /* Reduced padding for tighter spacing */
+    margin: 10px auto;         /* Reduced spacing around the box */
+    max-width: 300px;          /* Width of the section */
     text-align: center;        /* Center align content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow effect */
 }
 
 .month-title {
     font-size: 1.5em;          /* Title size */
-    margin-bottom: 5px;        /* Reduced space below the title */
+    margin-bottom: 10px;       /* Slightly more space below the title */
     font-weight: 700;          /* Bold for emphasis */
 }
 
 .month-section .buttons {
-    margin-top: 5px;           /* Reduced space between title and buttons */
+    margin-top: 10px;          /* Reduced space between title and buttons */
     display: flex;             /* Use flexbox for layout */
     flex-direction: column;    /* Stack buttons vertically */
     gap: 10px;                 /* Space between buttons */
