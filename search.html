@@ -120,23 +120,15 @@
             resultsContainer.innerHTML = '';
 
             // Fetch search results from the Flask backend
-            fetch(`http://127.0.0.1:5000/search?${queryString}`)
+            fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.length === 0) {
-                        // Try relaxing criteria if no exact matches are found
-                        fetch(`http://127.0.0.1:5000/search-relaxed?${queryString}`)
-                            .then(response => response.json())
-                            .then(relaxedData => {
-                                resultsContainer.innerHTML = '<p class="message">Nothing matches your research, but here are some close options:</p>';
-                                displayResults(relaxedData);
-                            })
-                            .catch(error => {
-                                console.error('Error fetching relaxed search results:', error);
-                                resultsContainer.innerHTML = '<p>An error occurred while fetching results.</p>';
-                            });
+                    if (data.data.length === 0) {
+                        resultsContainer.innerHTML = '<p class="message">Nothing matches your research, but here are some close options:</p>';
+                        displayResults(data.data);
                     } else {
-                        displayResults(data);
+                        resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
+                        displayResults(data.data);
                     }
                 })
                 .catch(error => {
