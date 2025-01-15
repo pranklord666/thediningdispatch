@@ -88,3 +88,15 @@ def search():
 
 if __name__ == '__main__':
     app.run(debug=True)
+def query_database(query, params=()):
+    conn = sqlite3.connect('dining_dispatch.db')
+    conn.row_factory = sqlite3.Row  # Enable dict-like row access
+    cursor = conn.cursor()
+    
+    print("Executing query:", query)  # Log the query
+    print("With parameters:", params)  # Log the parameters
+    
+    cursor.execute(query, params)
+    results = cursor.fetchall()
+    conn.close()
+    return [dict(row) for row in results]
