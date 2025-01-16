@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Restaurant - The Dining Dispatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/main.css">
     <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
         .search-container {
             display: flex;
             flex-direction: column;
@@ -23,11 +28,17 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #search-button:hover {
+            background-color: #0056b3;
         }
         #results-container {
             margin-top: 20px;
-            padding: 20px;
-            width: 80%;
+            text-align: left;
         }
         .result-item {
             margin-bottom: 20px;
@@ -47,12 +58,10 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
-            text-align: center;
         }
         .error-message {
             color: red;
             font-size: 16px;
-            text-align: center;
         }
     </style>
 </head>
@@ -91,6 +100,7 @@
             <option>Marcadet</option>
             <option>Bois de Boulogne</option>
             <option>Saint-Georges</option>
+            <option>Ecole Militaire</option>
             <option>Saint-Maur</option>
             <option>Belleville</option>
         </select>
@@ -115,7 +125,7 @@
     </div>
 
     <script>
-        document.getElementById('search-button').addEventListener('click', function () {
+        document.getElementById('search-button').addEventListener('click', async function () {
             const foodType = document.getElementById('food-type').value;
             const location = document.getElementById('location').value;
             const subwayStation = document.getElementById('subway-station').value;
@@ -133,27 +143,26 @@
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.innerHTML = '<p>Loading...</p>';
 
-            // Fetch search results from the Flask backend
-            fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    resultsContainer.innerHTML = ''; // Clear loading message
-                    if (data.data.length === 0) {
-                        resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
-                    } else {
-                        resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
-                        displayResults(data.data);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                    resultsContainer.innerHTML = '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
-                });
+            try {
+                // Fetch search results from the backend
+                const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                // Clear loading message and display results
+                resultsContainer.innerHTML = '';
+                if (data.data.length === 0) {
+                    resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
+                } else {
+                    resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
+                    displayResults(data.data);
+                }
+            } catch (error) {
+                console.error('Error fetching search results:', error);
+                resultsContainer.innerHTML = '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
+            }
         });
 
         function displayResults(data) {
