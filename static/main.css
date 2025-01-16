@@ -86,30 +86,29 @@ p {
     align-items: center;
 }
 
-/* Réduction du cadre et ajustement du fond */
+/* Monthly Section Styles */
 .month-section {
-    background-color: white; /* Supprime le fond gris */
-    border: 2px solid #000;
+    background-color: #f9f9f9; /* Light grey background */
+    padding: 20px;
+    max-width: 400px;
+    margin: 30px auto;
     border-radius: 8px;
-    padding: 15px; /* Ajuste le padding */
-    margin: 20px auto; /* Centrage sans conflit */
-    max-width: 400px; /* Cadre réduit autour du contenu */
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .month-title {
     margin: 0;
-    padding: 5px 0; /* Réduit l'espacement autour du titre */
+    padding: 5px 0;
     font-size: 1.5em;
     font-weight: bold;
-    border-bottom: 2px solid #000;
 }
 
-.buttons {
-    margin-top: 10px; /* Espace réduit entre le titre et les boutons */
+.month-section .buttons {
+    margin-top: 10px;
     display: flex;
-    flex-direction: column; /* Empile les boutons verticalement */
-    gap: 10px; /* Espace entre les boutons */
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
 }
 
