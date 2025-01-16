@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -8,6 +9,10 @@ def query_database(query, params=()):
     conn = sqlite3.connect('dining_dispatch.db')
     conn.row_factory = sqlite3.Row  # Enable dict-like row access
     cursor = conn.cursor()
+    
+    print("Executing query:", query)  # Log the query
+    print("With parameters:", params)  # Log the parameters
+    
     cursor.execute(query, params)
     results = cursor.fetchall()
     conn.close()
@@ -86,17 +91,7 @@ def search():
         "data": results
     })
 
+# Main entry point
 if __name__ == '__main__':
-    app.run(debug=True)
-def query_database(query, params=()):
-    conn = sqlite3.connect('dining_dispatch.db')
-    conn.row_factory = sqlite3.Row  # Enable dict-like row access
-    cursor = conn.cursor()
-    
-    print("Executing query:", query)  # Log the query
-    print("With parameters:", params)  # Log the parameters
-    
-    cursor.execute(query, params)
-    results = cursor.fetchall()
-    conn.close()
-    return [dict(row) for row in results]
+    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT environment variable
+    app.run(host='0.0.0.0', port=port)
