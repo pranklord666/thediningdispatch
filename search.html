@@ -27,17 +27,32 @@
         #results-container {
             margin-top: 20px;
             padding: 20px;
+            width: 80%;
         }
         .result-item {
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .result-item a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
         }
         .message {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            font-size: 16px;
+            text-align: center;
         }
     </style>
 </head>
@@ -76,7 +91,6 @@
             <option>Marcadet</option>
             <option>Bois de Boulogne</option>
             <option>Saint-Georges</option>
-            <option>Ecole Militaire</option>
             <option>Saint-Maur</option>
             <option>Belleville</option>
         </select>
@@ -117,15 +131,20 @@
 
             // Clear previous results
             const resultsContainer = document.getElementById('results-container');
-            resultsContainer.innerHTML = '';
+            resultsContainer.innerHTML = '<p>Loading...</p>';
 
             // Fetch search results from the Flask backend
             fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    resultsContainer.innerHTML = ''; // Clear loading message
                     if (data.data.length === 0) {
-                        resultsContainer.innerHTML = '<p class="message">Nothing matches your research, but here are some close options:</p>';
-                        displayResults(data.data);
+                        resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
                     } else {
                         resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
                         displayResults(data.data);
@@ -133,7 +152,7 @@
                 })
                 .catch(error => {
                     console.error('Error fetching search results:', error);
-                    resultsContainer.innerHTML = '<p>An error occurred while fetching results.</p>';
+                    resultsContainer.innerHTML = '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
                 });
         });
 
