@@ -29,7 +29,7 @@ def relax_criteria(food_type, location, subway_station, mood):
     ]
 
     for i in range(len(criteria)):
-        query = "SELECT * FROM restaurants WHERE 1=1"
+        query = "SELECT * FROM simplified_restaurants WHERE 1=1"
         params = []
 
         # Include only the first `len(criteria) - i` criteria
@@ -54,7 +54,7 @@ def search():
     mood = request.args.get('mood', '').strip()
 
     # Full search query
-    query = "SELECT * FROM restaurants WHERE 1=1"
+    query = "SELECT * FROM simplified_restaurants WHERE 1=1"
     params = []
 
     if food_type:
