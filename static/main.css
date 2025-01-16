@@ -88,29 +88,27 @@ p {
 
 /* Monthly Section Styles */
 .month-section {
-    background-color: #f9f9f9; /* Light grey background */
-    padding: 20px;
-    max-width: 400px;
-    margin: 30px auto;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.month-title {
-    margin: 0;
-    padding: 5px 0;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.month-section .buttons {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
+            background-color: #f9f9f9; /* Light grey background */
+            padding: 20px;
+            max-width: 350px; /* Reduced width */
+            margin: 30px auto;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        .month-title {
+            margin: 0;
+            padding: 5px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .buttons {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
 
 /* Form Styles (for search page) */
 .form-container {
