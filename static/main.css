@@ -86,29 +86,31 @@ p {
     align-items: center;
 }
 
-/* Grey Box for Sections */
+/* Réduction du cadre et ajustement du fond */
 .month-section {
-    background-color: #f9f9f9; /* Light gray */
-    border-radius: 10px;       /* Rounded corners */
-    padding: 10px 20px;        /* Reduced padding for tighter spacing */
-    margin: 10px auto;         /* Reduced spacing around the box */
-    max-width: 300px;          /* Width of the section */
-    text-align: center;        /* Center align content */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Minimal shadow effect */
+    background-color: white; /* Supprime le fond gris */
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 15px; /* Ajuste le padding */
+    margin: 20px auto; /* Centrage sans conflit */
+    max-width: 400px; /* Cadre réduit autour du contenu */
+    text-align: center;
 }
 
 .month-title {
-    font-size: 1.5em;          /* Title size */
-    margin-bottom: 10px;       /* Slightly more space below the title */
-    font-weight: 700;          /* Bold for emphasis */
+    margin: 0;
+    padding: 5px 0; /* Réduit l'espacement autour du titre */
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
 }
 
-.month-section .buttons {
-    margin-top: 10px;          /* Reduced space between title and buttons */
-    display: flex;             /* Use flexbox for layout */
-    flex-direction: column;    /* Stack buttons vertically */
-    gap: 10px;                 /* Space between buttons */
-    align-items: center;       /* Center align buttons */
+.buttons {
+    margin-top: 10px; /* Espace réduit entre le titre et les boutons */
+    display: flex;
+    flex-direction: column; /* Empile les boutons verticalement */
+    gap: 10px; /* Espace entre les boutons */
+    align-items: center;
 }
 
 /* Form Styles (for search page) */
