@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="../static/main.css">
     <style>
     #articles article {
-        margin-bottom: 40px; /* Add space between articles */
+        margin-bottom: 40px; /* Ajoute de l'espace entre les articles */
+        padding-bottom: 20px; /* Ajoute un espace avant le séparateur */
+        border-bottom: 1px solid #ccc; /* Ajoute un séparateur léger entre les articles */
+    }
+
+    #articles article:last-of-type {
+        border-bottom: none; /* Supprime le séparateur pour le dernier article */
+    }
+
+    #articles article p {
+        text-align: justify; /* Justifie le texte des paragraphes */
     }
 
     .instagram-post {
