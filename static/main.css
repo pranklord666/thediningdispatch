@@ -20,7 +20,8 @@ h1 {
 
 p {
     color: black;
-    font-size: 16px;
+    font-size: 18px; /* Larger font for better readability */
+    line-height: 1.6; /* Improved line spacing for clarity */
     margin: 10px;
     font-weight: 400;
 }
@@ -42,14 +43,15 @@ p {
     text-decoration: none;
     color: black;
     background-color: white;
-    padding: 10px 20px;
+    padding: 6px 12px; /* Reduced padding for a slimmer appearance */
     border: 2px solid black;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 400;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
-    width: 200px;
+    width: auto; /* Adjusts width to fit the text */
+    min-width: 100px; /* Ensures a consistent minimum size */
 }
 
 .btn:hover {
@@ -68,12 +70,11 @@ p {
     }
 
     p {
-        font-size: 14px;
+        font-size: 16px; /* Ensure readability on small screens */
     }
 
     .btn {
-        font-size: 16px;
-        padding: 8px 16px;
+        padding: 5px 10px; /* Slightly smaller for compact view */
     }
 }
 
@@ -86,7 +87,6 @@ p {
     align-items: center;
 }
 
-/* Monthly Section Styles */
 /* Monthly Section Styles */
 .month-section {
     background-color: #f9f9f9; /* Light grey background */
@@ -112,7 +112,6 @@ p {
     gap: 10px;
     align-items: center;
 }
-
 
 /* Form Styles (for search page) */
 .form-container {
