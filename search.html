@@ -42,10 +42,16 @@
         }
         .result-item {
             margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 15px;
+            border: 1px solid #000;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            background-color: #fff;
+        }
+        .result-item h3 {
+            margin: 0 0 10px;
+        }
+        .result-item p {
+            margin: 5px 0;
         }
         .result-item a {
             color: #007BFF;
@@ -53,6 +59,10 @@
         }
         .result-item a:hover {
             text-decoration: underline;
+        }
+        .instagram-post {
+            margin-top: 10px;
+            text-align: center;
         }
         .message {
             font-size: 18px;
@@ -172,7 +182,12 @@
                 resultItem.classList.add('result-item');
                 resultItem.innerHTML = `
                     <h3>${restaurant.name}</h3>
+                    <p><strong>Location:</strong> ${restaurant.location}</p>
+                    <p><strong>Subway Station:</strong> ${restaurant.subway_station}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
+                    <p><strong>Mood:</strong> ${restaurant.mood}</p>
                     <p><strong>Price:</strong> ${restaurant.price}</p>
+                    <p><strong>Comments:</strong> ${restaurant.comments}</p>
                     <a href="${restaurant.article}" target="_blank">Read more</a>
                     <div class="instagram-post">
                         <iframe src="${restaurant.instagram_link}" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
