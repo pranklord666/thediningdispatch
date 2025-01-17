@@ -81,50 +81,93 @@
         <!-- Dropdown for Food Type -->
         <select id="food-type" class="dropdown">
             <option value="">Select Food Type</option>
+            <option>African</option>
+            <option>American</option>
+            <option>Asian</option>
+            <option>Auvergnate</option>
+            <option>Argentinian</option>
+            <option>Bengladeshi</option>
+            <option>Bimbimpap</option>
             <option>Bistronomic</option>
+            <option>Bourgeois Cuisine</option>
+            <option>Brazilian</option>
+            <option>Breaded skewers</option>
             <option>Brewery</option>
-            <option>French Sous-West</option>
-            <option>French</option>
+            <option>Burgers</option>
+            <option>Cameroonian</option>
+            <option>Ceviche</option>
+            <option>Chinese</option>
             <option>Contemporary French</option>
+            <option>Corean</option>
+            <option>Corean Barbecue</option>
+            <option>Fast-food</option>
+            <option>French</option>
+            <option>French Sous-West</option>
+            <option>Fresh Pasta</option>
+            <option>Fried Chicken</option>
             <option>Fusion Cuisine</option>
-            <option>Tapas</option>
+            <option>Gastronomic</option>
+            <option>Greek</option>
+            <option>Healthy food</option>
+            <option>Italian</option>
+            <option>Japanese</option>
+            <option>Latino-American</option>
+            <option>London</option>
+            <option>Mezzes</option>
             <option>Mediterranean</option>
+            <option>Modern French</option>
+            <option>Modern Italian</option>
+            <option>Neobistrot</option>
+            <option>NY</option>
+            <option>Oriental Cuisine</option>
+            <option>Organic Cooking</option>
+            <option>Peruvian</option>
+            <option>Pizza</option>
+            <option>Seafood</option>
+            <option>Soba</option>
+            <option>South-American</option>
+            <option>Spicy Food</option>
+            <option>Taverna</option>
+            <option>Tapas</option>
+            <option>Terroir</option>
+            <option>Traditional Chinese</option>
+            <option>Traditional French</option>
+            <option>Traditional Italian</option>
+            <option>Venetian</option>
+            <option>Vietnamese</option>
+            <option>Wine Bar</option>
+            <option>Worldwide Cuisine</option>
         </select>
 
         <!-- Dropdown for Location -->
         <select id="location" class="dropdown">
             <option value="">Select Location</option>
-            <option>12th District</option>
-            <option>9th District</option>
-            <option>18th District</option>
-            <option>11th District</option>
+            <option>2nd District</option>
+            <option>3rd District</option>
+            <option>4th District</option>
             <option>5th District</option>
+            <option>6th District</option>
+            <option>7th District</option>
+            <option>8th District</option>
+            <option>9th District</option>
+            <option>10th District</option>
+            <option>11th District</option>
+            <option>12th District</option>
+            <option>14th District</option>
+            <option>16th District</option>
+            <option>18th District</option>
+            <option>19th District</option>
             <option>20th District</option>
+            <option>Issy-les-Moulineaux</option>
         </select>
 
-        <!-- Dropdown for Subway Station -->
-        <select id="subway-station" class="dropdown">
-            <option value="">Select Subway Station</option>
-            <option>Dausmenil</option>
-            <option>Blanche</option>
-            <option>Marcadet</option>
-            <option>Bois de Boulogne</option>
-            <option>Saint-Georges</option>
-            <option>Ecole Militaire</option>
-            <option>Saint-Maur</option>
-            <option>Belleville</option>
-        </select>
-
-        <!-- Dropdown for Mood -->
-        <select id="mood" class="dropdown">
-            <option value="">Select Mood</option>
-            <option>Real product work</option>
-            <option>Welcoming</option>
-            <option>Hidden Gem</option>
-            <option>Natural Wines</option>
-            <option>Talented Chef</option>
-            <option>Romantic Spot</option>
-            <option>3-star Chef</option>
+        <!-- Dropdown for Price -->
+        <select id="price" class="dropdown">
+            <option value="">Select Price</option>
+            <option>€</option>
+            <option>€€</option>
+            <option>€€€</option>
+            <option>€€€€</option>
         </select>
 
         <button id="search-button">Search</button>
@@ -138,15 +181,13 @@
         document.getElementById('search-button').addEventListener('click', async function () {
             const foodType = document.getElementById('food-type').value;
             const location = document.getElementById('location').value;
-            const subwayStation = document.getElementById('subway-station').value;
-            const mood = document.getElementById('mood').value;
+            const price = document.getElementById('price').value;
 
             // Build the query string
             const queryParams = [];
             if (foodType) queryParams.push(`food_type=${encodeURIComponent(foodType)}`);
             if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
-            if (subwayStation) queryParams.push(`subway_station=${encodeURIComponent(subwayStation)}`);
-            if (mood) queryParams.push(`mood=${encodeURIComponent(mood)}`);
+            if (price) queryParams.push(`price=${encodeURIComponent(price)}`);
             const queryString = queryParams.join('&');
 
             // Clear previous results
@@ -183,10 +224,8 @@
                 resultItem.innerHTML = `
                     <h3>${restaurant.name}</h3>
                     <p><strong>Location:</strong> ${restaurant.location}</p>
-                    <p><strong>Subway Station:</strong> ${restaurant.subway_station}</p>
-                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
-                    <p><strong>Mood:</strong> ${restaurant.mood}</p>
                     <p><strong>Price:</strong> ${restaurant.price}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
                     <p><strong>Comments:</strong> ${restaurant.comments}</p>
                     <a href="${restaurant.article}" target="_blank">Read more</a>
                     <div class="instagram-post">
