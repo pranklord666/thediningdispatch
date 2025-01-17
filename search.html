@@ -170,13 +170,15 @@
                     </div>
                 `;
                 resultsContainer.appendChild(resultItem);
-
-                // Load Instagram embed script
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = '//www.instagram.com/embed.js';
-                document.body.appendChild(script);
             });
+
+            // Load Instagram embed script only once
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = '//www.instagram.com/embed.js';
+            if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
+                document.body.appendChild(script);
+            }
         }
     </script>
 </body>
