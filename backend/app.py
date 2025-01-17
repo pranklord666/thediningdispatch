@@ -142,4 +142,15 @@ def search():
     except Exception as e:
         # Log the error
         print("Error in /search route:", str(e))
-        return jsonify({"message": "An error occurred", "error": st
+        return jsonify({"message": "An error occurred", "error": str(e)}), 500
+
+# Main entry point
+if __name__ == '__main__':
+    # Log the working directory and database file
+    print("Starting application...")
+    print("Working directory:", os.getcwd())
+    print("Database exists:", os.path.exists('dining_dispatch.db'))
+
+    # Run the Flask app
+    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT environment variable
+    app.run(host='0.0.0.0', port=port, debug=True)
