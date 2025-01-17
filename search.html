@@ -143,6 +143,7 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
+                console.log('Fetched data:', data); // Debugging line
 
                 resultsContainer.innerHTML = '';
                 if (data.data.length === 0) {
@@ -160,6 +161,12 @@
         function displayResults(data) {
             const resultsContainer = document.getElementById('results-container');
             data.forEach(restaurant => {
+                console.log('Restaurant data:', restaurant); // Debugging line
+                if (!restaurant.instagram_link) {
+                    console.error('No Instagram link specified for restaurant:', restaurant.name);
+                    return;
+                }
+
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
                 resultItem.innerHTML = `
