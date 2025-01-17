@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Import Flask-CORS
+from flask_cors import CORS
 import sqlite3
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["https://thediningdispatch.com"])  # Allow CORS for the frontend domain
+CORS(app, origins=["https://thediningdispatch.com"])
 
 # Helper function to connect to the database
 def query_database(query, params=()):
@@ -52,7 +52,7 @@ def relax_criteria(food_type, location, subway_station, mood):
         ]
 
         for i in range(len(criteria)):
-            query = "SELECT * FROM restaurants WHERE 1=1"
+            query = "SELECT name, price, article, instagram_link FROM restaurants WHERE 1=1"
             params = []
 
             # Include only the first `len(criteria) - i` criteria
@@ -90,7 +90,7 @@ def search():
         print(f"Search parameters: food_type={food_type}, location={location}, subway_station={subway_station}, mood={mood}")
 
         # Full search query
-        query = "SELECT * FROM restaurants WHERE 1=1"
+        query = "SELECT name, price, article, instagram_link FROM restaurants WHERE 1=1"
         params = []
 
         if food_type:
@@ -148,4 +148,4 @@ if __name__ == '__main__':
 
     # Run the Flask app
     port = int(os.environ.get("PORT", 5000))  # Render provides the PORT environment variable
-    app.run(host='0.0.0.0', port=port, debug=True)  # Enable debug mode
+    app.run(host='0.0.0.0', port=port, debug=True)
