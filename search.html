@@ -6,40 +6,58 @@
     <title>Find a Restaurant - The Dining Dispatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
+
+        h1 {
+            font-size: 36px;
+        }
+
         .search-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
         }
+
         .dropdown {
             margin: 10px 0;
             padding: 10px;
             font-size: 16px;
             width: 300px;
         }
+
+        /* Button Styles */
         #search-button {
+            text-decoration: none;
+            color: black;
+            background-color: white;
             padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
+            border: 2px solid black;
             border-radius: 5px;
+            font-size: 18px;
+            font-weight: 400;
+            transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            width: 200px;
         }
+
         #search-button:hover {
-            background-color: #0056b3;
+            background-color: black;
+            color: white;
         }
+
+        /* Results Section */
         #results-container {
             margin-top: 20px;
             text-align: left;
         }
+
         .result-item {
             margin-bottom: 20px;
             padding: 15px;
@@ -47,31 +65,54 @@
             border-radius: 5px;
             background-color: #fff;
         }
+
         .result-item h3 {
             margin: 0 0 10px;
         }
+
         .result-item p {
             margin: 5px 0;
         }
+
         .result-item a {
             color: #007BFF;
             text-decoration: none;
         }
+
         .result-item a:hover {
             text-decoration: underline;
         }
+
         .instagram-post {
             margin-top: 10px;
             text-align: center;
         }
+
         .message {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         .error-message {
             color: red;
             font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            .dropdown {
+                width: 250px;
+            }
+
+            #search-button {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -170,7 +211,7 @@
             <option>€€€€</option>
         </select>
 
-        <button id="search-button">Search</button>
+        <button id="search-button" class="btn">Search</button>
     </div>
 
     <div id="results-container">
@@ -185,7 +226,6 @@
                 price: document.getElementById('price').value
             };
 
-            // Clear previous results
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.innerHTML = '<p>Loading...</p>';
 
@@ -198,21 +238,18 @@
         });
 
         async function searchRestaurants(criteria, resultsContainer, removedCriteria = []) {
-            // Build the query string
             const queryParams = [];
             if (criteria.foodType) queryParams.push(`food_type=${encodeURIComponent(criteria.foodType)}`);
             if (criteria.location) queryParams.push(`location=${encodeURIComponent(criteria.location)}`);
             if (criteria.price) queryParams.push(`price=${encodeURIComponent(criteria.price)}`);
             const queryString = queryParams.join('&');
 
-            // Fetch search results from the backend
             const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
 
-            // Clear loading message and display results
             resultsContainer.innerHTML = '';
             if (data.data.length === 0) {
                 if (removedCriteria.length < 3) {
