@@ -239,38 +239,59 @@
             resultsContainer.innerHTML = '<p>Loading...</p>';
 
             try {
-                const queryParams = [];
-                if (criteria.foodType) queryParams.push(`food_type=${encodeURIComponent(criteria.foodType)}`);
-                if (criteria.location) queryParams.push(`location=${encodeURIComponent(criteria.location)}`);
-                if (criteria.price) queryParams.push(`price=${encodeURIComponent(criteria.price)}`);
-                const queryString = queryParams.join('&');
-
-                const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
-                const data = await response.json();
-
-                resultsContainer.innerHTML = '';
-                if (data.data.length === 0) {
-                    resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
-                } else {
-                    resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
-                    data.data.forEach(restaurant => {
-                        const resultItem = document.createElement('div');
-                        resultItem.classList.add('result-item');
-                        resultItem.innerHTML = `
-                            <h3>${restaurant.name}</h3>
-                            <p><strong>Location:</strong> ${restaurant.location}</p>
-                            <p><strong>Price:</strong> ${restaurant.price}</p>
-                            <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
-                            <a href="${restaurant.article}" target="_blank">Read more</a>
-                        `;
-                        resultsContainer.appendChild(resultItem);
-                    });
-                }
+                await searchRestaurants(criteria, resultsContainer);
             } catch (error) {
                 console.error('Error fetching search results:', error);
                 resultsContainer.innerHTML = '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
             }
         });
+
+        async function searchRestaurants(criteria, resultsContainer, removedCriteria = []) {
+            const queryParams = [];
+            if (criteria.foodType) queryParams.push(`food_type=${encodeURIComponent(criteria.foodType)}`);
+            if (criteria.location) queryParams.push(`location=${encodeURIComponent(criteria.location)}`);
+            if (criteria.price) queryParams.push(`price=${encodeURIComponent(criteria.price)}`);
+            const queryString = queryParams.join('&');
+
+            const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
+            const data = await response.json();
+
+            resultsContainer.innerHTML = '';
+            if (data.data.length === 0) {
+                if (removedCriteria.length < 3) {
+                    const criteriaKeys = Object.keys(criteria).filter(key => criteria[key]);
+                    const criterionToRemove = criteriaKeys[removedCriteria.length];
+                    const newCriteria = { ...criteria };
+                    newCriteria[criterionToRemove] = '';
+                    removedCriteria.push(criterionToRemove);
+                    return searchRestaurants(newCriteria, resultsContainer, removedCriteria);
+                } else {
+                    resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
+                }
+            } else {
+                if (removedCriteria.length > 0) {
+                    resultsContainer.innerHTML = `<p class="message">No exact match. Here are some results without the ${removedCriteria.map(criterion => criterion.replace(/([A-Z])/g, ' $1').trim()).join(' and ')} criteria:</p>`;
+                } else {
+                    resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
+                }
+                displayResults(data.data, resultsContainer);
+            }
+        }
+
+        function displayResults(data, resultsContainer) {
+            data.forEach(restaurant => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                resultItem.innerHTML = `
+                    <h3>${restaurant.name}</h3>
+                    <p><strong>Location:</strong> ${restaurant.location}</p>
+                    <p><strong>Price:</strong> ${restaurant.price}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
+                    <a href="${restaurant.article}" target="_blank">Read more</a>
+                `;
+                resultsContainer.appendChild(resultItem);
+            });
+        }
     </script>
 </body>
 </html>
