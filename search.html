@@ -61,13 +61,10 @@
             margin: 5px 0;
             font-size: 16px;
         }
-        .result-item a {
-            color: #007BFF;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .result-item a:hover {
-            text-decoration: underline;
+        .result-item .instagram-post {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
         }
         .message {
             font-size: 18px;
@@ -188,7 +185,9 @@
                 resultItem.innerHTML = `
                     <h3>${restaurant.name}</h3>
                     <p>${restaurant.comments}</p>
-                    <a href="${restaurant.instagram_link}" target="_blank">View Instagram Post</a>
+                    <div class="instagram-post">
+                        <iframe src="${restaurant.instagram_link}/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                    </div>
                 `;
                 resultsContainer.appendChild(resultItem);
             });
