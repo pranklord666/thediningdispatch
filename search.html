@@ -120,6 +120,8 @@
         <!-- Search results will be dynamically inserted here -->
     </div>
 
+    <!-- Include instafeed.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
     <script>
         document.getElementById('search-button').addEventListener('click', async function () {
             const foodType = document.getElementById('food-type').value;
@@ -165,20 +167,22 @@
                 resultItem.innerHTML = `
                     <h3>${restaurant.name}</h3>
                     <p><strong>Comments:</strong> ${restaurant.comments}</p>
-                    <div class="instagram-post">
-                        <blockquote class="instagram-media" data-instgrm-permalink="${restaurant.instagram_link}" data-instgrm-version="13" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
-                    </div>
+                    <div class="instagram-post" id="instagram-post-${restaurant.id}"></div>
                 `;
                 resultsContainer.appendChild(resultItem);
-            });
 
-            // Load Instagram embed script only once
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = '//www.instagram.com/embed.js';
-            if (!document.querySelector('script[src="//www.instagram.com/embed.js"]')) {
-                document.body.appendChild(script);
-            }
+                // Initialize instafeed.js for each restaurant
+                const feed = new Instafeed({
+                    get: 'user',
+                    userId: restaurant.instagram_user_id, // Replace with the actual Instagram user ID
+                    accessToken: 'YOUR_ACCESS_TOKEN', // Replace with your Instagram access token
+                    resolution: 'standard_resolution',
+                    template: '<img src="{{image}}" />',
+                    target: `instagram-post-${restaurant.id}`,
+                    limit: 1
+                });
+                feed.run();
+            });
         }
     </script>
 </body>
