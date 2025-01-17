@@ -10,7 +10,7 @@ CORS(app, origins=["https://thediningdispatch.com"])
 def query_database(query, params=()):
     try:
         db_path = 'dining_dispatch.db'
-        
+
         # Log the database path and its existence
         print(f"Checking database file: {db_path}")
         if not os.path.exists(db_path):
@@ -110,6 +110,11 @@ def search():
         print("Constructed query:", query)
         print("Parameters:", params)
         results = query_database(query, params)
+
+        # Validate the results
+        for result in results:
+            if not result.get('instagram_link'):
+                print(f"Warning: Instagram link is missing for restaurant: {result['name']}")
 
         # If no results, progressively relax the criteria
         if not results:
