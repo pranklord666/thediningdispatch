@@ -173,8 +173,8 @@
 
                 // Initialize instafeed.js for each restaurant
                 const feed = new Instafeed({
-                    get: 'user',
-                    userId: restaurant.instagram_user_id, // Replace with the actual Instagram user ID
+                    get: 'tagged',
+                    tagName: restaurant.instagram_tag, // Replace with the actual Instagram tag
                     accessToken: 'YOUR_ACCESS_TOKEN', // Replace with your Instagram access token
                     resolution: 'standard_resolution',
                     template: '<img src="{{image}}" />',
