@@ -43,13 +43,18 @@ p {
     text-decoration: none;
     color: black;
     background-color: white;
-    padding: 6px 12px; /* Reduced padding for a slimmer appearance */
+    padding: 10px 20px;
     border: 2px solid black;
     border-radius: 5px;
     font-size: 18px;
     font-weight: 400;
     transition: background-color 0.3s, color 0.3s;
     text-align: center;
+    width: 200px;
+}
+
+.btn-publication {
+    padding: 6px 12px; /* Reduced padding for a slimmer appearance */
     width: auto; /* Adjusts width to fit the text */
     min-width: 100px; /* Ensures a consistent minimum size */
 }
@@ -74,6 +79,10 @@ p {
     }
 
     .btn {
+        padding: 8px 16px; /* Maintain larger padding for other pages */
+    }
+
+    .btn-publication {
         padding: 5px 10px; /* Slightly smaller for compact view */
     }
 }
