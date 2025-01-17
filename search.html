@@ -5,14 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Restaurant - The Dining Dispatch</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .dropdown {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+        #search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+        #results-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .result-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .result-item h3 {
+            margin: 0 0 10px;
+        }
+        .result-item p {
+            margin: 5px 0;
+        }
+        .result-item a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+        .instagram-post {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .error-message {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
     <h1>Find a Restaurant</h1>
-    <div class="form-container">
+    <div class="search-container">
         <!-- Dropdown for Food Type -->
-        <label for="food-type" class="filter-label">Food Type</label>
-        <select id="food-type" class="filter-dropdown">
+        <select id="food-type" class="dropdown">
             <option value="">Select Food Type</option>
             <option>African</option>
             <option>American</option>
@@ -73,8 +140,7 @@
         </select>
 
         <!-- Dropdown for Location -->
-        <label for="location" class="filter-label">Location</label>
-        <select id="location" class="filter-dropdown">
+        <select id="location" class="dropdown">
             <option value="">Select Location</option>
             <option>2nd District</option>
             <option>3rd District</option>
@@ -96,8 +162,7 @@
         </select>
 
         <!-- Dropdown for Price -->
-        <label for="price" class="filter-label">Price</label>
-        <select id="price" class="filter-dropdown">
+        <select id="price" class="dropdown">
             <option value="">Select Price</option>
             <option>€</option>
             <option>€€</option>
@@ -105,7 +170,7 @@
             <option>€€€€</option>
         </select>
 
-        <button id="search-button" class="btn">Search</button>
+        <button id="search-button">Search</button>
     </div>
 
     <div id="results-container">
