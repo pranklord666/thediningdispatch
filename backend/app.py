@@ -52,7 +52,7 @@ def relax_criteria(food_type, location, subway_station, mood):
         ]
 
         for i in range(len(criteria)):
-            query = "SELECT name, price, article, instagram_link FROM restaurants WHERE 1=1"
+            query = "SELECT name, price, contents, instagram_link FROM restaurants WHERE 1=1"
             params = []
 
             # Include only the first `len(criteria) - i` criteria
@@ -90,7 +90,7 @@ def search():
         print(f"Search parameters: food_type={food_type}, location={location}, subway_station={subway_station}, mood={mood}")
 
         # Full search query
-        query = "SELECT name, price, article, instagram_link FROM restaurants WHERE 1=1"
+        query = "SELECT name, price, contents, instagram_link FROM restaurants WHERE 1=1"
         params = []
 
         if food_type:
