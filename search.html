@@ -42,7 +42,7 @@
         }
 
         /* Button Styles */
-        #search-button {
+        .btn {
             text-decoration: none;
             color: black;
             background-color: white;
@@ -54,9 +54,10 @@
             transition: background-color 0.3s, color 0.3s;
             text-align: center;
             width: 200px;
+            margin: 10px 0;
         }
 
-        #search-button:hover {
+        .btn:hover {
             background-color: black;
             color: white;
         }
@@ -118,7 +119,7 @@
                 width: 250px;
             }
 
-            #search-button {
+            .btn {
                 font-size: 16px;
                 padding: 8px 16px;
             }
@@ -220,7 +221,8 @@
             <option>€€€€</option>
         </select>
 
-        <button id="search-button">Search</button>
+        <button id="search-button" class="btn">Search</button>
+        <a href="index.html" class="btn">Home</a>
     </div>
 
     <div id="results-container">
