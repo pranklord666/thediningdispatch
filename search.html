@@ -11,8 +11,6 @@
             margin: 0;
             padding: 20px;
             text-align: center;
-            background-color: white;
-            color: black;
         }
         .search-container {
             display: flex;
@@ -25,21 +23,18 @@
             padding: 10px;
             font-size: 16px;
             width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
         #search-button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: black;
+            background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
-            transition: background-color 0.3s;
         }
         #search-button:hover {
-            background-color: gray;
+            background-color: #0056b3;
         }
         #results-container {
             margin-top: 20px;
@@ -47,22 +42,17 @@
         }
         .result-item {
             margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid black;
+            padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
         }
-        .result-item h3 {
-            margin: 0 0 10px;
+        .result-item a {
+            color: #007BFF;
+            text-decoration: none;
         }
-        .result-item p {
-            margin: 5px 0;
-        }
-        .instagram-post {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
+        .result-item a:hover {
+            text-decoration: underline;
         }
         .message {
             font-size: 18px;
@@ -83,8 +73,11 @@
             <option value="">Select Food Type</option>
             <option>Bistronomic</option>
             <option>Brewery</option>
+            <option>French Sous-West</option>
             <option>French</option>
+            <option>Contemporary French</option>
             <option>Fusion Cuisine</option>
+            <option>Tapas</option>
             <option>Mediterranean</option>
         </select>
 
@@ -95,6 +88,8 @@
             <option>9th District</option>
             <option>18th District</option>
             <option>11th District</option>
+            <option>5th District</option>
+            <option>20th District</option>
         </select>
 
         <!-- Dropdown for Subway Station -->
@@ -103,14 +98,23 @@
             <option>Dausmenil</option>
             <option>Blanche</option>
             <option>Marcadet</option>
+            <option>Bois de Boulogne</option>
+            <option>Saint-Georges</option>
+            <option>Ecole Militaire</option>
+            <option>Saint-Maur</option>
+            <option>Belleville</option>
         </select>
 
         <!-- Dropdown for Mood -->
         <select id="mood" class="dropdown">
             <option value="">Select Mood</option>
+            <option>Real product work</option>
+            <option>Welcoming</option>
             <option>Hidden Gem</option>
             <option>Natural Wines</option>
+            <option>Talented Chef</option>
             <option>Romantic Spot</option>
+            <option>3-star Chef</option>
         </select>
 
         <button id="search-button">Search</button>
@@ -127,23 +131,27 @@
             const subwayStation = document.getElementById('subway-station').value;
             const mood = document.getElementById('mood').value;
 
+            // Build the query string
             const queryParams = [];
-            if (foodType) queryParams.push(`food_type=${encodeURIComponent(foodType)}`);
-            if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
-            if (subwayStation) queryParams.push(`subway_station=${encodeURIComponent(subwayStation)}`);
-            if (mood) queryParams.push(`mood=${encodeURIComponent(mood)}`);
+            if (foodType) queryParams.push(food_type=${encodeURIComponent(foodType)});
+            if (location) queryParams.push(location=${encodeURIComponent(location)});
+            if (subwayStation) queryParams.push(subway_station=${encodeURIComponent(subwayStation)});
+            if (mood) queryParams.push(mood=${encodeURIComponent(mood)});
             const queryString = queryParams.join('&');
 
+            // Clear previous results
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.innerHTML = '<p>Loading...</p>';
 
             try {
-                const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
+                // Fetch search results from the backend
+                const response = await fetch(https://thediningdispatch-backend.onrender.com/search?${queryString});
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(HTTP error! status: ${response.status});
                 }
                 const data = await response.json();
 
+                // Clear loading message and display results
                 resultsContainer.innerHTML = '';
                 if (data.data.length === 0) {
                     resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
@@ -162,13 +170,16 @@
             data.forEach(restaurant => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                resultItem.innerHTML = `
+                resultItem.innerHTML = 
                     <h3>${restaurant.name}</h3>
+                    <p><strong>Location:</strong> ${restaurant.location}</p>
+                    <p><strong>Subway Station:</strong> ${restaurant.subway_station}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.food_type}</p>
+                    <p><strong>Mood:</strong> ${restaurant.mood}</p>
+                    <p><strong>Price:</strong> ${restaurant.price}</p>
                     <p><strong>Comments:</strong> ${restaurant.comments}</p>
-                    <div class="instagram-post">
-                        <iframe src="${restaurant.instagram_link}/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
-                    </div>
-                `;
+                    <a href="${restaurant.article}" target="_blank">Read more</a>
+                ;
                 resultsContainer.appendChild(resultItem);
             });
         }
