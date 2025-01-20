@@ -5,29 +5,28 @@ import os
 
 # Define the Flask app
 app = Flask(__name__)
-CORS(app, origins=["*"])  # Allow all origins for local testing; adjust for production
+CORS(app, origins=["*"])  # Allow all origins for testing; restrict in production.
 
 # Helper function to connect to the database
 def query_database(query, params=()):
     try:
         db_path = 'dining_dispatch.db'
 
-        # Log the database path and its existence
-        print(f"Checking database file: {db_path}")
+        # Ensure the database exists
         if not os.path.exists(db_path):
-            print("Database file not found!")
+            print(f"Database file not found at {db_path}.")
             return []
 
         # Connect to the database
         conn = sqlite3.connect(db_path)
-        conn.row_factory = sqlite3.Row  # Enable dict-like row access
+        conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
 
         # Log the query and parameters
         print("Executing query:", query)
         print("With parameters:", params)
 
-        # Execute and fetch results
+        # Execute the query
         cursor.execute(query, params)
         results = cursor.fetchall()
         conn.close()
@@ -37,27 +36,19 @@ def query_database(query, params=()):
         return [dict(row) for row in results]
 
     except Exception as e:
-        # Log any database errors
-        print("Error in query_database:", str(e))
+        print(f"Database query error: {e}")
         return []
 
-# Exact search endpoint
+# Search endpoint
 @app.route('/search', methods=['GET'])
 def search():
     try:
-        # Log the incoming request
-        print("Incoming request to /search")
-        print("Request args:", request.args)
-
         # Extract query parameters
         food_type = request.args.get('food_type', '').strip()
         location = request.args.get('location', '').strip()
         price = request.args.get('price', '').strip()
 
-        # Log the extracted parameters
-        print(f"Search parameters: food_type={food_type}, location={location}, price={price}")
-
-        # Construct the search query
+        # Build the query dynamically
         query = "SELECT * FROM restaurants WHERE 1=1"
         params = []
 
@@ -71,19 +62,21 @@ def search():
             query += " AND price = ?"
             params.append(price)
 
-        # Execute the query
+        # Log the constructed query
         print("Constructed query:", query)
-        print("Parameters:", params)
+        print("Query parameters:", params)
+
+        # Execute the query
         results = query_database(query, params)
 
-        # Check and return results
+        # Return the results
         if not results:
             return jsonify({
                 "message": "No restaurants match your search criteria.",
                 "data": []
             })
 
-        # Enrich results with iframe and chef links
+        # Enrich results with additional fields
         for restaurant in results:
             restaurant['instagram_iframe'] = (
                 f"<iframe src='{restaurant['instagram_link']}/embed' width='400'></iframe>"
@@ -94,24 +87,21 @@ def search():
                 if restaurant.get('chef') and 'http' in restaurant['chef'] else restaurant.get('chef')
             )
 
-        print(f"Found {len(results)} exact results.")
         return jsonify({
             "message": "Here are the results for your search:",
             "data": results
         })
 
     except Exception as e:
-        # Log the error
-        print("Error in /search route:", str(e))
+        print(f"Error in /search route: {e}")
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
 
 # Main entry point
 if __name__ == '__main__':
-    # Log the working directory and database file
+    # Check if the database exists
     print("Starting application...")
-    print("Working directory:", os.getcwd())
-    print("Database exists:", os.path.exists('dining_dispatch.db'))
+    print(f"Database exists: {os.path.exists('dining_dispatch.db')}")
 
     # Run the Flask app
-    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT environment variable
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
