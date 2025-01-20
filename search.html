@@ -15,11 +15,8 @@
         h1 {
             font-size: 36px;
         }
-        .search-container {
-            margin: 20px 0;
-        }
         .dropdown, .btn {
-            margin: 10px 0;
+            margin: 10px;
             padding: 10px;
             font-size: 16px;
             border: 2px solid black;
@@ -47,14 +44,13 @@
 </head>
 <body>
     <h1>Find a Restaurant</h1>
-    <div class="search-container">
+    <div>
         <select id="food-type" class="dropdown">
             <option value="">Select Food Type</option>
             <option>Bistronomic</option>
             <option>French</option>
             <option>Italian</option>
             <option>Asian</option>
-            <!-- Add more options -->
         </select>
         <select id="location" class="dropdown">
             <option value="">Select Location</option>
@@ -62,7 +58,6 @@
             <option>12th District</option>
             <option>16th District</option>
             <option>Issy-les-Moulineaux</option>
-            <!-- Add more options -->
         </select>
         <select id="price" class="dropdown">
             <option value="">Select Price</option>
@@ -94,6 +89,7 @@
 
                 const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
                 const data = await response.json();
+                console.log("Backend Response:", data);
 
                 if (data.data.length === 0) {
                     resultsContainer.innerHTML = '<p>No results found.</p>';
@@ -108,15 +104,16 @@
                                 <p><strong>Comments:</strong> ${restaurant.comments}</p>
                                 <p><strong>Mood:</strong> ${restaurant.mood}</p>
                                 <div class="instagram-post">${restaurant.instagram_iframe || 'No Instagram post'}</div>
-                                <p><strong>Booking:</strong> <a href="${restaurant.booking_link}" target="_blank">Book Now</a></p>
-                                <p><strong>Menu:</strong> <a href="${restaurant.menu_link}" target="_blank">View Menu</a></p>
+                                <p><strong>Booking:</strong> <a href="${restaurant.booking}" target="_blank">Book Now</a></p>
+                                <p><strong>Menu:</strong> <a href="${restaurant.menu}" target="_blank">View Menu</a></p>
                                 <p><strong>Chef:</strong> ${restaurant.chef_link || 'Not available'}</p>
                             </div>
                         `;
                     });
                 }
             } catch (error) {
-                resultsContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+                console.error("Error:", error);
+                resultsContainer.innerHTML = '<p>An error occurred while fetching results.</p>';
             }
         });
     </script>
