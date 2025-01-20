@@ -5,57 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Restaurant - The Dining Dispatch</title>
     <style>
-        /* General Styles */
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: white;
+            color: black;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: black;
+            margin-top: 50px;
+            font-size: 40px; /* Reduced font size */
+            font-weight: 700;
+            text-transform: uppercase; /* All titles in uppercase */
+            letter-spacing: 2px; /* Adds spacing between letters */
+            text-align: center; /* Center aligns titles */
         }
 
-        .search-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
+        p {
+            color: black;
+            font-size: 18px; /* Larger font for better readability */
+            line-height: 1.6; /* Improved line spacing for clarity */
+            margin: 10px;
+            font-weight: 400;
         }
 
-        .filter-dropdown {
-            margin-bottom: 20px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
+        .catchphrase {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px; /* Smaller caps for the phrase */
+            font-weight: 400;
+            color: black;
+            margin: 10px auto; /* Centers the catchphrase vertically */
+            width: fit-content; /* Shrinks to fit the content */
+            line-height: 1.5;
+            letter-spacing: 0.05em;
+            text-align: center; /* Ensures text is centered within its box */
         }
 
+        /* Buttons */
         .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #533DEB;
-            border: none;
-            border-radius: 5px;
             text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            color: black;
+            background-color: white;
+            padding: 10px 20px; /* Original padding */
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 400;
+            transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            width: 200px; /* Original button width */
         }
 
         .btn:hover {
-            background-color: #3b2d9e;
+            background-color: black;
+            color: white;
         }
 
-        /* Results Container Styles */
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px; /* Adjusted font size for smaller screens */
+            }
+
+            .catchphrase {
+                font-size: 14px; /* Adjust font size for smaller screens */
+            }
+
+            p {
+                font-size: 16px; /* Ensure readability on small screens */
+            }
+
+            .btn {
+                font-size: 16px; /* Ensure button text remains readable */
+                padding: 8px 16px; /* Adjust padding for smaller screens */
+            }
+        }
+
+        /* Styles specific to the homepage */
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* Monthly Section Styles */
+        .month-section {
+            background-color: #f9f9f9; /* Light grey background */
+            padding: 20px;
+            max-width: 300px; /* Further reduced width */
+            margin: 30px auto;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        .month-title {
+            margin: 0;
+            padding: 5px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .month-section .buttons {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* Form Styles (for search page) */
+        .form-container {
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: black;
+        }
+
+        .filter-dropdown {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Pastel Button Colors */
+        .pastel-blue {
+            background-color: #e7f3ff;
+            border-color: #90c3ff;
+        }
+
+        .pastel-green {
+            background-color: #eaffea;
+            border-color: #97d197;
+        }
+
+        .pastel-pink {
+            background-color: #ffe7f3;
+            border-color: #ff90c1;
+        }
+
+        /* Newsletter Page */
+        .language-buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .past-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* Custom Dropdown Styles */
+        .custom-dropdown {
+            position: relative;
+            width: 300px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .dropdown-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 10;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Additional styling just for the search results output */
         #results-container {
             margin-top: 20px;
             text-align: center;
@@ -71,6 +245,7 @@
             text-align: left;
         }
 
+        /* Override <h1> inside results so it doesn't inherit global uppercase style */
         .result-item h1 {
             font-size: 24px;
             margin: 0 0 10px;
@@ -114,9 +289,10 @@
     <h1>Find a Restaurant</h1>
 
     <!-- Search Filters -->
-    <div class="search-container">
+    <div class="form-container">
         <!-- Food Type Dropdown -->
-        <select id="food-type" class="filter-dropdown" style="width:300px;">
+        <label for="food-type" class="filter-label">Food Type</label>
+        <select id="food-type" class="filter-dropdown">
             <option value="">Select Food Type</option>
             <option>African</option>
             <option>American</option>
@@ -177,7 +353,8 @@
         </select>
 
         <!-- Location Dropdown -->
-        <select id="location" class="filter-dropdown" style="width:300px;">
+        <label for="location" class="filter-label">Location</label>
+        <select id="location" class="filter-dropdown">
             <option value="">Select Location</option>
             <option>2nd District</option>
             <option>3rd District</option>
@@ -199,7 +376,8 @@
         </select>
 
         <!-- Price Dropdown -->
-        <select id="price" class="filter-dropdown" style="width:300px;">
+        <label for="price" class="filter-label">Price</label>
+        <select id="price" class="filter-dropdown">
             <option value="">Select Price</option>
             <option>€</option>
             <option>€€</option>
