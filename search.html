@@ -4,12 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Restaurant - The Dining Dispatch</title>
-    <!-- Link to your external CSS file -->
-    <link rel="stylesheet" href="main.css">
-
-    <!-- Optional: Extra CSS classes specifically for the result display -->
     <style>
-        /* Styles for the search results container and items */
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .filter-dropdown {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #533DEB;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #3b2d9e;
+        }
+
+        /* Results Container Styles */
         #results-container {
             margin-top: 20px;
             text-align: center;
@@ -28,7 +74,7 @@
         .result-item h1 {
             font-size: 24px;
             margin: 0 0 10px;
-            text-transform: none; /* So it doesn't override the uppercase from main.css h1 rules */
+            text-transform: none;
         }
 
         /* Mood Tag Styles (Notion-like) */
@@ -42,7 +88,6 @@
             font-size: 14px;
         }
 
-        /* Message and error styles */
         .message {
             font-size: 18px;
             font-weight: bold;
@@ -69,7 +114,7 @@
     <h1>Find a Restaurant</h1>
 
     <!-- Search Filters -->
-    <div class="search-container" style="margin-top: 20px;">
+    <div class="search-container">
         <!-- Food Type Dropdown -->
         <select id="food-type" class="filter-dropdown" style="width:300px;">
             <option value="">Select Food Type</option>
@@ -163,7 +208,7 @@
         </select>
 
         <!-- Search Button -->
-        <div style="margin-top: 20px;">
+        <div>
             <button id="search-button" class="btn">Search</button>
             <a href="index.html" class="btn">Home</a>
         </div>
@@ -232,33 +277,102 @@
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
 
-                // Address column is stored as: "https://maps.google.com/... 40 Rue Taine 75012 Paris"
-                // We'll split on the first space to separate the URL from the text.
-                const addressParts = restaurant.Address.split(' ');
-                const googleMapsLink = addressParts.shift();
+                // Split the Address column into [MapURL, Remaining address text]
+                const addressParts = restaurant.Address ? restaurant.Address.split(' ') : [];
+                const googleMapsLink = addressParts.shift() || '';
                 const addressText = addressParts.join(' ');
 
-                // Construct the HTML in the required order and format:
-                //  1) Name (h1)
-                //  2) Comments
-                //  3) Mood (colorful notion-like tag)
-                //  4) Instagram link
-                //  5) Address (clickable)
-                //  6) Booking + Menu as buttons
-                //  7) Chef
-                //  8) Subway
-                resultItem.innerHTML = `
-                    <h1>${restaurant.Name}</h1>
-                    ${restaurant.Comments ? `<p>${restaurant.Comments}</p>` : ''}
-                    ${restaurant.Mood ? `<div class="mood-tag">${restaurant.Mood}</div>` : ''}
-                    <p><strong>Address: </strong><a href="${googleMapsLink}" target="_blank">${addressText}</a></p>
-                    ${restaurant.Subway ? `<p><strong>Subway Station:</strong> ${restaurant.Subway}</p>` : ''}
+                // We build small HTML snippets for each field if it's present (non-empty).
+                // 1) Name -> Always displayed as <h1>
+                const nameHTML = `<h1>${restaurant.Name || ''}</h1>`;
+
+                // 2) Comments -> only if not empty
+                const commentsHTML = restaurant.Comments
+                  ? `<p>${restaurant.Comments}</p>`
+                  : '';
+
+                // 3) Mood -> only if not empty, displayed as a 'mood-tag'
+                const moodHTML = restaurant.Mood
+                  ? `<div class="mood-tag">${restaurant.Mood}</div>`
+                  : '';
+
+                // 4) Instagram -> only if not empty, clickable link
+                const instagramHTML = restaurant.Instagram_Link
+                  ? `
+                    <p>
+                      <strong>Instagram: </strong>
+                      <a href="${restaurant.Instagram_Link}" target="_blank">
+                        ${restaurant.Instagram_Link}
+                      </a>
+                    </p>
+                  `
+                  : '';
+
+                // 5) Address -> only if not empty
+                //    Subway -> right under the address
+                let addressHTML = '';
+                if (googleMapsLink && addressText) {
+                  addressHTML = `
+                    <p>
+                      <strong>Address: </strong>
+                      <a href="${googleMapsLink}" target="_blank">${addressText}</a>
+                    </p>
+                  `;
+                }
+                const subwayHTML = restaurant.Subway
+                  ? `<p><strong>Subway Station:</strong> ${restaurant.Subway}</p>`
+                  : '';
+
+                // 6) Booking + Menu as side-by-side buttons, only if not empty
+                const bookingBtn = restaurant.Booking
+                  ? `<a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>`
+                  : '';
+                const menuBtn = restaurant.Menu
+                  ? `<a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>`
+                  : '';
+                let buttonGroupHTML = '';
+                if (bookingBtn || menuBtn) {
+                  buttonGroupHTML = `
                     <div class="button-group">
-                        ${restaurant.Booking ? `<a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>` : ''}
-                        ${restaurant.Menu ? `<a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>` : ''}
+                      ${bookingBtn}
+                      ${menuBtn}
                     </div>
-                    ${restaurant.Chef ? `<p><strong>Chef:</strong> ${restaurant.Chef.includes('(') ? `<a href="${restaurant.Chef.match(/\(([^)]+)\)/)[1]}" target="_blank">${restaurant.Chef.split(' (')[0]}</a>` : restaurant.Chef}</p>` : ''}
+                  `;
+                }
+
+                // 7) Chef -> If not empty, parse for Instagram link if present in parentheses
+                let chefHTML = '';
+                if (restaurant.Chef) {
+                  // Try to match the pattern: "Name (https://instagram.com/...)"
+                  const chefRegex = /(.*?)\s*\((https?:\/\/[^\)]+)\)/;
+                  const matchChef = restaurant.Chef.match(chefRegex);
+
+                  if (matchChef) {
+                    const chefName = matchChef[1].trim();
+                    const chefLink = matchChef[2].trim();
+                    chefHTML = `
+                      <p>
+                        <strong>Chef:</strong>
+                        <a href="${chefLink}" target="_blank">${chefName}</a>
+                      </p>`;
+                  } else {
+                    // If no parentheses format, just display the text
+                    chefHTML = `<p><strong>Chef:</strong> ${restaurant.Chef}</p>`;
+                  }
+                }
+
+                // Combine the HTML snippets in the desired order
+                resultItem.innerHTML = `
+                  ${nameHTML}
+                  ${commentsHTML}
+                  ${moodHTML}
+                  ${instagramHTML}
+                  ${addressHTML}
+                  ${subwayHTML}
+                  ${buttonGroupHTML}
+                  ${chefHTML}
                 `;
+
                 resultsContainer.appendChild(resultItem);
             });
         }
