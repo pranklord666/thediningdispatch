@@ -92,7 +92,7 @@
                 if (criteria.price) queryParams.push(`price=${encodeURIComponent(criteria.price)}`);
                 const queryString = queryParams.join('&');
 
-                const response = await fetch(`http://localhost:5000/search?${queryString}`);
+                const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
                 const data = await response.json();
 
                 if (data.data.length === 0) {
