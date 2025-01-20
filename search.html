@@ -57,7 +57,7 @@
       const location = document.getElementById('location').value;
       const price = document.getElementById('price').value;
 
-      const url = `https://your-backend-url.onrender.com/search?food_type=${foodType}&location=${location}&price=${price}`;
+      const url = `https://thediningdispatch-backend.onrender.com/search?food_type=${foodType}&location=${location}&price=${price}`;
 
       fetch(url)
         .then(response => response.json())
