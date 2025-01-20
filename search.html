@@ -76,7 +76,7 @@
             background-color: #fff;
         }
 
-        .result-item h1 {
+        .result-item h3 {
             margin: 0 0 20px;
         }
 
@@ -96,28 +96,6 @@
         .instagram-post {
             margin-top: 20px;
             text-align: center;
-        }
-
-        .mood {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .mood span {
-            margin-right: 10px;
-        }
-
-        .mood span:nth-child(1) {
-            color: #FFC3A0; /* Pastel Orange */
-        }
-
-        .mood span:nth-child(2) {
-            color: #FFDBE2; /* Pastel Pink */
-        }
-
-        .mood span:nth-child(3) {
-            color: #C3FDB8; /* Pastel Green */
         }
 
         .message {
@@ -171,8 +149,8 @@
             <option>Ceviche</option>
             <option>Chinese</option>
             <option>Contemporary French</option>
-            <option>Corean</option>
-            <option>Corean Barbecue</option>
+            <option>Korean</option>
+            <option>Korean Barbecue</option>
             <option>Fast-food</option>
             <option>French</option>
             <option>French Sous-West</option>
@@ -184,7 +162,7 @@
             <option>Healthy food</option>
             <option>Italian</option>
             <option>Japanese</option>
-            <option>Latino-American</option>
+            <option>Latin American</option>
             <option>London</option>
             <option>Mezzes</option>
             <option>Mediterranean</option>
@@ -198,7 +176,7 @@
             <option>Pizza</option>
             <option>Seafood</option>
             <option>Soba</option>
-            <option>South-American</option>
+            <option>South American</option>
             <option>Spicy Food</option>
             <option>Taverna</option>
             <option>Tapas</option>
@@ -313,14 +291,12 @@
                 const address = addressParts.join(' ');
 
                 resultItem.innerHTML = `
-                    <h1>${restaurant.Name}</h1>
-                    ${restaurant.Chef ? `<p><a href="${restaurant.Chef.match(/\(([^)]+)\)/)[1]}" target="_blank">${restaurant.Chef.replace(/\s*\([^)]*\)/, '')}</a></p>` : ''}
-                    <p>${restaurant.Comments}</p>
-                    <p class="mood">${restaurant.Mood.split(', ').map(word => `<span>${word}</span>`).join(' ')}</p>
-                    ${restaurant.Instagram_Link ? `<div class="instagram-post"><iframe src="${restaurant.Instagram_Link}/embed" width="400"></iframe></div>` : ''}
-                    <p><a href="${googleMapsLink}" target="_blank">${address}</a> (Subway: ${restaurant.Subway})</p>
-                    <a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>
-                    <a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>
+                    <h3>${restaurant.Name}</h3>
+                    <p><strong>Location:</strong> ${restaurant.Location}</p>
+                    <p><strong>Price:</strong> ${restaurant.Price}</p>
+                    <p><strong>Food Type:</strong> ${restaurant.Type_of_Food}</p>
+                    <p><strong>Address:</strong> <a href="${googleMapsLink}" target="_blank">${address}</a></p>
+                    <a href="${restaurant.Article}" target="_blank">Read more</a>
                 `;
                 resultsContainer.appendChild(resultItem);
             });
