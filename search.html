@@ -306,13 +306,19 @@
             data.forEach(restaurant => {
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
+
+                // Extract the Google Maps link and the address
+                const addressParts = restaurant.Address.split(' ');
+                const googleMapsLink = addressParts.shift();
+                const address = addressParts.join(' ');
+
                 resultItem.innerHTML = `
                     <h1>${restaurant.Name}</h1>
                     ${restaurant.Chef ? `<p><a href="${restaurant.Chef.match(/\(([^)]+)\)/)[1]}" target="_blank">${restaurant.Chef.replace(/\s*\([^)]*\)/, '')}</a></p>` : ''}
                     <p>${restaurant.Comments}</p>
                     <p class="mood">${restaurant.Mood.split(', ').map(word => `<span>${word}</span>`).join(' ')}</p>
                     ${restaurant.Instagram_Link ? `<div class="instagram-post"><iframe src="${restaurant.Instagram_Link}/embed" width="400"></iframe></div>` : ''}
-                    <p><a href="${restaurant.Address}" target="_blank">${restaurant.Address.replace(/https:\/\/www\.google\.com\/maps\/place\//, '')}</a> (Subway: ${restaurant.Subway})</p>
+                    <p><a href="${googleMapsLink}" target="_blank">${address}</a> (Subway: ${restaurant.Subway})</p>
                     <a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>
                     <a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>
                 `;
