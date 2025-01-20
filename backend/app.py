@@ -76,17 +76,6 @@ def search():
                 "data": []
             })
 
-        # Enrich results with additional fields
-        for restaurant in results:
-            restaurant['instagram_iframe'] = (
-                f"<iframe src='{restaurant['instagram_link']}/embed' width='400'></iframe>"
-                if restaurant.get('instagram_link') else None
-            )
-            restaurant['chef_link'] = (
-                f"<a href='{restaurant['chef']}' target='_blank'>{restaurant['chef'].split('/')[-1]}</a>"
-                if restaurant.get('chef') and 'http' in restaurant['chef'] else restaurant.get('chef')
-            )
-
         return jsonify({
             "message": "Here are the results for your search:",
             "data": results
