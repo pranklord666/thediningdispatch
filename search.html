@@ -251,14 +251,13 @@
                     <h1>${restaurant.Name}</h1>
                     ${restaurant.Comments ? `<p>${restaurant.Comments}</p>` : ''}
                     ${restaurant.Mood ? `<div class="mood-tag">${restaurant.Mood}</div>` : ''}
-                    ${restaurant.Instagram_Link ? `<p><strong>Instagram: </strong><a href="${restaurant.Instagram_Link}" target="_blank">${restaurant.Name}</a></p>` : ''}
                     <p><strong>Address: </strong><a href="${googleMapsLink}" target="_blank">${addressText}</a></p>
+                    ${restaurant.Subway ? `<p><strong>Subway Station:</strong> ${restaurant.Subway}</p>` : ''}
                     <div class="button-group">
                         ${restaurant.Booking ? `<a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>` : ''}
                         ${restaurant.Menu ? `<a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>` : ''}
                     </div>
-                    ${restaurant.Chef ? `<p><strong>Chef:</strong> ${restaurant.Chef}</p>` : ''}
-                    ${restaurant.Subway ? `<p><strong>Subway Station:</strong> ${restaurant.Subway}</p>` : ''}
+                    ${restaurant.Chef ? `<p><strong>Chef:</strong> ${restaurant.Chef.includes('(') ? `<a href="${restaurant.Chef.match(/\(([^)]+)\)/)[1]}" target="_blank">${restaurant.Chef.split(' (')[0]}</a>` : restaurant.Chef}</p>` : ''}
                 `;
                 resultsContainer.appendChild(resultItem);
             });
