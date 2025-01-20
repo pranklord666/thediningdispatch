@@ -1,222 +1,335 @@
-/* Global Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    color: black;
-    text-align: center;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Restaurant - The Dining Dispatch</title>
+  <!-- Link to your external CSS file -->
+  <link rel="stylesheet" href="main.css">
 
-h1 {
-    color: black;
-    margin-top: 50px;
-    font-size: 40px; /* Reduced font size */
-    font-weight: 700;
-    text-transform: uppercase; /* All titles in uppercase */
-    letter-spacing: 2px; /* Adds spacing between letters */
-    text-align: center; /* Center aligns titles */
-}
-
-p {
-    color: black;
-    font-size: 18px; /* Larger font for better readability */
-    line-height: 1.6; /* Improved line spacing for clarity */
-    margin: 10px;
-    font-weight: 400;
-}
-
-.catchphrase {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px; /* Smaller caps for the phrase */
-    font-weight: 400;
-    color: black;
-    margin: 10px auto; /* Centers the catchphrase vertically */
-    width: fit-content; /* Shrinks to fit the content */
-    line-height: 1.5;
-    letter-spacing: 0.05em;
-    text-align: center; /* Ensures text is centered within its box */
-}
-
-/* Buttons */
-.btn {
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    padding: 10px 20px; /* Original padding */
-    border: 2px solid black;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: 400;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-    width: 200px; /* Original button width */
-}
-
-.btn:hover {
-    background-color: black;
-    color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 32px; /* Adjusted font size for smaller screens */
+  <!-- Additional styling just for the search results output -->
+  <style>
+    #results-container {
+      margin-top: 20px;
+      text-align: center;
     }
 
-    .catchphrase {
-        font-size: 14px; /* Adjust font size for smaller screens */
+    .result-item {
+      margin: 30px auto;
+      padding: 20px;
+      border: 1px solid #000;
+      border-radius: 5px;
+      background-color: #fff;
+      max-width: 600px;
+      text-align: left;
     }
 
-    p {
-        font-size: 16px; /* Ensure readability on small screens */
+    /* Override <h1> inside results so it doesn't inherit global uppercase style */
+    .result-item h1 {
+      font-size: 24px;
+      margin: 0 0 10px;
+      text-transform: none;
     }
 
-    .btn {
-        font-size: 16px; /* Ensure button text remains readable */
-        padding: 8px 16px; /* Adjust padding for smaller screens */
+    /* Mood Tag Styles (Notion-like) */
+    .mood-tag {
+      display: inline-block;
+      background-color: #EAE4FF; /* Light purple background */
+      color: #533DEB;           /* Dark purple text */
+      border-radius: 8px;
+      padding: 4px 8px;
+      margin: 8px 0;
+      font-size: 14px;
     }
-}
 
-/* Styles specific to the homepage */
-.buttons {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
+    .message {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
 
-/* Monthly Section Styles */
-.month-section {
-    background-color: #f9f9f9; /* Light grey background */
-    padding: 20px;
-    max-width: 300px; /* Further reduced width */
-    margin: 30px auto;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
+    .error-message {
+      color: red;
+      font-size: 16px;
+    }
 
-.month-title {
-    margin: 0;
-    padding: 5px 0;
-    font-size: 1.5em;
-    font-weight: bold;
-}
+    /* Booking & Menu button group */
+    .button-group {
+      margin: 10px 0;
+    }
 
-.month-section .buttons {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
+    .button-group .btn {
+      display: inline-block;
+      margin-right: 10px; /* space between buttons */
+    }
+  </style>
+</head>
+<body>
+  <h1>Find a Restaurant</h1>
 
-/* Form Styles (for search page) */
-.form-container {
-    margin: 20px auto;
-    max-width: 400px;
-    text-align: left;
-}
+  <!-- Search Filters -->
+  <div class="search-container" style="margin-top: 20px;">
+    <!-- Food Type Dropdown -->
+    <select id="food-type" class="filter-dropdown" style="width:300px;">
+      <option value="">Select Food Type</option>
+      <option>African</option>
+      <option>American</option>
+      <option>Asian</option>
+      <option>Auvergnate</option>
+      <option>Argentinian</option>
+      <option>Bengladeshi</option>
+      <option>Bimbimpap</option>
+      <option>Bistronomic</option>
+      <option>Bourgeois Cuisine</option>
+      <option>Brazilian</option>
+      <option>Breaded skewers</option>
+      <option>Brewery</option>
+      <option>Burgers</option>
+      <option>Cameroonian</option>
+      <option>Ceviche</option>
+      <option>Chinese</option>
+      <option>Contemporary French</option>
+      <option>Korean</option>
+      <option>Korean Barbecue</option>
+      <option>Fast-food</option>
+      <option>French</option>
+      <option>French Sous-West</option>
+      <option>Fresh Pasta</option>
+      <option>Fried Chicken</option>
+      <option>Fusion Cuisine</option>
+      <option>Gastronomic</option>
+      <option>Greek</option>
+      <option>Healthy food</option>
+      <option>Italian</option>
+      <option>Japanese</option>
+      <option>Latin American</option>
+      <option>London</option>
+      <option>Mezzes</option>
+      <option>Mediterranean</option>
+      <option>Modern French</option>
+      <option>Modern Italian</option>
+      <option>Neobistrot</option>
+      <option>NY</option>
+      <option>Oriental Cuisine</option>
+      <option>Organic Cooking</option>
+      <option>Peruvian</option>
+      <option>Pizza</option>
+      <option>Seafood</option>
+      <option>Soba</option>
+      <option>South American</option>
+      <option>Spicy Food</option>
+      <option>Taverna</option>
+      <option>Tapas</option>
+      <option>Terroir</option>
+      <option>Traditional Chinese</option>
+      <option>Traditional French</option>
+      <option>Traditional Italian</option>
+      <option>Venetian</option>
+      <option>Vietnamese</option>
+      <option>Wine Bar</option>
+      <option>Worldwide Cuisine</option>
+    </select>
 
-.filter-label {
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: black;
-}
+    <!-- Location Dropdown -->
+    <select id="location" class="filter-dropdown" style="width:300px;">
+      <option value="">Select Location</option>
+      <option>2nd District</option>
+      <option>3rd District</option>
+      <option>4th District</option>
+      <option>5th District</option>
+      <option>6th District</option>
+      <option>7th District</option>
+      <option>8th District</option>
+      <option>9th District</option>
+      <option>10th District</option>
+      <option>11th District</option>
+      <option>12th District</option>
+      <option>14th District</option>
+      <option>16th District</option>
+      <option>18th District</option>
+      <option>19th District</option>
+      <option>20th District</option>
+      <option>Issy-les-Moulineaux</option>
+    </select>
 
-.filter-dropdown {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid black;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
+    <!-- Price Dropdown -->
+    <select id="price" class="filter-dropdown" style="width:300px;">
+      <option value="">Select Price</option>
+      <option>€</option>
+      <option>€€</option>
+      <option>€€€</option>
+      <option>€€€€</option>
+    </select>
 
-/* Pastel Button Colors */
-.pastel-blue {
-    background-color: #e7f3ff;
-    border-color: #90c3ff;
-}
+    <!-- Search Button -->
+    <div style="margin-top: 20px;">
+      <button id="search-button" class="btn">Search</button>
+      <a href="index.html" class="btn">Home</a>
+    </div>
+  </div>
 
-.pastel-green {
-    background-color: #eaffea;
-    border-color: #97d197;
-}
+  <!-- Results Container -->
+  <div id="results-container">
+    <!-- Search results will be dynamically inserted here -->
+  </div>
 
-.pastel-pink {
-    background-color: #ffe7f3;
-    border-color: #ff90c1;
-}
+  <!-- JavaScript for search functionality and display -->
+  <script>
+    document.getElementById('search-button').addEventListener('click', async function () {
+      const criteria = {
+        foodType: document.getElementById('food-type').value,
+        location: document.getElementById('location').value,
+        price: document.getElementById('price').value
+      };
 
-/* Newsletter Page */
-.language-buttons {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
+      const resultsContainer = document.getElementById('results-container');
+      resultsContainer.innerHTML = '<p>Loading...</p>';
 
-.past-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-}
-/* Custom Dropdown Styles */
-.custom-dropdown {
-    position: relative;
-    width: 300px;
-    margin: 10px 0;
-    text-align: left;
-}
+      try {
+        await searchRestaurants(criteria, resultsContainer);
+      } catch (error) {
+        console.error('Error fetching search results:', error);
+        resultsContainer.innerHTML = '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
+      }
+    });
 
-.dropdown-button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    async function searchRestaurants(criteria, resultsContainer, removedCriteria = []) {
+      const queryParams = [];
+      if (criteria.foodType) queryParams.push(`food_type=${encodeURIComponent(criteria.foodType)}`);
+      if (criteria.location) queryParams.push(`location=${encodeURIComponent(criteria.location)}`);
+      if (criteria.price) queryParams.push(`price=${encodeURIComponent(criteria.price)}`);
+      const queryString = queryParams.join('&');
 
-.dropdown-button:hover {
-    background-color: #f0f0f0;
-}
+      const response = await fetch(`https://thediningdispatch-backend.onrender.com/search?${queryString}`);
+      const data = await response.json();
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: none;
-    z-index: 10;
-}
+      resultsContainer.innerHTML = '';
+      if (data.data.length === 0) {
+        // Attempt flexible search by removing one criterion at a time until all are removed
+        if (removedCriteria.length < 3) {
+          const criteriaKeys = Object.keys(criteria).filter(key => criteria[key]);
+          const criterionToRemove = criteriaKeys[removedCriteria.length];
+          const newCriteria = { ...criteria };
+          newCriteria[criterionToRemove] = '';
+          removedCriteria.push(criterionToRemove);
+          return searchRestaurants(newCriteria, resultsContainer, removedCriteria);
+        } else {
+          resultsContainer.innerHTML = '<p class="message">No restaurants match your search criteria.</p>';
+        }
+      } else {
+        if (removedCriteria.length > 0) {
+          resultsContainer.innerHTML = `<p class="message">No exact match. Here are some results without the ${removedCriteria.map(criterion => criterion.replace(/([A-Z])/g, ' $1').trim()).join(' and ')} criteria:</p>`;
+        } else {
+          resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
+        }
+        displayResults(data.data, resultsContainer);
+      }
+    }
 
-.dropdown-menu.active {
-    display: block;
-}
+    function displayResults(data, resultsContainer) {
+      data.forEach(restaurant => {
+        const resultItem = document.createElement('div');
+        resultItem.classList.add('result-item');
 
-.dropdown-item {
-    padding: 10px;
-    cursor: pointer;
-}
+        // Split the Address column into [MapURL, Remaining address text]
+        const addressParts = restaurant.Address ? restaurant.Address.split(' ') : [];
+        const googleMapsLink = addressParts.shift() || '';
+        const addressText = addressParts.join(' ');
 
-.dropdown-item:hover {
-    background-color: #f0f0f0;
-}
+        // We build small HTML snippets for each field if it's present (non-empty).
+        // 1) Name -> Always displayed as <h1>
+        const nameHTML = `<h1>${restaurant.Name || ''}</h1>`;
+
+        // 2) Comments -> only if not empty
+        const commentsHTML = restaurant.Comments 
+          ? `<p>${restaurant.Comments}</p>` 
+          : '';
+
+        // 3) Mood -> only if not empty, displayed as a 'mood-tag'
+        const moodHTML = restaurant.Mood 
+          ? `<div class="mood-tag">${restaurant.Mood}</div>` 
+          : '';
+
+        // 4) Instagram -> only if not empty, clickable link
+        const instagramHTML = restaurant.Instagram_Link 
+          ? `
+            <p>
+              <strong>Instagram: </strong>
+              <a href="${restaurant.Instagram_Link}" target="_blank">
+                ${restaurant.Instagram_Link}
+              </a>
+            </p>
+          ` 
+          : '';
+
+        // 5) Address -> only if not empty
+        //    Subway -> right under the address
+        let addressHTML = '';
+        if (googleMapsLink && addressText) {
+          addressHTML = `
+            <p>
+              <strong>Address: </strong>
+              <a href="${googleMapsLink}" target="_blank">${addressText}</a>
+            </p>
+          `;
+        }
+        const subwayHTML = restaurant.Subway 
+          ? `<p><strong>Subway Station:</strong> ${restaurant.Subway}</p>` 
+          : '';
+
+        // 6) Booking + Menu as side-by-side buttons, only if not empty
+        const bookingBtn = restaurant.Booking 
+          ? `<a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>` 
+          : '';
+        const menuBtn = restaurant.Menu 
+          ? `<a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>` 
+          : '';
+        let buttonGroupHTML = '';
+        if (bookingBtn || menuBtn) {
+          buttonGroupHTML = `
+            <div class="button-group">
+              ${bookingBtn}
+              ${menuBtn}
+            </div>
+          `;
+        }
+
+        // 7) Chef -> If not empty, parse for Instagram link if present in parentheses
+        let chefHTML = '';
+        if (restaurant.Chef) {
+          // Try to match the pattern: "Name (https://instagram.com/...)"
+          const chefRegex = /(.*?)\s*\((https?:\/\/[^\)]+)\)/;
+          const matchChef = restaurant.Chef.match(chefRegex);
+
+          if (matchChef) {
+            const chefName = matchChef[1].trim();
+            const chefLink = matchChef[2].trim();
+            chefHTML = `
+              <p>
+                <strong>Chef:</strong> 
+                <a href="${chefLink}" target="_blank">${chefName}</a>
+              </p>`;
+          } else {
+            // If no parentheses format, just display the text
+            chefHTML = `<p><strong>Chef:</strong> ${restaurant.Chef}</p>`;
+          }
+        }
+
+        // Combine the HTML snippets in the desired order
+        resultItem.innerHTML = `
+          ${nameHTML}
+          ${commentsHTML}
+          ${moodHTML}
+          ${instagramHTML}
+          ${addressHTML}
+          ${subwayHTML}
+          ${buttonGroupHTML}
+          ${chefHTML}
+        `;
+
+        resultsContainer.appendChild(resultItem);
+      });
+    }
+  </script>
+</body>
+</html>
