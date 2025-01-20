@@ -76,7 +76,7 @@
             background-color: #fff;
         }
 
-        .result-item h3 {
+        .result-item h1 {
             margin: 0 0 10px;
         }
 
@@ -96,6 +96,28 @@
         .instagram-post {
             margin-top: 10px;
             text-align: center;
+        }
+
+        .mood {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .mood span {
+            margin-right: 10px;
+        }
+
+        .mood span:nth-child(1) {
+            color: #FFC3A0; /* Pastel Orange */
+        }
+
+        .mood span:nth-child(2) {
+            color: #FFDBE2; /* Pastel Pink */
+        }
+
+        .mood span:nth-child(3) {
+            color: #C3FDB8; /* Pastel Green */
         }
 
         .message {
@@ -285,19 +307,14 @@
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
                 resultItem.innerHTML = `
-                    <h3>${restaurant.Name}</h3>
-                    <p><strong>Location:</strong> ${restaurant.Location}</p>
-                    <p><strong>Price:</strong> ${restaurant.Price}</p>
-                    <p><strong>Food Type:</strong> ${restaurant.Type_of_Food}</p>
-                    <p><strong>Comments:</strong> ${restaurant.Comments}</p>
-                    <p><strong>Mood:</strong> ${restaurant.Mood}</p>
-                    <p><strong>Article:</strong> <a href="${restaurant.Article}" target="_blank">Read more</a></p>
-                    <p><strong>Instagram:</strong> <a href="${restaurant.Instagram_Link}" target="_blank">View on Instagram</a></p>
-                    <p><strong>Address:</strong> ${restaurant.Address}</p>
-                    <p><strong>Booking:</strong> ${restaurant.Booking}</p>
-                    <p><strong>Chef:</strong> ${restaurant.Chef}</p>
-                    <p><strong>Menu:</strong> ${restaurant.Menu}</p>
-                    <p><strong>Subway:</strong> ${restaurant.Subway}</p>
+                    <h1>${restaurant.Name}</h1>
+                    ${restaurant.Chef ? `<p><a href="${restaurant.Chef.match(/\(([^)]+)\)/)[1]}" target="_blank">${restaurant.Chef.replace(/\s*\([^)]*\)/, '')}</a></p>` : ''}
+                    <p>${restaurant.Comments}</p>
+                    <p class="mood">${restaurant.Mood.split(', ').map(word => `<span>${word}</span>`).join(' ')}</p>
+                    ${restaurant.Instagram_Link ? `<div class="instagram-post"><iframe src="${restaurant.Instagram_Link}/embed" width="400"></iframe></div>` : ''}
+                    <p><a href="${restaurant.Address}" target="_blank">${restaurant.Address.replace(/https:\/\/www\.google\.com\/maps\/place\//, '')}</a> (Subway: ${restaurant.Subway})</p>
+                    <a href="${restaurant.Booking}" class="btn" target="_blank">Book a Table</a>
+                    <a href="${restaurant.Menu}" class="btn" target="_blank">Menu</a>
                 `;
                 resultsContainer.appendChild(resultItem);
             });
