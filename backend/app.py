@@ -1,106 +1,59 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 from flask_cors import CORS
 import sqlite3
-import os
 
-# Define the Flask app
 app = Flask(__name__)
-CORS(app, origins=["https://thediningdispatch.com"])
+CORS(app)
 
-# Helper function to connect to the database
+# Helper function to query the database
 def query_database(query, params=()):
     try:
         db_path = 'dining_dispatch.db'
-
-        # Log the database path and its existence
-        print(f"Checking database file: {db_path}")
-        if not os.path.exists(db_path):
-            print("Database file not found!")
-            return []
-
-        # Connect to the database
         conn = sqlite3.connect(db_path)
-        conn.row_factory = sqlite3.Row  # Enable dict-like row access
+        conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
-
-        # Log the query and parameters
-        print("Executing query:", query)
-        print("With parameters:", params)
-
-        # Execute and fetch results
         cursor.execute(query, params)
         results = cursor.fetchall()
         conn.close()
-
-        # Log the results
-        print(f"Query returned {len(results)} results.")
         return [dict(row) for row in results]
-
     except Exception as e:
-        # Log any database errors
-        print("Error in query_database:", str(e))
+        print(f"Database query error: {e}")
         return []
 
-# Exact search endpoint
-@app.route('/search', methods=['GET'])
-def search():
+@app.route('/restaurant/<name>.json', methods=['GET'])
+def restaurant_json(name):
     try:
-        # Log the incoming request
-        print("Incoming request to /search")
-        print("Request args:", request.args)
+        query = """
+        SELECT 
+            name, address, subway, comments, mood, 
+            instagram_link, booking, menu, chef
+        FROM restaurants
+        WHERE name = ?
+        """
+        result = query_database(query, (name,))
+        if not result:
+            return jsonify({"message": "Restaurant not found"}), 404
 
-        # Extract query parameters
-        food_type = request.args.get('food_type', '').strip()
-        location = request.args.get('location', '').strip()
-        price = request.args.get('price', '').strip()
+        restaurant = result[0]
+        instagram_iframe = f"<iframe src='{restaurant['instagram_link']}/embed' width='400'></iframe>" if restaurant['instagram_link'] else None
+        chef_link = f"<a href='{restaurant['chef']}' target='_blank'>{restaurant['chef'].split('/')[-1]}</a>" if 'http' in restaurant['chef'] else restaurant['chef']
 
-        # Log the extracted parameters
-        print(f"Search parameters: food_type={food_type}, location={location}, price={price}")
+        response = {
+            "name": restaurant["name"],
+            "address": restaurant["address"],
+            "subway": restaurant["subway"],
+            "comments": restaurant["comments"],
+            "mood": restaurant["mood"],
+            "instagram_iframe": instagram_iframe,
+            "booking_link": restaurant["booking"],
+            "menu_link": restaurant["menu"],
+            "chef_link": chef_link,
+        }
 
-        # Construct the search query
-        query = "SELECT * FROM restaurants WHERE 1=1"
-        params = []
-
-        if food_type:
-            query += " AND food_type LIKE ?"
-            params.append(f"%{food_type}%")
-        if location:
-            query += " AND location LIKE ?"
-            params.append(f"%{location}%")
-        if price:
-            query += " AND price = ?"
-            params.append(price)
-
-        # Execute the query
-        print("Constructed query:", query)
-        print("Parameters:", params)
-        results = query_database(query, params)
-
-        # Check and return results
-        if not results:
-            return jsonify({
-                "message": "No restaurants match your search criteria.",
-                "data": []
-            })
-
-        print(f"Found {len(results)} exact results.")
-        return jsonify({
-            "message": "Here are the results for your search:",
-            "data": results
-        })
-
+        return jsonify(response)
     except Exception as e:
-        # Log the error
-        print("Error in /search route:", str(e))
+        print(f"Error: {e}")
         return jsonify({"message": "An error occurred", "error": str(e)}), 500
 
-# Main entry point
 if __name__ == '__main__':
-    # Log the working directory and database file
-    print("Starting application...")
-    print("Working directory:", os.getcwd())
-    print("Database exists:", os.path.exists('dining_dispatch.db'))
-
-    # Run the Flask app
-    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT environment variable
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
