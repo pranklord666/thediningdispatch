@@ -8,9 +8,8 @@ body {
   font-family: 'Roboto', sans-serif;
   color: black;
   background-color: #fff;
-}
 
-/* Apply SVG Background */
+  /* Apply SVG Background */
   background-image: url('static/layout_homepage.svg');
   background-size: cover; /* Ensures the SVG covers the entire viewport */
   background-repeat: no-repeat; /* Avoids repeating the background */
@@ -57,3 +56,4 @@ body {
   position: relative;
   z-index: 1;
 }
+
