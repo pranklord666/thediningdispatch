@@ -11,9 +11,9 @@ body {
 
   /* Apply SVG Background */
   background-image: url('static/layout_homepage.svg');
-  background-size: cover; /* Ensures the SVG covers the entire viewport */
-  background-repeat: no-repeat; /* Avoids repeating the background */
-  background-position: center; /* Centers the background */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Buttons Styling */
@@ -55,5 +55,5 @@ body {
 .btn-text {
   position: relative;
   z-index: 1;
+  text-transform: uppercase; /* Ensures all text is capitalized */
 }
-
