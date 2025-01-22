@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - The Dining Dispatch</title>
+  <link rel="stylesheet" href="static/main.css"/>
+
+  <style>
+    .wave-container {
+      position: relative;
+      width: 80%;
+      margin: 20px auto; /* Centers in the page */
+    }
+
+    .wave-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .buttons {
+      margin-top: 10px; /* Buttons appear close to the wave */
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .title-heading {
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      margin: 40px 0 0 0; /* Bottom margin set to 0 for minimal space */
+    }
+
+    .catchphrase {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: black;
+      margin: 10px auto; /* Centers the catchphrase horizontally */
+      width: fit-content; /* Shrinks to fit the content */
+      line-height: 1.8; /* Adds slight vertical separation between lines */
+      letter-spacing: 0.05em;
+      text-align: center; /* Ensures text inside is centered */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Text Above the Wave -->
+  <div class="title-heading">
+    THE DINING DISPATCH
+  </div>
+  <div class="catchphrase">
+    <div>Taste the City Like a Local.</div>
+    <div>Savor the Best, Skip the Rest.</div>
+  </div>
+
+  <div class="wave-container">
+    <!-- Wave outline with 5 undulations at the top -->
+    <svg
+      class="wave-svg"
+      viewBox="0 0 600 250"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="
+          M 50,100
+          C 83,80   117,120  150,100
+          C 183,80   217,120  250,100
+          C 283,80   317,120  350,100
+          C 383,80   417,120  450,100
+          C 483,80   517,120  550,100
+          L 550,200
+          L 50,200
+          Z
+        "
+        stroke="black"
+        stroke-width="2"
+        fill="none"
+      />
+    </svg>
+
+    <!-- Buttons below the wave shape -->
+    <div class="buttons">
+      <a href="./search.html" class="btn">Find a Restaurant</a>
+      <a href="./articles.html" class="btn">Top Picks</a>
+      <a href="./newsletter.html" class="btn">Subscribe to Newsletter</a>
+      <a href="./about.html" class="btn">About Us</a>
+      <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">Follow us on Instagram</a>
+    </div>
+  </div>
+
+</body>
+</html>
