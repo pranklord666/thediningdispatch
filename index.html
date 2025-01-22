@@ -4,154 +4,22 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home - The Dining Dispatch</title>
-  <link rel="stylesheet" href="static/main.css"/>
-
-  <style>
-    .wave-container {
-      position: relative;
-      width: 80%;
-      margin: 20px auto;
-    }
-
-    .wave-svg {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .buttons {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .btn {
-      position: relative;
-      width: 254px;
-      height: 52px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      font-weight: bold;
-      color: black;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .btn:hover {
-      color: white;
-    }
-
-    .btn:hover svg path {
-      fill: black;
-    }
-
-    .title-heading {
-      width: 100%;
-      text-align: center;
-      font-size: 32px;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      margin: 40px 0 0 0;
-    }
-
-    .catchphrase {
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: black;
-      margin: 10px auto;
-      width: fit-content;
-      line-height: 1.8;
-      letter-spacing: 0.05em;
-      text-align: center;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Text Above the Wave -->
-  <div class="title-heading">
-    THE DINING DISPATCH
-  </div>
-  <div class="catchphrase">
-    <div>Taste the City Like a Local.</div>
-    <div>Savor the Best, Skip the Rest.</div>
+  <!-- Text Above -->
+  <div>
+    <h1>THE DINING DISPATCH</h1>
+    <p>Taste the City Like a Local.<br>Savor the Best, Skip the Rest.</p>
   </div>
 
-  <div class="wave-container">
-    <!-- Wave outline with 5 undulations at the top -->
-    <svg
-      class="wave-svg"
-      viewBox="0 0 600 250"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="
-          M 50,100
-          C 83,80   117,120  150,100
-          C 183,80   217,120  250,100
-          C 283,80   317,120  350,100
-          C 383,80   417,120  450,100
-          C 483,80   517,120  550,100
-          L 550,200
-          L 50,200
-          Z
-        "
-        stroke="black"
-        stroke-width="2"
-        fill="none"
-      />
-    </svg>
-
-    <!-- Buttons below the wave shape -->
-    <div class="buttons">
-      <a href="./search.html" class="btn">
-        <svg width="254" height="52" viewBox="0 0 254 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="Vector 13" d="M245 1H9C4.58172 1 1 4.58172 1 9V43C1 47.4183 4.58172 51 9 51H245C249.418 51 253 47.4183 253 43V9C253 4.58172 249.418 1 245 1Z" fill="white" fill-opacity="0.7" stroke="black" stroke-width="2"/>
-        </svg>
-        Find a Restaurant
-      </a>
-      <a href="./articles.html" class="btn">
-        <svg width="254" height="52" viewBox="0 0 254 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="Vector 13" d="M245 1H9C4.58172 1 1 4.58172 1 9V43C1 47.4183 4.58172 51 9 51H245C249.418 51 253 47.4183 253 43V9C253 4.58172 249.418 1 245 1Z" fill="white" fill-opacity="0.7" stroke="black" stroke-width="2"/>
-        </svg>
-        Top Picks
-      </a>
-      <a href="./newsletter.html" class="btn">
-        <svg width="254" height="52" viewBox="0 0 254 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="Vector 13" d="M245 1H9C4.58172 1 1 4.58172 1 9V43C1 47.4183 4.58172 51 9 51H245C249.418 51 253 47.4183 253 43V9C253 4.58172 249.418 1 245 1Z" fill="white" fill-opacity="0.7" stroke="black" stroke-width="2"/>
-        </svg>
-        Subscribe to Newsletter
-      </a>
-      <a href="./about.html" class="btn">
-        <svg width="254" height="52" viewBox="0 0 254 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="Vector 13" d="M245 1H9C4.58172 1 1 4.58172 1 9V43C1 47.4183 4.58172 51 9 51H245C249.418 51 253 47.4183 253 43V9C253 4.58172 249.418 1 245 1Z" fill="white" fill-opacity="0.7" stroke="black" stroke-width="2"/>
-        </svg>
-        About Us
-      </a>
-      <a href="https://www.instagram.com/the_diningdispatch/" target="_blank" class="btn">
-        <svg width="254" height="52" viewBox="0 0 254 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id="Vector 13" d="M245 1H9C4.58172 1 1 4.58172 1 9V43C1 47.4183 4.58172 51 9 51H245C249.418 51 253 47.4183 253 43V9C253 4.58172 249.418 1 245 1Z" fill="white" fill-opacity="0.7" stroke="black" stroke-width="2"/>
-        </svg>
-        Follow us on Instagram
-      </a>
-    </div>
+  <!-- Navigation Buttons -->
+  <div>
+    <a href="./search.html">Find a Restaurant</a>
+    <a href="./articles.html">Top Picks</a>
+    <a href="./newsletter.html">Subscribe to Newsletter</a>
+    <a href="./about.html">About Us</a>
+    <a href="https://www.instagram.com/the_diningdispatch/" target="_blank">Follow us on Instagram</a>
   </div>
 
 </body>
