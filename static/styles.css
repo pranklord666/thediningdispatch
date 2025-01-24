@@ -3,7 +3,4 @@ h1 {
 }
 body {
   background-image: url('index.jpg'); /* Figma index.html */
-  background-size: cover; /* Adjust as needed */
-  background-repeat: no-repeat; /* Avoid repeating the image */
-  background-position: center; /* Center the image */
 }
