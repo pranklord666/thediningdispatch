@@ -1,5 +1,11 @@
 h1 {
-  text-align: center;
+color: #7457C0;
+font-family: Roboto;
+font-size: 40px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 8px;
 }
 body {
   background-image: url('index_1.jpg'); /* Figma index.html */
