@@ -7,6 +7,15 @@ font-weight: 600;
 line-height: normal;
 letter-spacing: 8px;
 }
+h2 {
+  color: #7457C0;
+font-family: Roboto;
+font-size: 35px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 17.85px;
+}
 body {
   background-image: url('index_1.jpg'); /* Figma index.html */
 }
