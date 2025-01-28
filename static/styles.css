@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
-  background-image: url('index_1.jpg'); /* Figma index.html */
+  background-image: url('index_1.jpg');
+  background-size: cover; 
+  background-position: center;
 }
 
 .thedining {
