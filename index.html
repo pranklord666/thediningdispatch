@@ -1,117 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="static/styles.css" rel="stylesheet" />
 
-body {
-  background-image: url('index_2.jpg');
-  background-size:100%; 
-  background-repeat: repeat; 
-  background-position: center;
-}
+</head>
+<body>
 
-.thedining {
-color: #FFC000;
-font-family: Roboto;
-font-size: 40px;
-font-style: normal;
-font-weight: 600;
-line-height: 1;
-letter-spacing: 8px;
-margin: 0;
-padding: 0;
-margin-bottom: -10px;
-}
+<div class="wrapper">
+<div class="container">
+<div class="title">
+    <span class="thedining">THE DINING</span><br>
+    <span class="dispatch">DISPATCH</span>
+</div>
+</div>
 
-.dispatch {
-  color: #FFC000;
-  font-family: Roboto;
-  font-size: 35px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 17.85px;
-  margin: 0;
-  padding: 0;
-  margin-bottom: 10px;
-}
+<div class="subcontainer">
+<div class="subtitle">
+  <span class="Taste">Taste the City Like a Local.</span><br>
+  <span class="Savor">Savor the Best, Skip the Rest.</span>
+</div>
+</div>
+</div>
 
-.title {
-  margin-top: 50px;
-}
+</body>
+</html>
 
-.container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-}
-
-.Taste {
-color: #000;
-font-family: Roboto;
-font-size: 20px;
-font-style: normal;
-font-weight: 200;
-line-height: normal;
-letter-spacing: 0.54px;
-}
-
-.Savor {
-color: #000;
-font-family: Roboto;
-font-size: 20px;
-font-style: normal;
-font-weight: 200;
-line-height: normal;
-}
-
-.subcontainer {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: url("subtitle.svg") no-repeat right center;
-  background-size: 32px 46px;
-}
-
-.wrapper {
-  max-width: 291px;
-  margin: 0 auto;
-}
-
-.btn {
-  width: 252px;                  /* Largeur totale, padding inclus */
-  height: 50px;
-  display :flex;
-  justify-content: center;       /* Centre le texte horizontalement */
-  align-items: center;                 /* Hauteur totale, padding inclus */
-  box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
-  color: #000;                   /* Couleur du texte */
-  font-family: Roboto, sans-serif; /* Police */
-  font-size: 20px;               /* Taille du texte */
-  font-style: normal;            /* Style normal */
-  font-weight: 300;              /* Texte léger */
-  line-height: normal;           /* Hauteur de ligne normale */
-  letter-spacing: 1px;           /* Espacement des lettres */
-  text-align: center;            /* Centre le texte horizontalement */
-  text-decoration: none;         /* Supprime le soulignement */
-  background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
-  border: 2px solid #FFC000;        /* Bordure noire */
-  border-radius: 10px;            /* Coins arrondis */
-  padding: 0;                    /* Aucun padding additionnel */
-  cursor: pointer;               /* Curseur pointeur au survol */
-  transition: background-color 0.3s ease; /* Animation fluide */
-}
-
-.btn:hover {
-  background-color: rgba(255, 192, 0, 0.5); /* Couleur violette avec 70 % d'opacité */
-  color: white; /* Optionnel : change le texte en blanc pour un meilleur contraste */
-}
-
-
-.button-container {
-  display: flex;
-  flex-direction: column;  /* Empile les boutons verticalement */
-  gap: 10px;               /* Espace entre les boutons */
-  justify-content: center; /* Centre verticalement si nécessaire */
-  align-items: center;     /* Centre horizontalement */
-  margin-top: 30px;      /* Marge en haut pour espacer du contenu précédent */
-}
+<div class="button-container">
+<a href="https://example.com" class="btn">FIND A RESTAURANT</a>
+<a href="https://example.com" class="btn">TOP PICKS</a>
+<a href="https://example.com" class="btn">NEWSLETTERS</a>
+<a href="https://example.com" class="btn">ABOUT US</a>
+<a href="https://example.com" class="btn">INSTAGRAM</a>
+</div>
