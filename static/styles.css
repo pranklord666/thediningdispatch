@@ -1,5 +1,10 @@
-h1 {
-text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  background-image: url('index_1.jpg'); /* Figma index.html */
+}
+
+.thedining {
 color: #7457C0;
 font-family: Roboto;
 font-size: 40px;
@@ -8,16 +13,54 @@ font-weight: 600;
 line-height: normal;
 letter-spacing: 8px;
 }
-h2 {
-text-align: center;
-color: #7457C0;
-font-family: Roboto;
-font-size: 35px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-letter-spacing: 17.85px;
+
+.dispatch {
+  color: #7457C0;
+  font-family: Roboto;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 17.85px;
 }
-body {
-  background-image: url('index_1.jpg'); /* Figma index.html */
+
+.title {
+  margin-top: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+}
+
+.Taste {
+color: #000;
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+letter-spacing: 0.84px;
+}
+
+.Savor {
+color: #000;
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 200;
+line-height: normal;
+}
+
+.subcontainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* ou 'flex-start' si vous voulez aligner en haut */
+}
+
+.wrapper {
+  max-width: 291px;
+  margin: 0 auto;
 }
