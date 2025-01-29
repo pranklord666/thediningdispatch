@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+h1 {
+color: #FFC000;
+font-family: Roboto;
+font-size: 25px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: 5px;
+text-align: center;
+margin-top: 30px;
+}
+
+h2 {
+    color: #FFC000;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: 3.6px;
+    text-align: center;
+    margin-top: -20px;
+    text-decoration: underline;
+    text-decoration-color: white;
+     /* Pour être sûr que le h2 puisse gérer le z-index */
+     position: relative;
+     z-index: 1; 
+ }
+ 
+ h2 span {
+     /* Le texte, inchangé, mais avec fond blanc */
+     background-color: #fff;
+     position: relative; /* Pour être au-dessus de la bordure */
+     z-index: 2;
+     padding: 0 5px;     /* Pour avoir un peu de marge sur les côtés */
+ }
+
+p {
+        color: #000;
+        text-align: justify;
+        font-family: Roboto;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 200;
+        line-height: normal;
+}
+
+.homebtn {
+    text-decoration: none;         /* Supprime le soulignement */
+    fill: rgba(255, 255, 255, 0.70); /* Remplissage semi-transparent (utile pour les éléments SVG) */
+    stroke-width: 2px;             /* Largeur du contour (utile pour les éléments SVG) */
+    stroke: #FFC000;               /* Couleur du contour (utile pour les éléments SVG) */
+    width: 100px;                  /* Largeur totale, padding inclus */
+    height: 40px;                 /* Hauteur totale, padding inclus */
+    flex-shrink: 0;                /* Empêche l'élément de se rétrécir */
+    color: #FFC000;                /* Couleur du texte */
+    font-family: Roboto, sans-serif; /* Police */
+    font-size: 20px;               /* Taille du texte */
+    font-style: normal;            /* Style normal */
+    font-weight: 300;              /* Texte léger */
+    line-height: normal;           /* Hauteur de ligne normale */
+    letter-spacing: 1px;           /* Espacement des lettres */
+    display: flex;                  /* Utilise flexbox pour le centrage */
+    justify-content: center;       /* Centre le texte horizontalement */
+    align-items: center;           /* Centre le texte verticalement */
+    box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
+    background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+    border: 2px solid #FFC000;     /* Bordure jaune */
+    border-radius: 10px;           /* Coins arrondis */
+    padding: 0;                    /* Aucun padding additionnel */
+    cursor: pointer;               /* Curseur pointeur au survol */
+  }
+
+.homebtn:hover {
+    background-color: rgba(255, 192, 0, 0.5); /* Couleur de fond au survol */
+    color: white;                  /* Change la couleur du texte en blanc pour un meilleur contraste */
+}
+
+.home_style {
+overflow: hidden;
+transition: max-height 0.5s ease-out;
+display: flex;
+flex-direction: column;
+gap: 10px;
+justify-content: center;
+align-items: center;
+margin-top: 60px
+}
+
+.instagram-post {
+    display: flex;
+    justify-content: center;
+}
+
+.article {
+    border: 1px solid #FFC000; /* Bordure jaune de 1px */
+    padding: 10px; /* Ajoute un padding pour éviter que le contenu ne touche la bordure */
+    margin-bottom: 10px; /* Ajoute un espace entre les articles */
+    border-radius: 10px; /* Angles arrondis de 10px */
+    position: relative; 
+    width: 70%;
+    display:block;
+    margin:auto;
+    margin-top:  40px;
+}

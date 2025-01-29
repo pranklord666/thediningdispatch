@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
+<<<<<<< HEAD
   background-image: url('index_2.jpg');
   background-size:100%; 
   background-repeat: repeat; 
+=======
+  background-image: url('index_yellow.jpg');
+  background-size:100%; 
+  background-repeat: repeat;
+>>>>>>> 9c3742a (Added and updated files)
   background-position: center;
 }
 
@@ -12,7 +18,11 @@ color: #FFC000;
 font-family: Roboto;
 font-size: 40px;
 font-style: normal;
+<<<<<<< HEAD
 font-weight: 600;
+=======
+font-weight: 400;
+>>>>>>> 9c3742a (Added and updated files)
 line-height: 1;
 letter-spacing: 8px;
 margin: 0;
@@ -25,7 +35,11 @@ margin-bottom: -10px;
   font-family: Roboto;
   font-size: 35px;
   font-style: normal;
+<<<<<<< HEAD
   font-weight: 600;
+=======
+  font-weight: 400;
+>>>>>>> 9c3742a (Added and updated files)
   line-height: 1;
   letter-spacing: 17.85px;
   margin: 0;
@@ -46,9 +60,85 @@ margin-bottom: -10px;
 
 .Taste {
 color: #000;
+<<<<<<< HEAD
+=======
 font-family: Roboto;
 font-size: 20px;
 font-style: normal;
+font-weight: 50;
+line-height: normal;
+letter-spacing: 0.54px;
+}
+
+.Savor {
+color: #000;
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 50;
+line-height: normal;
+}
+
+.subcontainer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url("subtitle.svg") no-repeat right center;
+  background-size: 32px 46px;
+}
+
+.wrapper {
+  max-width: 291px;
+  margin: 0 auto;
+}
+
+.btn {
+  width: 252px;                  /* Largeur totale, padding inclus */
+  height: 45px;
+  display :flex;
+  justify-content: center;       /* Centre le texte horizontalement */
+  align-items: center;                 /* Hauteur totale, padding inclus */
+  box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
+  color: #000;                   /* Couleur du texte */
+  font-family: Roboto, sans-serif; /* Police */
+  font-size: 20px;               /* Taille du texte */
+  font-style: normal;            /* Style normal */
+  font-weight: 300;              /* Texte léger */
+  line-height: normal;           /* Hauteur de ligne normale */
+  letter-spacing: 1px;           /* Espacement des lettres */
+  text-align: center;            /* Centre le texte horizontalement */
+  text-decoration: none;         /* Supprime le soulignement */
+  background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+  border: 2px solid #FFC000;        /* Bordure noire */
+  border-radius: 10px;            /* Coins arrondis */
+  padding: 0;                    /* Aucun padding additionnel */
+  cursor: pointer;               /* Curseur pointeur au survol */
+  transition: background-color 0.3s ease; /* Animation fluide */
+}
+
+.btn:hover {
+  background-color: rgba(255, 192, 0, 0.5); /* Couleur violette avec 70 % d'opacité */
+  color: white; /* Optionnel : change le texte en blanc pour un meilleur contraste */
+}
+
+
+.button-container {
+  display: flex;
+  flex-direction: column;  /* Empile les boutons verticalement */
+  gap: 10px;               /* Espace entre les boutons */
+  justify-content: center; /* Centre verticalement si nécessaire */
+  align-items: center;     /* Centre horizontalement */
+  margin-top: 30px;      /* Marge en haut pour espacer du contenu précédent */
+}
+
+.toppicks {
+color: #FFC000;
+>>>>>>> 9c3742a (Added and updated files)
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+<<<<<<< HEAD
 font-weight: 200;
 line-height: normal;
 letter-spacing: 0.54px;
@@ -114,4 +204,119 @@ line-height: normal;
   justify-content: center; /* Centre verticalement si nécessaire */
   align-items: center;     /* Centre horizontalement */
   margin-top: 30px;      /* Marge en haut pour espacer du contenu précédent */
+=======
+font-weight: 400;
+line-height: normal;
+letter-spacing: 7px;
+}
+
+.title_toppicks {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.subtitle-toppicks {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sub_toppicks {
+color: #000;
+text-align: center;
+font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 50;
+line-height: normal;
+letter-spacing: 0.756px;
+}
+
+.dropbtn {
+    width: 220px;                  /* Largeur totale, padding inclus */
+    height: 40px;                  /* Hauteur totale, padding inclus */
+    display: flex;
+    justify-content: center;       /* Centre le texte horizontalement */
+    align-items: center;           /* Centre le texte verticalement */
+    box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
+    color: #000;                   /* Couleur du texte */
+    font-family: Roboto, sans-serif; /* Police */
+    font-size: 20px;               /* Taille du texte */
+    font-style: normal;            /* Style normal */
+    font-weight: 300;              /* Texte léger */
+    line-height: normal;           /* Hauteur de ligne normale */
+    letter-spacing: 1px;           /* Espacement des lettres */
+    text-align: center;            /* Centre le texte horizontalement */
+    text-decoration: none;         /* Supprime le soulignement */
+    background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+    border: 2px solid #000;     /* Bordure jaune */
+    border-radius: 10px;           /* Coins arrondis */
+    padding: 0;                    /* Aucun padding additionnel */
+    cursor: pointer;               /* Curseur pointeur au survol */
+    transition: background-color 0.3s ease; /* Animation fluide */
+    fill: rgba(255, 255, 255, 0.70); /* Remplissage semi-transparent (utile pour les éléments SVG) */
+    stroke-width: 2px;             /* Largeur du contour (utile pour les éléments SVG) */
+    stroke: #000;                  /* Couleur du contour (utile pour les éléments SVG) */
+    flex-shrink: 0;                /* Empêche l'élément de se rétrécir */
+  }
+  
+  .dropbtn:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur violette avec 70 % d'opacité */
+    color: white; /* Optionnel : change le texte en blanc pour un meilleur contraste */
+  }
+
+.dropdown_content {
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;}
+
+.dropdown_content.show {
+      max-height: 500px;
+    }
+
+.homebtn {
+      text-decoration: none;         /* Supprime le soulignement */
+      fill: rgba(255, 255, 255, 0.70); /* Remplissage semi-transparent (utile pour les éléments SVG) */
+      stroke-width: 2px;             /* Largeur du contour (utile pour les éléments SVG) */
+      stroke: #FFC000;               /* Couleur du contour (utile pour les éléments SVG) */
+      width: 100px;                  /* Largeur totale, padding inclus */
+      height: 40px;                 /* Hauteur totale, padding inclus */
+      flex-shrink: 0;                /* Empêche l'élément de se rétrécir */
+      color: #FFC000;                /* Couleur du texte */
+      font-family: Roboto, sans-serif; /* Police */
+      font-size: 20px;               /* Taille du texte */
+      font-style: normal;            /* Style normal */
+      font-weight: 300;              /* Texte léger */
+      line-height: normal;           /* Hauteur de ligne normale */
+      letter-spacing: 1px;           /* Espacement des lettres */
+      display: flex;                  /* Utilise flexbox pour le centrage */
+      justify-content: center;       /* Centre le texte horizontalement */
+      align-items: center;           /* Centre le texte verticalement */
+      box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
+      background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
+      border: 2px solid #FFC000;     /* Bordure jaune */
+      border-radius: 10px;           /* Coins arrondis */
+      padding: 0;                    /* Aucun padding additionnel */
+      cursor: pointer;               /* Curseur pointeur au survol */
+    }
+  
+  .homebtn:hover {
+      background-color: rgba(255, 192, 0, 0.5); /* Couleur de fond au survol */
+      color: white;                  /* Change la couleur du texte en blanc pour un meilleur contraste */
+  }
+  
+.home_style {
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px
+>>>>>>> 9c3742a (Added and updated files)
 }
