@@ -133,6 +133,7 @@ body {
 .subtitle-toppicks {
   text-align: center;
   margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .sub_toppicks {
@@ -175,7 +176,7 @@ body {
 }
 
 .dropbtn:hover {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 192, 0, 0.5);
   color: white;
 }
 

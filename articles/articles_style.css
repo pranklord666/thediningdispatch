@@ -127,7 +127,7 @@ margin-top: 60px
     font-family: Roboto;           /* Police */
     font-size: 20px;               /* Taille du texte */
     font-style: normal;            /* Style normal */
-    font-weight: 300;              /* Texte léger */
+    font-weight: 50;              /* Texte léger */
     line-height: normal;           /* Hauteur de ligne normale */
     letter-spacing: 1px;           /* Espacement des lettres */
     fill: #FFF;                    /* Remplissage semi-transparent (utile pour les éléments SVG) */
@@ -138,7 +138,7 @@ margin-top: 60px
     align-items: center;           /* Centre le texte verticalement */
     box-sizing: border-box;        /* Inclut le padding et la bordure dans la largeur et hauteur */
     background-color: rgba(255, 255, 255, 0.7); /* Fond semi-transparent */
-    border: 2px solid #FFC000;     /* Bordure jaune */
+    border:1px solid #FFC000;     /* Bordure jaune */
     border-radius: 10px;           /* Coins arrondis */
     padding: 0;                    /* Aucun padding additionnel */
     cursor: pointer; 
@@ -175,4 +175,58 @@ margin-top: 60px
     background: url("../static/subway.svg") no-repeat left center;
     background-size: 24px 24px;
     padding-left: 30px;
+  }
+
+  .money {
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("../static/money.svg") no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 30px;
+  }
+
+  .money_adapted {
+    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("../static/money.svg") no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 30px;
+  }
+
+  .grade {
+    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("../static/grade.svg") no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 30px;
+  }
+
+  .point {
+    margin-top: -25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("../static/point.svg") no-repeat left center;
+    background-size: 7px 7px;
+  }
+
+  .money_laize {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url("../static/money.svg") no-repeat left center;
+    background-size: 24px 24px;
+    padding-left: 30px;
+  }
+
+  .grade_detail {
+    font-size: 13px;
+    text-indent: 40px;
   }
