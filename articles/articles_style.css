@@ -152,8 +152,10 @@ margin-top: 60px
 .menu_book_btn_style {
     display: flex; /* Utilise flexbox pour aligner les boutons côte à côte */
     justify-content: center; /* Centre les boutons horizontalement */
-    gap: 10px; /* Ajoute un espace entre les boutons */
+    gap: 20px; /* Ajoute un espace de 20px entre les boutons */
     margin-bottom: 20px; /* Ajoute un espace en dessous du conteneur */
+    width: 90%; /* Limite la largeur du conteneur à 90% de la largeur du parent */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
 }
 
 .location {
