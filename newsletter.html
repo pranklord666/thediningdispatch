@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="static/styles.css" rel="stylesheet" />
+  <style>
+    .newsletter-frame {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .newsletter-frame iframe {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      aspect-ratio: 480 / 320; /* Maintains the aspect ratio */
+      border: 1px solid #EEE;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="title">
+        <span class="thedining">OUR</span><br>
+        <span class="newsletter">NEWSLETTERS</span>
+      </div>
+    </div>
+
+    <div class="subcontainer_nl">
+      <div class="subtitle">
+        <span class="Taste_nl">Paris’s vibrant cuisine & nightlife scene</span><br>
+        <span class="Savor_nl">handpicked and delivered to your inbox</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="btn" onclick="showNewsletter('french')">FRANÇAIS</button>
+    <button class="btn" onclick="showNewsletter('english')">ENGLISH</button>
+  </div>
+
+  <div id="english-newsletter" class="newsletter-frame" style="display: none;">
+    <iframe src="https://thediningdispatchv2.substack.com/embed" frameborder="0" scrolling="no"></iframe>
+  </div>
+
+  <div id="french-newsletter" class="newsletter-frame" style="display: none;">
+    <iframe src="https://thediningdispatch.substack.com/embed" frameborder="0" scrolling="no"></iframe>
+  </div>
+
+  <div class="home_style">
+    <a href="index.html" class="homebtn">HOME</a>
+  </div>
+
+  <script>
+    function showNewsletter(language) {
+      document.getElementById('english-newsletter').style.display = 'none';
+      document.getElementById('french-newsletter').style.display = 'none';
+
+      if (language === 'english') {
+        document.getElementById('english-newsletter').style.display = 'flex';
+      } else if (language === 'french') {
+        document.getElementById('french-newsletter').style.display = 'flex';
+      }
+    }
+  </script>
+</body>
+</html>
