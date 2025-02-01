@@ -6,67 +6,12 @@
   <title>Find a Restaurant - The Dining Dispatch</title>
 </head>
 <body>
-  <!-- Centered Home Button -->
-  <a href="index.html" class="btn home-button">Home</a>
-
+    <link href="static/styles.css" rel="stylesheet" />
   <h1>Find a Restaurant</h1>
   <div class="form-container">
-    <!-- Dropdown for Food Type -->
-    <label for="food-type" class="filter-label">Food Type</label>
-    <select id="food-type" class="filter-dropdown">
-      <option value="">Select Food Type</option>
-      <option>African</option>
-      <option>American</option>
-      <option>Argentinian</option>
-      <option>Asian</option>
-      <option>Auvergnate</option>
-      <option>Bengali</option>
-      <option>Bistronomic</option>
-      <option>Breaded skewers</option>
-      <option>Brewery</option>
-      <option>Burgers</option>
-      <option>Cameroonian</option>
-      <option>Ceviche</option>
-      <option>Chinese</option>
-      <option>Contemporary French</option>
-      <option>Corean</option>
-      <option>Corean Barbecue</option>
-      <option>Fast-food</option>
-      <option>French</option>
-      <option>French Sous-West</option>
-      <option>Fresh Pasta</option>
-      <option>Fried Chicken</option>
-      <option>Fusion Cuisine</option>
-      <option>Gastronomic</option>
-      <option>Greek</option>
-      <option>Healthy food</option>
-      <option>Italian</option>
-      <option>Japanese</option>
-      <option>London</option>
-      <option>Mediterranean</option>
-      <option>Modern French</option>
-      <option>Neobistrot</option>
-      <option>NY</option>
-      <option>Organic Cooking</option>
-      <option>Peruvian</option>
-      <option>Seafood</option>
-      <option>Soba</option>
-      <option>South-American</option>
-      <option>Spicy Food</option>
-      <option>Tapas</option>
-      <option>Taverna</option>
-      <option>Terroir</option>
-      <option>Taiwanese</option>
-      <option>Traditional French</option>
-      <option>Traditional Italian</option>
-      <option>Venetian</option>
-      <option>Vietnamese</option>
-      <option>Wine Bar</option>
-      <option>Worldwide Cuisine</option>
-    </select>
 
     <!-- Dropdown for Location -->
-    <label for="location" class="filter-label">Location</label>
+    <label for="location" class="filter-label">LOCATION</label>
     <select id="location" class="filter-dropdown">
       <option value="">Select Location</option>
       <option value="2th District">2nd District</option>
@@ -81,7 +26,7 @@
       <option value="11th District">11th District</option>
       <option value="12th District">12th District</option>
       <option value="14th District">14th District</option>
-      <option value="14th District,">14th District</option>
+      <option value="14th District">14th District</option>
       <option value="16th District">16th District</option>
       <option value="18th District">18th District</option>
       <option value="19th District">19th District</option>
@@ -89,187 +34,39 @@
       <option value="Issy-les-Moulineaux">Issy-les-Moulineaux</option>
     </select>
 
-    <!-- Dropdown for Price -->
-    <label for="price" class="filter-label">Price</label>
-    <select id="price" class="filter-dropdown">
-      <option value="">Select Price</option>
-      <option>€</option>
-      <option>€€</option>
-      <option>€€€</option>
-      <option>€€€€</option>
+    <!-- Dropdown for Style -->
+    <label for="style" class="filter-label">STYLE</label>
+    <select id="style" class="filter-dropdown">
+      <option value="">Select Style</option>
+      <option value="wine-bar">Wine bar</option>
+      <option value="neo-bistrot">Neo-bistrot</option>
+      <option value="gastronomic">Gastronomic</option>
+      <option value="fast-food">Fast-Food</option>
+      <option value="brasserie">Brasserie</option>
+      <option value="bistrot">Bistrot</option>
+      <option value="bistronomic">Bistronomic</option>
     </select>
 
-    <div class="btn-container">
-      <button id="search-button" class="btn">Search</button>
-    </div>
+    <!-- Dropdown for Cuisine -->
+    <label for="cuisine" class="filter-label">CUISINE</label>
+    <select id="cuisine" class="filter-dropdown">
+      <option value="">Select Cuisine</option>
+      <option value="african">African</option>
+      <option value="american">American</option>
+      <option value="argentinian">Argentinian</option>
+      <option value="bengladeshi">Bengladeshi</option>
+      <option value="chinese">Chinese</option>
+      <option value="corean">Corean</option>
+      <option value="french">French</option>
+      <option value="fusion">Fusion</option>
+      <option value="italian">Italian</option>
+      <option value="japanese">Japanese</option>
+      <option value="mediterranean">Mediterranean</option>
+      <option value="peruvian">Peruvian</option>
+      <option value="seafood">Seafood</option>
+      <option value="taiwanese">Taiwanese</option>
+      <option value="vietnamese">Vietnamese</option>
+    </select>
   </div>
-
-  <div id="results-container">
-    <!-- Search results will be dynamically inserted here -->
-  </div>
-
-  <script>
-    document.getElementById("search-button").addEventListener("click", async function () {
-      const criteria = {
-        foodType: document.getElementById("food-type").value,
-        location: document.getElementById("location").value,
-        price: document.getElementById("price").value
-      };
-
-      const resultsContainer = document.getElementById("results-container");
-      resultsContainer.innerHTML = "<p>Loading...</p>";
-
-      try {
-        await searchRestaurants(criteria, resultsContainer);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-        resultsContainer.innerHTML =
-          '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
-      }
-    });
-
-    async function searchRestaurants(criteria, resultsContainer, removedCriteria = []) {
-      const queryParams = [];
-      if (criteria.foodType) queryParams.push(`FoodType=${encodeURIComponent(criteria.foodType)}`);
-      if (criteria.location) queryParams.push(`Location=${encodeURIComponent(criteria.location)}`);
-      if (criteria.price) queryParams.push(`Price=${encodeURIComponent(criteria.price)}`);
-
-      const queryString = queryParams.join("&");
-
-      const response = await fetch(
-        `https://thediningdispatch-backend.onrender.com/search?${queryString}`
-      );
-      const data = await response.json();
-
-      resultsContainer.innerHTML = "";
-      if (data.data.length === 0) {
-        // We try removing criteria if no results
-        if (removedCriteria.length < 3) {
-          const criteriaKeys = Object.keys(criteria).filter((key) => criteria[key]);
-          const criterionToRemove = criteriaKeys[removedCriteria.length];
-          const newCriteria = { ...criteria };
-          newCriteria[criterionToRemove] = "";
-          removedCriteria.push(criterionToRemove);
-          return searchRestaurants(newCriteria, resultsContainer, removedCriteria);
-        } else {
-          resultsContainer.innerHTML =
-            '<p class="message">No restaurants match your search criteria.</p>';
-        }
-      } else {
-        if (removedCriteria.length > 0) {
-          resultsContainer.innerHTML = `<p class="message">No exact match. Here are some results without the ${removedCriteria
-            .map((criterion) => criterion.replace(/([A-Z])/g, " $1").trim())
-            .join(" and ")} criteria:</p>`;
-        } else {
-          resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
-        }
-        displayResults(data.data, resultsContainer);
-      }
-    }
-
-    // Helper function to handle chef name formatting
-    function formatChefName(chefString) {
-      if (!chefString || chefString.toLowerCase().includes("not available")) {
-        return "";
-      }
-      // e.g. "ChefName (https://www.instagram.com/...)"
-      const regex = /(.*)\((https?:\/\/[^\)]+)\)/;
-      const match = chefString.match(regex);
-
-      if (match) {
-        const name = match[1].trim();
-        const link = match[2].trim();
-        return `<p class="chef">👨‍🍳 <a href="${link}" target="_blank">${name}</a></p>`;
-      } else {
-        return `<p class="chef">👨‍🍳 ${chefString}</p>`;
-      }
-    }
-
-    // Helper function to handle booking output
-    function formatBooking(bookingValue) {
-      if (!bookingValue) return "";
-      const trimmed = bookingValue.trim();
-      // Check if it looks like a URL or phone number
-      if (trimmed.toLowerCase().startsWith("http")) {
-        return `<a href="${trimmed}" class="btn pastel-blue" target="_blank">Book a Table</a>`;
-      } else {
-        // Likely a phone number
-        return `<a class="btn pastel-blue">${trimmed}</a>`;
-      }
-    }
-
-    // Helper function to handle Instagram embedding
-    function formatInstagramEmbed(igLink) {
-      if (!igLink) return "";
-      // We expect something like "https://www.instagram.com/p/<post_id>/?..."
-      if (!igLink.includes("/p/")) return "";
-
-      const parts = igLink.split("/");
-      // Find index of "p"
-      const postIndex = parts.findIndex(segment => segment === "p");
-      if (postIndex === -1 || parts.length < postIndex + 2) {
-        return "";
-      }
-      // The segment after "p" is the post ID (possibly with query params)
-      let postId = parts[postIndex + 1];
-      // Strip any query params
-      postId = postId.split("?")[0];
-      const embedUrl = `https://www.instagram.com/p/${postId}/embed`;
-
-      // Make it responsive by placing iframe in a container
-      return `
-        <div class="instagram-post">
-          <iframe
-            src="${embedUrl}"
-            frameborder="0"
-            scrolling="no"
-            allowtransparency="true"
-          ></iframe>
-        </div>
-      `;
-    }
-
-    function displayResults(data, resultsContainer) {
-      data.forEach((restaurant) => {
-        const resultItem = document.createElement("div");
-        resultItem.classList.add("result-item");
-
-        // Booking button
-        const bookingButtonHtml = restaurant.Booking
-          ? formatBooking(restaurant.Booking)
-          : "";
-
-        // Menu button
-        const menuButtonHtml = restaurant.Menu
-          ? `<a href="${restaurant.Menu}" class="btn pastel-green" target="_blank">View Menu</a>`
-          : "";
-
-        // Instagram embed
-        const igEmbedHtml = restaurant.InstagramLink
-          ? formatInstagramEmbed(restaurant.InstagramLink)
-          : "";
-
-        resultItem.innerHTML = `
-          <h1>${restaurant.Restaurant}</h1>
-          <p class="comments">${restaurant.Comments}</p>
-          ${formatChefName(restaurant.ChefNameInsta)}
-
-          <div class="address-subway">
-            <p>📍 ${restaurant.Address}</p>
-            <p>🚇 ${restaurant.Subway}</p>
-          </div>
-
-          <!-- Instagram embed now below address/subway, above buttons -->
-          ${igEmbedHtml}
-
-          <div class="buttons">
-            ${bookingButtonHtml}
-            ${menuButtonHtml}
-          </div>
-        `;
-        resultsContainer.appendChild(resultItem);
-      });
-    }
-  </script>
 </body>
 </html>

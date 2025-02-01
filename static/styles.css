@@ -287,3 +287,96 @@
   line-height: normal;
   letter-spacing: -0.2px;
 }
+
+h1 {
+  color: #FFC000;
+  font-family: Roboto;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -20px;
+  }
+
+  .filter-label {
+    color: #FFC000;
+    font-family: Roboto;
+    font-size:20px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: 3.6px;
+    text-align: center;
+    margin-top: 10px;
+ }
+
+ .form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+ }
+
+ .filter-dropdown {
+  width: 220px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  fill: rgba(255, 255, 255, 0.70);
+  stroke-width: 2px;
+  stroke: #000;
+  flex-shrink: 0;
+ }
+
+ .searchbtn {
+  text-decoration: none;
+  fill: rgba(255, 255, 255, 0.70);
+  stroke-width: 2px;
+  stroke: #FFC000;
+  width: 100px;
+  height: 40px;
+  flex-shrink: 0;
+  color: #FFC000;
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #FFC000;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+  margin-bottom: -20
+}
+
+.searchbtn:hover {
+  background-color: rgba(255, 192, 0, 0.5);
+  color: white;
