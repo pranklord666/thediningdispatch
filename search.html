@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Find a Restaurant - The Dining Dispatch</title>
+  <link href="static/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <link href="static/styles.css" rel="stylesheet" />
   <h1>Find a Restaurant</h1>
   <div class="form-container">
-
     <!-- Dropdown for Location -->
     <label for="location" class="filter-label">LOCATION</label>
     <select id="location" class="filter-dropdown">
@@ -25,7 +24,6 @@
       <option value="10th District">10th District</option>
       <option value="11th District">11th District</option>
       <option value="12th District">12th District</option>
-      <option value="14th District">14th District</option>
       <option value="14th District">14th District</option>
       <option value="16th District">16th District</option>
       <option value="18th District">18th District</option>
@@ -68,5 +66,176 @@
       <option value="vietnamese">Vietnamese</option>
     </select>
   </div>
+  <div class="form-container">
+    <button id="search-button" class="searchbtn">Search</button>
+  </div>
+</div>
+<div id="results-container">
+    <!-- Search results will be dynamically inserted here -->
+</div>
+
+<script>
+  document.getElementById("search-button").addEventListener("click", async function () {
+    const criteria = {
+      style: document.getElementById("style").value,
+      cuisine: document.getElementById("cuisine").value,
+      location: document.getElementById("location").value
+    };
+
+    const resultsContainer = document.getElementById("results-container");
+    resultsContainer.innerHTML = "<p>Loading...</p>";
+
+    try {
+      await searchRestaurants(criteria, resultsContainer);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+      resultsContainer.innerHTML =
+        '<p class="error-message">An error occurred while fetching results. Please try again later.</p>';
+    }
+  });
+
+  async function searchRestaurants(criteria, resultsContainer, removedCriteria = []) {
+    const queryParams = [];
+    if (criteria.style) queryParams.push(`Style=${encodeURIComponent(criteria.style)}`);
+    if (criteria.cuisine) queryParams.push(`Cuisine=${encodeURIComponent(criteria.cuisine)}`);
+    if (criteria.location) queryParams.push(`Location=${encodeURIComponent(criteria.location)}`);
+
+    const queryString = queryParams.join("&");
+
+    const response = await fetch(
+      `https://thediningdispatch-backend.onrender.com/search?${queryString}`
+    );
+    const data = await response.json();
+
+    resultsContainer.innerHTML = "";
+    if (data.data.length === 0) {
+      // We try removing criteria if no results
+      if (removedCriteria.length < 3) {
+        const criteriaKeys = Object.keys(criteria).filter((key) => criteria[key]);
+        const criterionToRemove = criteriaKeys[removedCriteria.length];
+        const newCriteria = { ...criteria };
+        newCriteria[criterionToRemove] = "";
+        removedCriteria.push(criterionToRemove);
+        return searchRestaurants(newCriteria, resultsContainer, removedCriteria);
+      } else {
+        resultsContainer.innerHTML =
+          '<p class="message">No restaurants match your search criteria.</p>';
+      }
+    } else {
+      if (removedCriteria.length > 0) {
+        resultsContainer.innerHTML = `<p class="message">No exact match. Here are some results without the ${removedCriteria
+          .map((criterion) => criterion.replace(/([A-Z])/g, " $1").trim())
+          .join(" and ")} criteria:</p>`;
+      } else {
+        resultsContainer.innerHTML = '<p class="message">Here are your results:</p>';
+      }
+      displayResults(data.data, resultsContainer);
+    }
+  }
+
+  // Helper function to handle chef name formatting
+  function formatChefName(chefString) {
+    if (!chefString || chefString.toLowerCase().includes("not available")) {
+      return "";
+    }
+    // e.g. "ChefName (https://www.instagram.com/...)"
+    const regex = /(.*)\((https?:\/\/[^\)]+)\)/;
+    const match = chefString.match(regex);
+
+    if (match) {
+      const name = match[1].trim();
+      const link = match[2].trim();
+      return `<p class="chef">👨‍🍳 <a href="${link}" target="_blank">${name}</a></p>`;
+    } else {
+      return `<p class="chef">👨‍🍳 ${chefString}</p>`;
+    }
+  }
+
+  // Helper function to handle booking output
+  function formatBooking(bookingValue) {
+    if (!bookingValue) return "";
+    const trimmed = bookingValue.trim();
+    // Check if it looks like a URL or phone number
+    if (trimmed.toLowerCase().startsWith("http")) {
+      return `<a href="${trimmed}" class="menu_book_btn" target="_blank">BOOK</a>`;
+    } else {
+      // Likely a phone number
+      return `<a class="menu_book_btn">${trimmed}</a>`;
+    }
+  }
+
+  // Helper function to handle Instagram embedding
+  function formatInstagramEmbed(igLink) {
+    if (!igLink) return "";
+    // We expect something like "https://www.instagram.com/p/<post_id>/?..."
+    if (!igLink.includes("/p/")) return "";
+
+    const parts = igLink.split("/");
+    // Find index of "p"
+    const postIndex = parts.findIndex(segment => segment === "p");
+    if (postIndex === -1 || parts.length < postIndex + 2) {
+      return "";
+    }
+    // The segment after "p" is the post ID (possibly with query params)
+    let postId = parts[postIndex + 1];
+    // Strip any query params
+    postId = postId.split("?")[0];
+    const embedUrl = `https://www.instagram.com/p/${postId}/embed`;
+
+    // Make it responsive by placing iframe in a container
+    return `
+      <div class="instagram-post">
+        <iframe
+          src="${embedUrl}"
+          width="400"
+          height="480"
+          frameborder="0"
+          scrolling="no"
+          allowtransparency="true"
+        ></iframe>
+      </div>
+    `;
+  }
+
+  function displayResults(data, resultsContainer) {
+    data.forEach((restaurant) => {
+      const resultItem = document.createElement("div");
+      resultItem.classList.add("article");
+
+      // Booking button
+      const bookingButtonHtml = restaurant.Booking
+        ? formatBooking(restaurant.Booking)
+        : "";
+
+      // Menu button
+      const menuButtonHtml = restaurant.Menu
+        ? `<a href="${restaurant.Menu}" class="menu_book_btn" target="_blank">MENU</a>`
+        : "";
+
+      // Instagram embed
+      const igEmbedHtml = restaurant.InstagramLink
+        ? formatInstagramEmbed(restaurant.InstagramLink)
+        : "";
+
+      resultItem.innerHTML = `
+        <h2><span>${restaurant.Restaurant}</span></h2>
+        ${igEmbedHtml}
+        <p>${restaurant.Comments}</p>
+        <div class="menu_book_btn_style">
+          ${bookingButtonHtml}
+          ${menuButtonHtml}
+        </div>
+        <div class="location">
+          <p>${restaurant.Address}</p>
+        </div>
+        <div class="subway">
+          <p>${restaurant.Subway}</p>
+        </div>
+      `;
+      resultsContainer.appendChild(resultItem);
+    });
+  }
+</script>
+
 </body>
 </html>
