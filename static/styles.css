@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* body {
-  background-image: url('index_yellow_top.jpg'), url('index_yellow_left.jpg');
-  background-size: 100% auto, auto 100%; 
-  background-repeat: no-repeat, no-repeat;
-  background-position: top center, left top; 
+body {
+  background-image: url('index_yellow.jpg'); /* Met ici le bon nom de fichier */
+  background-size: cover; /* Couvre tout l'écran sans déformation */
+  background-repeat: no-repeat; /* Pas de répétition */
+  background-position: center center; /* Centre l'image horizontalement et verticalement */
   margin: 0;
-  height: 100vh; 
-  position: relative; */
+  height: 100vh; /* Occupe toute la hauteur de l'écran */
+}
 
 .thedining {
   color: #FFC000;
