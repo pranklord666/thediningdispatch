@@ -2,11 +2,18 @@
 
 body {
   background-image: url('index_smartphone.jpg'); /* Met ici le bon nom de fichier */
-  background-size: 100vw 100vh; /* Ajuste la largeur et la hauteur pour occuper toute la surface de l'écran */
+  background-size: cover; /* Couvre toute la surface de l'écran */
   background-repeat: no-repeat; /* Pas de répétition */
   background-position: center center; /* Centre l'image horizontalement et verticalement */
   margin: 0;
   height: 100vh; /* Occupe toute la hauteur de l'écran */
+}
+
+/* Media query pour les écrans mobiles */
+@media (max-width: 768px) {
+  body {
+    background-size: 100vw 100vh; /* Ajuste la largeur et la hauteur pour occuper toute la surface de l'écran */
+  }
 }
 
 .thedining {
