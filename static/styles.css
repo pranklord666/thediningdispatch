@@ -2,15 +2,14 @@
 
 body {
   background-image: url('index_yellow.jpg'); /* Met ici le bon nom de fichier */
-  background-size: cover; /* Couvre tout l'écran sans déformation */
+  background-size: auto 100vh; /* Ajuste la hauteur pour occuper toute la hauteur de la page */
   background-repeat: no-repeat; /* Pas de répétition */
   background-position: center center; /* Centre l'image horizontalement et verticalement */
   margin: 0;
   height: 100vh; /* Occupe toute la hauteur de l'écran */
 }
-
 .thedining {
-  color: #FFC000;
+  color: #FFC000; 
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
