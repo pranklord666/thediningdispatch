@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var dropdownButton = document.querySelector('.button-container .btn');
-    var dropdownContent = document.querySelector('.dropdown_content');
-    
-    
-    dropdownButton.addEventListener('click', function(event) {
-        event.stopPropagation(); // Empêche la propagation de l'événement de clic
-        dropdownContent.style.display = dropdownContent.style.display === 'flex' ? 'none' : 'flex';
+    var dropdownButtons = document.querySelectorAll('.button-container .btn');
+    var dropdownContents = document.querySelectorAll('.dropdown_content');
+
+    dropdownButtons.forEach(function(button, index) {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent the click event from propagating
+            var dropdownContent = dropdownContents[index];
+            dropdownContent.style.display = dropdownContent.style.display === 'flex' ? 'none' : 'flex';
+        });
     });
-    
+
     window.addEventListener('click', function() {
-        if (dropdownContent.style.display === 'flex') {
-            dropdownContent.style.display = 'none';
-        }
+        dropdownContents.forEach(function(dropdownContent) {
+            if (dropdownContent.style.display === 'flex') {
+                dropdownContent.style.display = 'none';
+            }
+        });
     });
-    });
+});

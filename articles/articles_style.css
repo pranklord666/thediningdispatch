@@ -158,6 +158,15 @@ margin-top: 60px
     margin: 0 auto; /* Centre le conteneur horizontalement */
 }
 
+.menu_book_btn_style_2 {
+  display: flex; /* Utilise flexbox pour aligner les boutons côte à côte */
+  justify-content: center; /* Centre les boutons horizontalement */
+  gap: 20px; /* Ajoute un espace de 20px entre les boutons */
+  margin-bottom: 20px; /* Ajoute un espace en dessous du conteneur */
+  width: 90%; /* Limite la largeur du conteneur à 90% de la largeur du parent */
+  margin: 0 auto; /* Centre le conteneur horizontalement */
+}
+
 .location {
     display: flex;
     justify-content: space-between;
