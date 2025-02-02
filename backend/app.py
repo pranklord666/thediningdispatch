@@ -6,10 +6,10 @@ import os
 # Define the Flask app
 app = Flask(__name__)
 
-# 🔹 Active CORS pour toutes les origines
+# Enable CORS for all origins
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# 🔹 Ajoute des headers CORS sur toutes les réponses
+# Add CORS headers to all responses
 @app.after_request
 def add_cors_headers(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
@@ -97,5 +97,5 @@ if __name__ == '__main__':
     print("Working directory:", os.getcwd())
     print("Database exists:", os.path.exists('dining_dispatch.db'))
 
-    port = int(os.environ.get("PORT", 5000))  # Render fournit le PORT en variable d'env
+    port = int(os.environ.get("PORT", 5000))  # Render provides the PORT as an environment variable
     app.run(host='0.0.0.0', port=port, debug=True)
