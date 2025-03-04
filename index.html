@@ -3,23 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    
     <!-- SEO Meta Tags -->
-    <title>The Dining Dispatch - Find the Best Local Restaurants</title>
-    <meta name="description" content="Discover the best local restaurants in Paris. Skip the tourist traps and eat like a local with The Dining Dispatch." />
+    <title>The Dining Dispatch - Taste the City Like a Local</title>
+    <meta name="description" content="Taste the City Like a Local. Savor the Best, Skip the Rest. Discover the best local restaurants and hidden gems with The Dining Dispatch." />
+    <meta name="keywords" content="local restaurants, hidden gems, dining guide, foodie travel, best places to eat" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="The Dining Dispatch Team" />
 
     <!-- Open Graph (Facebook, LinkedIn) -->
-    <meta property="og:title" content="The Dining Dispatch - Curated Local Restaurants" />
-    <meta property="og:description" content="We help you find the best non-touristy restaurants in Paris. Explore top picks and hidden gems." />
+    <meta property="og:title" content="The Dining Dispatch - Taste the City Like a Local" />
+    <meta property="og:description" content="Taste the City Like a Local. Savor the Best, Skip the Rest. Explore curated local dining experiences." />
     <meta property="og:image" content="https://www.thediningdispatch.com/static/preview-image.jpg" />
     <meta property="og:url" content="https://www.thediningdispatch.com" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Dining Dispatch" />
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Dining Dispatch - Avoid Tourist Traps, Eat Like a Local" />
-    <meta name="twitter:description" content="Your guide to the best hidden restaurants in Paris, curated for food lovers." />
+    <meta name="twitter:title" content="The Dining Dispatch - Savor the Best, Skip the Rest" />
+    <meta name="twitter:description" content="Taste the City Like a Local. Your guide to the best local restaurants and hidden dining spots." />
     <meta name="twitter:image" content="https://www.thediningdispatch.com/static/preview-image.jpg" />
+    <meta name="twitter:site" content="@thediningdispatch" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.thediningdispatch.com" />
 
     <!-- Styles & Fonts -->
     <link
@@ -27,39 +35,55 @@
       rel="stylesheet"
     />
     <link href="static/styles.css" rel="stylesheet" />
+
+    <!-- Schema Markup for Local Business (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "The Dining Dispatch",
+        "url": "https://www.thediningdispatch.com",
+        "description": "Taste the City Like a Local. Savor the Best, Skip the Rest.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.thediningdispatch.com/search.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="content-wrapper">
-      <div class="wrapper">
+      <header class="wrapper">
         <div class="container">
-          <div class="title">
+          <h1 class="title">
             <span class="thedining">THE DINING</span><br />
             <span class="dispatch">DISPATCH</span>
-          </div>
+          </h1>
         </div>
 
         <div class="subcontainer">
-          <div class="subtitle">
+          <p class="subtitle">
             <span class="Taste">Taste the City Like a Local.</span><br />
             <span class="Savor">Savor the Best, Skip the Rest.</span>
-          </div>
+          </p>
         </div>
-      </div>
+      </header>
 
-      <div class="button-container">
+      <nav class="button-container">
         <a href="search.html" class="btn">FIND A RESTAURANT</a>
         <a href="toppicks.html" class="btn">TOP PICKS</a>
         <a href="newsletter.html" class="btn">NEWSLETTERS</a>
         <a href="aboutus.html" class="btn">ABOUT US</a>
         <div class="social-icons-wrapper">
-          <a href="https://www.instagram.com/the_diningdispatch/">
+          <a href="https://www.instagram.com/the_diningdispatch/" aria-label="Follow us on Instagram">
             <img src="static/instagram.png" alt="Instagram" class="social-icon" />
           </a>
-          <a href="https://www.tiktok.com/@thediningdispatch?is_from_webapp=1&sender_device=pc">
+          <a href="https://www.tiktok.com/@thediningdispatch?is_from_webapp=1&sender_device=pc" aria-label="Follow us on TikTok">
             <img src="static/tiktok.png" alt="TikTok" class="social-icon" />
           </a>
         </div>
-      </div>
+      </nav>
     </div>
   </body>
 </html>
