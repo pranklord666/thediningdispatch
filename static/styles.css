@@ -1,15 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
 /* Media query pour les écrans mobiles */
 @media (max-width: 768px) {
   body {
-    background-size: 100vw 100vh; /* Ajuste la largeur et la hauteur pour occuper toute la surface de l'écran */
+    background-size: 100vw 100vh;
   }
 }
 
 .thedining {
-  color: #FFC000; 
+  color: #FFC000;
   font-family: Roboto;
   font-size: 40px;
   font-style: normal;
@@ -299,30 +298,30 @@ h1 {
   text-align: center;
   margin-top: 30px;
   margin-bottom: -20px;
-  }
+}
 
-  .filter-label {
-    color: #FFC000;
-    font-family: Roboto;
-    font-size:20px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    letter-spacing: 3.6px;
-    text-align: center;
-    margin-top: 10px;
- }
+.filter-label {
+  color: #FFC000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  letter-spacing: 3.6px;
+  text-align: center;
+  margin-top: 10px;
+}
 
- .form-container {
+.form-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
- }
+}
 
- .filter-dropdown {
+.filter-dropdown {
   width: 220px;
   height: 40px;
   display: flex;
@@ -348,9 +347,9 @@ h1 {
   stroke-width: 2px;
   stroke: #000;
   flex-shrink: 0;
- }
+}
 
- .searchbtn {
+.searchbtn {
   text-decoration: none;
   fill: rgba(255, 255, 255, 0.70);
   stroke-width: 2px;
@@ -374,49 +373,37 @@ h1 {
   border-radius: 10px;
   padding: 0;
   cursor: pointer;
-  margin-bottom: -20
+  margin-bottom: -20px; /* Fixed missing 'px' unit */
 }
 
 .searchbtn:hover {
   background-color: rgba(255, 192, 0, 0.5);
   color: white;
-
-/* Wrapper for social icons to keep them horizontal and constrained */
-.social-icons-wrapper {
-  display: flex;
-  justify-content: center; /* Centers the icons */
-  gap: 10px; /* Small spacing between icons, adjust as needed */
-  max-width: 252px; /* Matches .btn width */
-  margin: 0 auto; /* Centers the wrapper within the column layout */
-  margin-top: 15px; /* Optional: Adds space above the icons */
 }
 
-/* Social icons styling */
-.social-icon {
-  height: 2px; /* Matches .btn height as "diameter" */
-  width: 2px; /* Ensures a circular appearance, matching height */
-  vertical-align: middle;
-  /* Remove any background or border from the SVG if it’s causing the yellow circle */
-  background: none; /* Ensures no yellow background */
-  border: none; /* Removes any border */
-  padding: 0; /* Removes padding */
-}
-
-/* Social icons container */
+/* Social Icons Wrapper */
 .social-icons-wrapper {
   display: flex;
-  gap: 10px; /* Space between icons */
   justify-content: center;
-  align-items: center;
+  gap: 10px;
+  max-width: 252px;
+  margin: 0 auto;
   margin-top: 15px;
 }
 
 .social-icon {
-  width: 45px; 
-  height: 45px;
-  display: inline-block;
+  width: 45px !important;
+  height: 45px !important;
+  max-width: 45px;
+  max-height: 45px;
+  display: block;
+  object-fit: contain;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
+/* Hover Effect */
 .social-icon:hover {
   opacity: 0.8;
 }
