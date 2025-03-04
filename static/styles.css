@@ -393,8 +393,8 @@ h1 {
 
 /* Social icons styling */
 .social-icon {
-  height: 45px; /* Matches .btn height as "diameter" */
-  width: 45px; /* Ensures a circular appearance, matching height */
+  height: 2px; /* Matches .btn height as "diameter" */
+  width: 2px; /* Ensures a circular appearance, matching height */
   vertical-align: middle;
   /* Remove any background or border from the SVG if it’s causing the yellow circle */
   background: none; /* Ensures no yellow background */
@@ -402,13 +402,21 @@ h1 {
   padding: 0; /* Removes padding */
 }
 
-/* Ensure the SVG content scales properly */
-.social-icon img {
-  height: 100%; /* Fills the container */
-  width: 100%; /* Fills the container */
-  object-fit: contain; /* Preserves aspect ratio, avoids distortion */
+/* Social icons container */
+.social-icons-wrapper {
+  display: flex;
+  gap: 10px; /* Space between icons */
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.social-icon {
+  width: 45px; 
+  height: 45px;
+  display: inline-block;
 }
 
 .social-icon:hover {
-  opacity: 0.8; /* Keep your hover effect */
+  opacity: 0.8;
 }
