@@ -381,14 +381,23 @@ h1 {
   background-color: rgba(255, 192, 0, 0.5);
   color: white;
 
+/* Wrapper for social icons to keep them horizontal and constrained */
+.social-icons-wrapper {
+  display: flex;
+  justify-content: center; /* Centers the icons */
+  gap: 10px; /* Small spacing between icons, adjust as needed */
+  max-width: 252px; /* Matches .btn width */
+  margin: 0 auto; /* Centers the wrapper within the column layout */
+}
+
+/* Social icons styling */
 .social-icon {
-  width: auto; /* Maintains aspect ratio */
-  height: 45px; /* Matches the height of .btn */
-  margin: 0 10px; /* Spacing between icons */
-  vertical-align: middle; /* Aligns with surrounding elements */
-  display: inline-block; /* Ensures they sit on the same line */
+  height: 45px; /* Matches .btn height as "diameter" */
+  width: auto; /* Scales proportionally, keeps them small */
+  max-width: 45px; /* Ensures they don’t exceed the "diameter" */
+  vertical-align: middle;
 }
 
 .social-icon:hover {
-  opacity: 0.8; /* Optional hover effect */
+  opacity: 0.8; /* Keep your hover effect */
 }
