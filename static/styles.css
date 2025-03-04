@@ -382,10 +382,11 @@ h1 {
   color: white;
 
 .social-icon {
-  width: 40px; /* Adjust size as needed */
-  height: 40px;
+  width: auto; /* Maintains aspect ratio */
+  height: 45px; /* Matches the height of .btn */
   margin: 0 10px; /* Spacing between icons */
-  vertical-align: middle;
+  vertical-align: middle; /* Aligns with surrounding elements */
+  display: inline-block; /* Ensures they sit on the same line */
 }
 
 .social-icon:hover {
