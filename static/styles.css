@@ -388,14 +388,25 @@ h1 {
   gap: 10px; /* Small spacing between icons, adjust as needed */
   max-width: 252px; /* Matches .btn width */
   margin: 0 auto; /* Centers the wrapper within the column layout */
+  margin-top: 15px; /* Optional: Adds space above the icons */
 }
 
 /* Social icons styling */
 .social-icon {
   height: 45px; /* Matches .btn height as "diameter" */
-  width: 45px; /* Scales proportionally, keeps them small */
-  max-width: 45px; /* Ensures they don’t exceed the "diameter" */
+  width: 45px; /* Ensures a circular appearance, matching height */
   vertical-align: middle;
+  /* Remove any background or border from the SVG if it’s causing the yellow circle */
+  background: none; /* Ensures no yellow background */
+  border: none; /* Removes any border */
+  padding: 0; /* Removes padding */
+}
+
+/* Ensure the SVG content scales properly */
+.social-icon img {
+  height: 100%; /* Fills the container */
+  width: 100%; /* Fills the container */
+  object-fit: contain; /* Preserves aspect ratio, avoids distortion */
 }
 
 .social-icon:hover {
