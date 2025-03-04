@@ -393,7 +393,7 @@ h1 {
 /* Social icons styling */
 .social-icon {
   height: 45px; /* Matches .btn height as "diameter" */
-  width: auto; /* Scales proportionally, keeps them small */
+  width: 45px; /* Scales proportionally, keeps them small */
   max-width: 45px; /* Ensures they don’t exceed the "diameter" */
   vertical-align: middle;
 }
