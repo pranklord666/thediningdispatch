@@ -11,9 +11,9 @@
   <h1>Find a Restaurant</h1>
   <div class="form-container">
     <!-- Dropdown pour la Localisation -->
-    <label for="location" class="filter-label">LOCALISATION</label>
+    <label for="location" class="filter-label" id="location-label">CHOOSE A</label>
     <select id="location" class="filter-dropdown">
-      <option value="">Sélectionnez une localisation</option>
+      <option class="localisation-option" value="">LOCATION</option>
       <option value="2nd District">2nd District</option>
       <option value="4th District">4th District</option>
       <option value="5th District">5th District</option>
@@ -31,9 +31,10 @@
       <option value="20th District">20th District</option>
       <option value="Issy-les-Moulineaux">Issy-les-Moulineaux</option>
     </select>
-  </div>
-  <div class="form-container">
-    <button id="search-button" class="searchbtn">Search</button>
+    <div class="button-container">
+      <a href="../index.html" class="homebtn">HOME</a>
+      <button id="search-button" class="homebtn">SEARCH</button>
+    </div>
   </div>
   <div id="results-container">
       <!-- Les résultats de recherche seront insérés ici -->
@@ -47,6 +48,12 @@
 
       const resultsContainer = document.getElementById("results-container");
       resultsContainer.innerHTML = "<p>Loading...</p>";
+
+      // Masquer le label "CHOOSE A" si une localisation est sélectionnée
+      const locationLabel = document.getElementById("location-label");
+      if (criteria.location) {
+        locationLabel.style.display = "none";
+      }
 
       try {
         await searchRestaurants(criteria, resultsContainer);
@@ -83,7 +90,6 @@
         resultsContainer.innerHTML =
           '<p class="message">Aucun restaurant ne correspond à la localisation sélectionnée.</p>';
       } else {
-        resultsContainer.innerHTML = '<p class="message">Voici vos résultats :</p>';
         displayResults(data.data, resultsContainer);
       }
     }
@@ -184,8 +190,5 @@
       `;
     }
   </script>
-  <div class="home_style">
-    <a href="../index.html" class="homebtn">HOME</a>
-  </div>
 </body>
 </html>
