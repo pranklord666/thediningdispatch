@@ -11,9 +11,9 @@
   <h1>Find a Restaurant</h1>
   <div class="form-container">
     <!-- Dropdown pour la Localisation -->
-    <label for="location" class="filter-label" id="location-label">CHOOSE A</label>
+    <label for="location" class="filter-label" id="location-label">CHOOSE A LOCATION</label>
     <select id="location" class="filter-dropdown">
-      <option class="localisation-option" value="">LOCATION</option>
+      <option class="localisation-option" value=""></option>
       <option value="2nd District">2nd District</option>
       <option value="4th District">4th District</option>
       <option value="5th District">5th District</option>
@@ -32,13 +32,13 @@
       <option value="Issy-les-Moulineaux">Issy-les-Moulineaux</option>
     </select>
     <div class="button-container">
-      <a href="../index.html" class="homebtn">HOME</a>
       <button id="search-button" class="homebtn">SEARCH</button>
     </div>
   </div>
   <div id="results-container">
       <!-- Les résultats de recherche seront insérés ici -->
   </div>
+  
 
   <script>
     document.getElementById("search-button").addEventListener("click", async function () {
@@ -49,7 +49,7 @@
       const resultsContainer = document.getElementById("results-container");
       resultsContainer.innerHTML = "<p>Loading...</p>";
 
-      // Masquer le label "CHOOSE A" si une localisation est sélectionnée
+      // Masquer le label "CHOOSE A LOCATION" si une localisation est sélectionnée
       const locationLabel = document.getElementById("location-label");
       if (criteria.location) {
         locationLabel.style.display = "none";
