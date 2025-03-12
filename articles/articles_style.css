@@ -291,3 +291,22 @@ select.filter-dropdown option.localisation-option {
 .filter-dropdown:hover {
   background-color: rgba(255, 192, 0, 0.1);
 }
+
+.mood {
+  margin-top: -20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url("../static/mood.svg") no-repeat left center;
+  background-size: 24px 24px;
+  padding-left: 30px;
+}
+.chef {
+  margin-top: -20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url("../static/chef.svg") no-repeat left center;
+  background-size: 24px 24px;
+  padding-left: 30px;
+}

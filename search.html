@@ -1,194 +1,202 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Find a Restaurant - The Dining Dispatch</title>
-  <link href="static/styles.css" rel="stylesheet" />
-  <link href="articles/articles_style.css" rel="stylesheet" />
-</head>
-<body>
-  <h1>Find a Restaurant</h1>
-  <div class="form-container">
-    <!-- Dropdown pour la Localisation -->
-    <label for="location" class="filter-label" id="location-label">CHOOSE A LOCATION</label>
-    <select id="location" class="filter-dropdown">
-      <option class="localisation-option" value=""></option>
-      <option value="2nd District">2nd District</option>
-      <option value="4th District">4th District</option>
-      <option value="5th District">5th District</option>
-      <option value="6th District">6th District</option>
-      <option value="7th District">7th District</option>
-      <option value="8th District">8th District</option>
-      <option value="9th District">9th District</option>
-      <option value="10th District">10th District</option>
-      <option value="11th District">11th District</option>
-      <option value="12th District">12th District</option>
-      <option value="14th District">14th District</option>
-      <option value="16th District">16th District</option>
-      <option value="18th District">18th District</option>
-      <option value="19th District">19th District</option>
-      <option value="20th District">20th District</option>
-      <option value="Issy-les-Moulineaux">Issy-les-Moulineaux</option>
-    </select>
-    <div class="button-container">
-      <button id="search-button" class="homebtn">SEARCH</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Find a Restaurant - The Dining Dispatch</title>
+    <link href="static/styles.css" rel="stylesheet" />
+    <link href="articles/articles_style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Find a Restaurant</h1>
+    <div class="form-container">
+      <!-- Dropdown pour la Localisation -->
+      <label for="location" class="filter-label" id="location-label">CHOOSE A LOCATION</label>
+      <select id="location" class="filter-dropdown">
+        <option class="localisation-option" value=""></option>
+        <option value="2nd District">2nd District</option>
+        <option value="4th District">4th District</option>
+        <option value="5th District">5th District</option>
+        <option value="6th District">6th District</option>
+        <option value="7th District">7th District</option>
+        <option value="8th District">8th District</option>
+        <option value="9th District">9th District</option>
+        <option value="10th District">10th District</option>
+        <option value="11th District">11th District</option>
+        <option value="12th District">12th District</option>
+        <option value="14th District">14th District</option>
+        <option value="16th District">16th District</option>
+        <option value="18th District">18th District</option>
+        <option value="19th District">19th District</option>
+        <option value="20th District">20th District</option>
+        <option value="Issy-les-Moulineaux">Issy-les-Moulineaux</option>
+      </select>
+      <div class="button-container">
+        <button id="search-button" class="homebtn">SEARCH</button>
+      </div>
     </div>
-  </div>
-  <div id="results-container">
-      <!-- Les résultats de recherche seront insérés ici -->
-  </div>
-  
+    <div id="results-container">
+        <!-- Les résultats de recherche seront insérés ici -->
+    </div>
+    
+    <script>
+      document.getElementById("search-button").addEventListener("click", async function () {
+        const criteria = {
+          location: document.getElementById("location").value
+        };
 
-  <script>
-    document.getElementById("search-button").addEventListener("click", async function () {
-      const criteria = {
-        location: document.getElementById("location").value
-      };
+        const resultsContainer = document.getElementById("results-container");
+        resultsContainer.innerHTML = "<p>Loading...</p>";
 
-      const resultsContainer = document.getElementById("results-container");
-      resultsContainer.innerHTML = "<p>Loading...</p>";
-
-      // Masquer le label "CHOOSE A LOCATION" si une localisation est sélectionnée
-      const locationLabel = document.getElementById("location-label");
-      if (criteria.location) {
-        locationLabel.style.display = "none";
-      }
-
-      try {
-        await searchRestaurants(criteria, resultsContainer);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-        resultsContainer.innerHTML =
-          '<p class="error-message">Une erreur est survenue lors de la récupération des résultats. Veuillez réessayer plus tard.</p>';
-      }
-    });
-
-    async function searchRestaurants(criteria, resultsContainer) {
-      const queryParams = [];
-      if (criteria.location) queryParams.push(`Location=${encodeURIComponent(criteria.location)}`);
-
-      const queryString = queryParams.join("&");
-
-      const response = await fetch(
-        `https://thediningdispatch.onrender.com/search?${queryString}`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json'
-          }
+        // Masquer le label "CHOOSE A LOCATION" si une localisation est sélectionnée
+        const locationLabel = document.getElementById("location-label");
+        if (criteria.location) {
+          locationLabel.style.display = "none";
         }
-      );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        try {
+          await searchRestaurants(criteria, resultsContainer);
+        } catch (error) {
+          console.error("Error fetching search results:", error);
+          resultsContainer.innerHTML =
+            '<p class="error-message">Une erreur est survenue lors de la récupération des résultats. Veuillez réessayer plus tard.</p>';
+        }
+      });
+
+      async function searchRestaurants(criteria, resultsContainer) {
+        const queryParams = [];
+        if (criteria.location) queryParams.push(`Location=${encodeURIComponent(criteria.location)}`);
+
+        const queryString = queryParams.join("&");
+
+        const response = await fetch(
+          `https://thediningdispatch.onrender.com/search?${queryString}`, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json'
+            }
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        resultsContainer.innerHTML = "";
+        if (data.data.length === 0) {
+          resultsContainer.innerHTML =
+            '<p class="message">Aucun restaurant ne correspond à la localisation sélectionnée.</p>';
+        } else {
+          displayResults(data.data, resultsContainer);
+        }
       }
 
-      const data = await response.json();
+      // Fonction d'affichage des résultats
+      function displayResults(data, resultsContainer) {
+        data.forEach((restaurant) => {
+          const resultItem = document.createElement("div");
+          resultItem.classList.add("article");
 
-      resultsContainer.innerHTML = "";
-      if (data.data.length === 0) {
-        resultsContainer.innerHTML =
-          '<p class="message">Aucun restaurant ne correspond à la localisation sélectionnée.</p>';
-      } else {
-        displayResults(data.data, resultsContainer);
+          // Bouton de réservation
+          const bookingButtonHtml = restaurant.Booking
+            ? formatBooking(restaurant.Booking)
+            : "";
+
+          // Bouton de menu
+          const menuButtonHtml = restaurant.Menu
+            ? `<a href="${restaurant.Menu}" class="menu_book_btn" target="_blank">MENU</a>`
+            : "";
+
+          // Intégration Instagram
+          const igEmbedHtml = restaurant.InstagramLink
+            ? formatInstagramEmbed(restaurant.InstagramLink)
+            : "";
+
+          // Formatage du nom du chef avec lien Instagram
+          const chefNameHtml = restaurant.ChefNameInsta
+            ? formatChefNameInsta(restaurant.ChefNameInsta)
+            : "";
+
+          resultItem.innerHTML = `
+            <h2><span>${restaurant.Restaurant}</span></h2>
+            ${igEmbedHtml}
+            <p>${restaurant.Comments}</p>
+            <div class="menu_book_btn_style">
+              ${bookingButtonHtml}
+              ${menuButtonHtml}
+            </div>
+            <div class="location">
+              <p>${restaurant.Address}</p>
+            </div>
+            <div class="subway">
+              <p>${restaurant.Subway}</p>
+            </div>
+            <div class="mood">
+              <p>${restaurant.Mood}</p>
+            </div>
+            <div class="chef">
+              <p>${chefNameHtml}</p>
+            </div>
+          `;
+          resultsContainer.appendChild(resultItem);
+        });
       }
-    }
 
-    // Fonction d'affichage des résultats
-    function displayResults(data, resultsContainer) {
-      data.forEach((restaurant) => {
-        const resultItem = document.createElement("div");
-        resultItem.classList.add("article");
+      // Fonction pour formater le bouton de réservation
+      function formatBooking(bookingValue) {
+        if (!bookingValue) return "";
+        const trimmed = bookingValue.trim();
+        if (trimmed.toLowerCase().startsWith("http")) {
+          return `<a href="${trimmed}" class="menu_book_btn" target="_blank">BOOK</a>`;
+        } else {
+          return `<a class="menu_book_btn">${trimmed}</a>`;
+        }
+      }
 
-        // Bouton de réservation
-        const bookingButtonHtml = restaurant.Booking
-          ? formatBooking(restaurant.Booking)
-          : "";
+      // Fonction pour intégrer Instagram
+      function formatInstagramEmbed(igLink) {
+        if (!igLink) return "";
+        if (!igLink.includes("/p/")) return "";
 
-        // Bouton de menu
-        const menuButtonHtml = restaurant.Menu
-          ? `<a href="${restaurant.Menu}" class="menu_book_btn" target="_blank">MENU</a>`
-          : "";
+        const parts = igLink.split("/");
+        const postIndex = parts.findIndex(segment => segment === "p");
+        if (postIndex === -1 || parts.length < postIndex + 2) {
+          return "";
+        }
+        let postId = parts[postIndex + 1];
+        postId = postId.split("?")[0];
+        const embedUrl = `https://www.instagram.com/p/${postId}/embed`;
 
-        // Intégration Instagram
-        const igEmbedHtml = restaurant.InstagramLink
-          ? formatInstagramEmbed(restaurant.InstagramLink)
-          : "";
-
-        resultItem.innerHTML = `
-          <h2><span>${restaurant.Restaurant}</span></h2>
-          ${igEmbedHtml}
-          <p>${restaurant.Comments}</p>
-          <div class="menu_book_btn_style">
-            ${bookingButtonHtml}
-            ${menuButtonHtml}
-          </div>
-          <div class="location">
-            <p>${restaurant.Address}</p>
-          </div>
-          <div class="subway">
-            <p>${restaurant.Subway}</p>
+        return `
+          <div class="instagram-post">
+            <iframe
+              src="${embedUrl}"
+              width="400"
+              height="480"
+              frameborder="0"
+              scrolling="no"
+              allowtransparency="true"
+            ></iframe>
           </div>
         `;
-        resultsContainer.appendChild(resultItem);
-      });
-    }
-
-    // Fonction pour formater le nom du chef
-    function formatChefName(chefString) {
-      if (!chefString || chefString.toLowerCase().includes("not available")) {
-        return "";
       }
-      const regex = /(.*)\((https?:\/\/[^\)]+)\)/;
-      const match = chefString.match(regex);
 
-      if (match) {
-        const name = match[1].trim();
-        const link = match[2].trim();
-        return `<p class="chef">👨‍🍳 <a href="${link}" target="_blank">${name}</a></p>`;
-      } else {
-        return `<p class="chef">👨‍🍳 ${chefString}</p>`;
+      // Nouvelle fonction pour formater ChefNameInsta avec hyperlien
+      function formatChefNameInsta(chefNameInsta) {
+        if (!chefNameInsta) return "";
+        
+        // Vérifie si le format contient un nom suivi d'une URL entre parenthèses
+        const match = chefNameInsta.match(/^(.*?)\s*\((https:\/\/www\.instagram\.com\/.*?)\)$/);
+        if (match) {
+          const name = match[1].trim();
+          const url = match[2];
+          return `<a href="${url}" target="_blank">${name}</a>`;
+        }
+        // Si pas de match, retourne le texte tel quel
+        return chefNameInsta;
       }
-    }
-
-    // Fonction pour formater le bouton de réservation
-    function formatBooking(bookingValue) {
-      if (!bookingValue) return "";
-      const trimmed = bookingValue.trim();
-      if (trimmed.toLowerCase().startsWith("http")) {
-        return `<a href="${trimmed}" class="menu_book_btn" target="_blank">BOOK</a>`;
-      } else {
-        return `<a class="menu_book_btn">${trimmed}</a>`;
-      }
-    }
-
-    // Fonction pour intégrer Instagram
-    function formatInstagramEmbed(igLink) {
-      if (!igLink) return "";
-      if (!igLink.includes("/p/")) return "";
-
-      const parts = igLink.split("/");
-      const postIndex = parts.findIndex(segment => segment === "p");
-      if (postIndex === -1 || parts.length < postIndex + 2) {
-        return "";
-      }
-      let postId = parts[postIndex + 1];
-      postId = postId.split("?")[0];
-      const embedUrl = `https://www.instagram.com/p/${postId}/embed`;
-
-      return `
-        <div class="instagram-post">
-          <iframe
-            src="${embedUrl}"
-            width="400"
-            height="480"
-            frameborder="0"
-            scrolling="no"
-            allowtransparency="true"
-          ></iframe>
-        </div>
-      `;
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
