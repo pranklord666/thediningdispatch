@@ -3,56 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Minimal title tag without the extra SEO meta tags -->
+    <title>The Dining Dispatch</title>
     
-    <!-- SEO Meta Tags -->
-    <title>The Dining Dispatch - Taste the City Like a Local</title>
-    <meta name="description" content="Taste the City Like a Local. Savor the Best, Skip the Rest. Discover the best local restaurants and hidden gems with The Dining Dispatch." />
-    <meta name="keywords" content="local restaurants, hidden gems, dining guide, foodie travel, best places to eat" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="The Dining Dispatch Team" />
-
-    <!-- Open Graph (Facebook, LinkedIn) -->
-    <meta property="og:title" content="The Dining Dispatch - Taste the City Like a Local" />
-    <meta property="og:description" content="Taste the City Like a Local. Savor the Best, Skip the Rest. Explore curated local dining experiences." />
-    <meta property="og:image" content="https://www.thediningdispatch.com/static/preview-image.jpg" />
-    <meta property="og:url" content="https://www.thediningdispatch.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="The Dining Dispatch" />
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The Dining Dispatch - Savor the Best, Skip the Rest" />
-    <meta name="twitter:description" content="Taste the City Like a Local. Your guide to the best local restaurants and hidden dining spots." />
-    <meta name="twitter:image" content="https://www.thediningdispatch.com/static/preview-image.jpg" />
-    <meta name="twitter:site" content="@thediningdispatch" />
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.thediningdispatch.com" />
-
-    <!-- Styles & Fonts -->
+    <!-- Fonts & Styles -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link href="static/styles.css" rel="stylesheet" />
-
-    <!-- Schema Markup for Local Business (JSON-LD) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "The Dining Dispatch",
-        "url": "https://www.thediningdispatch.com",
-        "description": "Taste the City Like a Local. Savor the Best, Skip the Rest.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.thediningdispatch.com/search.html?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script>
-
+    
     <style>
+      /* Keep the video container styling */
       .video-container {
         position: relative;
         padding-bottom: 56.25%;
@@ -70,31 +32,53 @@
         height: 100%;
         border: none;
       }
+      
+      /* Optional additional styling for the header */
+      header {
+        text-align: center;
+        padding: 1em 0;
+      }
+      header h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
     </style>
   </head>
   <body>
+    <!-- Main title moved to the top -->
+    <header>
+      <h1>THE DINING DISPATCH</h1>
+    </header>
     <div class="content-wrapper">
-      <header class="wrapper">
-        <div class="container">
-          <h1 class="title">
-            <span class="thedining">THE DINING DISPATCH</span><br />
-          </h1>
-        </div>
-      </header>
- <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/tFP2EgxV9ps?si=3oqmmgqpwNLSNggu" title="The Dining Dispatch YouTube Video" allowfullscreen></iframe>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/tFP2EgxV9ps?si=3oqmmgqpwNLSNggu"
+          title="The Dining Dispatch YouTube Video"
+          allowfullscreen
+        ></iframe>
       </div>
-       <div class="video-container">
-        <iframe src="https://youtu.be/i2OkQj9prWM?si=8qvld2SR8z6yV2Nd" title="The Dining Dispatch YouTube Video" allowfullscreen></iframe>
+      <div class="video-container">
+        <!-- Changed the YouTube URL to the proper embed link -->
+        <iframe
+          src="https://www.youtube.com/embed/i2OkQj9prWM?si=8qvld2SR8z6yV2Nd"
+          title="The Dining Dispatch YouTube Video"
+          allowfullscreen
+        ></iframe>
       </div>
       <nav class="button-container">
         <a href="https://youtube.com/@thediningdispatch?si=PPR5c_L7tSpsMAMQ" class="btn">YOUTUBE</a>
         <a href="aboutus.html" class="btn">ABOUT US</a>
         <div class="social-icons-wrapper">
-          <a href="https://www.instagram.com/the_diningdispatch/" aria-label="Follow us on Instagram">
+          <a
+            href="https://www.instagram.com/the_diningdispatch/"
+            aria-label="Follow us on Instagram"
+          >
             <img src="static/instagram.png" alt="Instagram" class="social-icon" />
           </a>
-          <a href="https://www.tiktok.com/@thediningdispatch?is_from_webapp=1&sender_device=pc" aria-label="Follow us on TikTok">
+          <a
+            href="https://www.tiktok.com/@thediningdispatch?is_from_webapp=1&sender_device=pc"
+            aria-label="Follow us on TikTok"
+          >
             <img src="static/tiktok.png" alt="TikTok" class="social-icon" />
           </a>
         </div>
@@ -102,4 +86,3 @@
     </div>
   </body>
 </html>
-
